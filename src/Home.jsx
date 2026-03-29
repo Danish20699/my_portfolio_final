@@ -129,34 +129,24 @@ const Home = () => {
 
               </div>
 
-                <div className="hero-card-wrapper" style={{ width: '380px', margin: '0 0 0 auto' }}>
-                  <BorderGlow
-                    glowColor="180 100 50"
-                    backgroundColor="transparent"
-                    borderRadius={24}
-                    glowRadius={80}
-                    glowIntensity={2.0}
-                    animated={true}
-                    colors={['#00FFFF', '#2D65FF', '#1A1A1A']}
-                  >
-                    <ProfileCard 
-                      name="Danish Nazir"
-                      title="Software Engineer"
-                      handle="javicodes"
-                      status="Online"
-                      contactText="Contact Me"
-                      avatarUrl="/images/Profile_image.jpg.png"
-                      showUserInfo={false}
-                      enableTilt={true}
-                      enableMobileTilt={false}
-                      onContactClick={() => console.log('Contact clicked')}
-                      behindGlowColor="rgba(125, 190, 255, 0.67)"
-                      iconUrl="/assets/demo/iconpattern.png"
-                      behindGlowEnabled
-                      innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
-                    />
-                  </BorderGlow>
-                </div>
+              <div className="hero-card-wrapper">
+                <ProfileCard 
+                  name="Danish Nazir"
+                  title="Software Engineer"
+                  handle="javicodes"
+                  status="Online"
+                  contactText="Contact Me"
+                  avatarUrl="/images/Profile_image.jpg.png"
+                  showUserInfo={false}
+                  enableTilt={true}
+                  enableMobileTilt={false}
+                  onContactClick={() => console.log('Contact clicked')}
+                  behindGlowColor="rgba(125, 190, 255, 0.67)"
+                  iconUrl="/assets/demo/iconpattern.png"
+                  behindGlowEnabled
+                  innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
+                />
+              </div>
 
             </div>
           </div>
