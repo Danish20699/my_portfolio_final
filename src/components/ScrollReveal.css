@@ -1,0 +1,31 @@
+.scroll-reveal {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  line-height: 1.4;
+  margin: 0 auto;
+}
+
+.scroll-reveal-text {
+  display: inline-block;
+  white-space: pre-wrap;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  max-width: 100%;
+  margin: 0;
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: opacity, filter;
+  transition: color 0.3s ease;
+}
+
+.word:hover {
+  color: var(--accent-cyan, #0ea5e9);
+}

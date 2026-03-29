@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danish Nazir - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D65FF;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #F3F4F6;
+            color: var(--text-dark);
+            line-height: 1.5;
+            padding: 2rem;
+        }
+
+        .page {
+            background: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 2px solid #E5E7EB;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .role {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        p {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-left: 0.5rem;
+        }
+
+        li {
+            font-size: 0.95rem;
+            color: #4B5563;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 0.5rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <h1>Danish Nazir</h1>
+            <div class="subtitle">Full Stack, AI & Machine Learning Engineer</div>
+            <div class="contact-info">
+                <span>📍 Remote / Relocatable</span>
+                <span>📧 danishpersonal6@gmail.com</span>
+                <span>🔗 linkedin.com/in/danish-nazir1</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>Professional Summary</h2>
+            <p>
+                Results-oriented <strong>Full Stack & AI Engineer</strong> with <strong>2+ years of production
+                    experience</strong> and over <strong>10+ live systems</strong> deployed.
+                Specializes in building scalable, secure, and high-performance web applications using React, Node.js,
+                and Python.
+                Proven track record of bridging the gap between complex backend logic and intuitive frontend
+                experiences, with a strong focus on system architecture, database optimization, and AI integration.
+            </p>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">Frontend:</div>
+                <div>React.js, Next.js, TypeScript, Tailwind CSS, SASS, HTML5/CSS3</div>
+
+                <div class="skill-category">Backend:</div>
+                <div>Node.js, Python (Django/FastAPI), PostgreSQL, MongoDB, Redis, REST APIs</div>
+
+                <div class="skill-category">AI & ML:</div>
+                <div>OpenAI API, LangChain, PyTorch, TensorFlow, Prompt Engineering</div>
+
+                <div class="skill-category">DevOps:</div>
+                <div>Docker, AWS, Git/GitHub, Linux/CLI, Vercel, CI/CD</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Projects</h2>
+
+            <div style="margin-bottom: 1.5rem;">
+                <div class="job-header">
+                    <h3>Q-ID | Digital Identity Platform</h3>
+                    <span class="role">Full Stack Engineer</span>
+                </div>
+                <ul>
+                    <li><strong>Problem:</strong> Traditional identity verification was manual, slow, and prone to
+                        fraud.</li>
+                    <li><strong>Solution:</strong> Built a secure, real-time digital identity platform using React,
+                        Node.js, and PostgreSQL.</li>
+                    <li><strong>Impact:</strong> Streamlined user verification, reducing onboarding time significantly
+                        while ensuring data compliance.</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <div class="job-header">
+                    <h3>AABALIQA | Enterprise Automation System</h3>
+                    <span class="role">Lead Developer</span>
+                </div>
+                <ul>
+                    <li><strong>Problem:</strong> Manual business workflows were creating bottlenecks and slowing down
+                        scaling.</li>
+                    <li><strong>Solution:</strong> Developed an AI-driven automation ecosystem using Python, TensorFlow,
+                        and React.</li>
+                    <li><strong>Impact:</strong> Automated core operational tasks, resulting in increased efficiency and
+                        reduced human error.</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <div class="job-header">
+                    <h3>TRAVEL VICTOR | Travel Discovery Platform</h3>
+                    <span class="role">Frontend Architect</span>
+                </div>
+                <ul>
+                    <li><strong>Solution:</strong> Engineered a high-performance, interactive booking interface with
+                        Next.js and TypeScript to improve user retention.</li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="job-header">
+                    <h3>BOOST+ | AI EdTech Solution</h3>
+                    <span class="role">AI Engineer</span>
+                </div>
+                <ul>
+                    <li><strong>Solution:</strong> Created an adaptive AI tutoring system using OpenAI API and Redis for
+                        real-time personalization.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="job-header">
+                <h3>Bachelor of Computer Applications (BCA)</h3>
+                <span class="date">University of Kashmir</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Certifications</h2>
+            <ul>
+                <li>Complete Frontend 2.0 (Skill-Lync)</li>
+                <li>Introduction to Java (Skill-Lync)</li>
+                <li>JavaScript and React.js Development</li>
+                <li>Python Programming</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Interests</h2>
+            <p>
+                <strong>Tech & AI Exploration:</strong> Passionate about staying ahead of the curve by experimenting
+                with the latest LLMs and Generative AI tools.<br>
+                <strong>Trekking & Travelling:</strong> Avid traveler and trekker; disconnecting in nature helps
+                recharge problem-solving creativity.<br>
+                <strong>Gaming:</strong> Enjoy strategic and competitive gaming which sharpens decision-making skills.
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>
