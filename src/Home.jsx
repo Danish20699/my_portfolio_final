@@ -129,7 +129,7 @@ const Home = () => {
 
               </div>
 
-              <div className="hero-card-wrapper" style={{ width: '380px', margin: '0 0 0 auto' }}>
+              <div className="hero-card-wrapper">
                 <BorderGlow
                   glowColor="180 100 50"
                   backgroundColor="transparent"

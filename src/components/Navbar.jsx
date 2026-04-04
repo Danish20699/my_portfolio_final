@@ -39,12 +39,12 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`} style={{ display: 'flex', gap: '2rem', listStyle: 'none' }}>
-            <NavItem to="#home" label="System" isAnchor={true} />
+          <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+            <NavItem to="#home" label="Home" isAnchor={true} />
             <NavItem to="#about" label="About" isAnchor={true} />
             <NavItem to="#tech" label="Stack" isAnchor={true} />
-            <NavItem to="#projects" label="Deployments" isAnchor={true} />
-            <NavItem to="#contact" label="Connect" isAnchor={true} />
+            <NavItem to="#projects" label="Work" isAnchor={true} />
+            <NavItem to="#contact" label="Contact" isAnchor={true} />
           </ul>
           <div style={{ marginLeft: '2rem', display: 'none' }} className="desktop-resume-btn">
             <a href="/resume.html" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
