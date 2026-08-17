@@ -1,7 +1,6 @@
 {
   "rewrites": [
     {
-      "//": "SPA fallback. Must exclude /api/* — those paths contain no dot, so the original pattern rewrote them to index.html and the function never ran.",
       "source": "/((?!api/)(?!.*\\.).*)$",
       "destination": "/index.html"
     }
