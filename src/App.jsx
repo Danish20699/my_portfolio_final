@@ -4,12 +4,15 @@ import Home from './Home';
 import Projects from './Projects';
 import Blog from './Blog';
 import NotFound from './NotFound';
+import ScrollToTop from './components/ScrollToTop';
 
 import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <ScrollToTop />
+      <a href="#main" className="skip-link">Skip to content</a>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />

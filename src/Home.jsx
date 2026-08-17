@@ -1,18 +1,90 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import ProjectCard from './components/ProjectCard';
 import { projects } from './projectsData';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Testimonials from './components/Testimonials';
-import TiltedCard from './components/TiltedCard/TiltedCard';
 import ProfileCard from './components/ProfileCard';
 import ScrollReveal from './components/ScrollReveal';
 import BorderGlow from './components/BorderGlow';
+import MaskedHeading from './components/MaskedHeading/MaskedHeading';
+import SplitText from './components/SplitText/SplitText';
+import CurvedInput from './components/CurvedInput/CurvedInput';
 import { blogPosts } from './blogData';
+
+// Derived from projectsData so the numbers can never drift out of sync with reality.
+const isLive = (p) => Boolean(p.link) && p.link !== '#';
+const liveCount = projects.filter(isLive).length;
+const inBuildCount = projects.length - liveCount;
+
+const CONTACT_EMAIL = 'danishpersonal6@gmail.com';
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Home = () => {
   const location = useLocation();
+  const [mailStatus, setMailStatus] = useState({ message: '', error: false });
+  const [sending, setSending] = useState(false);
+
+  // Last resort: hand off to the visitor's own mail client. Used when the
+  // API isn't reachable (local `npm run dev`, function down, offline) so the
+  // form is never a dead end.
+  const openMailClient = (address) => {
+    const subject = encodeURIComponent('Project enquiry');
+    const body = encodeURIComponent(
+      `Hi Danish,\n\n[ Tell me about your project here ]\n\nYou can reach me at: ${address}\n`
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  };
+
+  // Posts to the Vercel serverless function in api/subscribe.js, which
+  // relays the address to my inbox via Resend.
+  const handleEmailSubmit = async (email) => {
+    if (sending) return;
+
+    const address = email.trim();
+    if (!address) {
+      setMailStatus({ message: 'Enter your email so I can reply.', error: true });
+      return;
+    }
+    if (!EMAIL_PATTERN.test(address)) {
+      setMailStatus({ message: "That doesn't look like a valid email address.", error: true });
+      return;
+    }
+
+    setSending(true);
+    setMailStatus({ message: 'Sending…', error: false });
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: address })
+      });
+
+      // The Vite dev server has no serverless runtime, so /api/subscribe
+      // falls through to index.html with a 200. Without this check that
+      // would read as success and silently drop the enquiry.
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error('api-unavailable');
+      }
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setMailStatus({ message: data.error || 'Something went wrong.', error: true });
+        return;
+      }
+
+      setMailStatus({ message: "Thanks — I'll be in touch shortly.", error: false });
+    } catch {
+      setMailStatus({ message: 'Opening your email app instead…', error: false });
+      openMailClient(address);
+    } finally {
+      setSending(false);
+    }
+  };
 
   // Handle initial hash scroll from other pages
   useEffect(() => {
@@ -92,23 +164,26 @@ const Home = () => {
     <>
       <Navbar />
 
+      <main id="main">
       {/* Hero Section */}
       <section id="home" className="hero">
         <div className="container">
           <div className="hero-content animate-hidden">
             <div className="hero-grid">
               <div className="hero-text-content">
-                <span className="hero-role">&lt;FullStack, AI & Machine Learning Engineer /&gt;</span>
-                <ScrollReveal
-                  baseOpacity={0.8}
-                  enableBlur
-                  baseRotation={1}
-                  blurStrength={15}
-                  containerClassName="hero-title"
-                  wordAnimationEnd="top 40%"
-                >
-                  Building reliable systems for real business impact.
-                </ScrollReveal>
+                <span className="hero-role">&lt;Full Stack Developer · Learning AI/ML & DevOps /&gt;</span>
+                <MaskedHeading
+                  text="Building reliable systems for real business impact."
+                  tag="h1"
+                  src="/images/heading-mesh.svg"
+                  reveal="wipe"
+                  trigger="view"
+                  fillScale={1.3}
+                  parallax={34}
+                  align="left"
+                  textScale={0.095}
+                  className="hero-title hero-title-masked"
+                />
                 <ScrollReveal
                   baseOpacity={0.7}
                   enableBlur={false}
@@ -141,7 +216,7 @@ const Home = () => {
                 >
                   <ProfileCard 
                     name="Danish Nazir"
-                    title="Software Engineer"
+                    title="Full Stack Developer"
                     handle="javicodes"
                     status="Online"
                     contactText="Contact Me"
@@ -187,22 +262,22 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="grid-2" style={{ gap: '1rem' }}>
-              <div className="stat-card panel animate-float" style={{ padding: '1.5rem' }}>
-                <div className="text-cyan text-mono" style={{ fontSize: '2rem', fontWeight: '700' }}>2+</div>
-                <div className="text-secondary text-mono" style={{ fontSize: '0.85rem' }}>YEARS PROD EXP</div>
+            <div className="stat-grid">
+              <div className="stat-card panel animate-float">
+                <div className="stat-value text-mono">1+</div>
+                <div className="stat-label text-mono">YEARS PROD EXP</div>
               </div>
-              <div className="stat-card panel animate-float-delay-1" style={{ padding: '1.5rem' }}>
-                <div className="text-cyan text-mono" style={{ fontSize: '2rem', fontWeight: '700' }}>10+</div>
-                <div className="text-secondary text-mono" style={{ fontSize: '0.85rem' }}>LIVE SYSTEMS</div>
+              <div className="stat-card panel animate-float-delay-1">
+                <div className="stat-value text-mono">{liveCount}</div>
+                <div className="stat-label text-mono">LIVE SYSTEMS</div>
               </div>
-              <div className="stat-card panel animate-float-delay-2" style={{ padding: '1.5rem' }}>
-                <div className="text-cyan text-mono" style={{ fontSize: '2rem', fontWeight: '700' }}>99%</div>
-                <div className="text-secondary text-mono" style={{ fontSize: '0.85rem' }}>UPTIME FOCUS</div>
+              <div className="stat-card panel animate-float-delay-2">
+                <div className="stat-value text-mono">{inBuildCount}</div>
+                <div className="stat-label text-mono">IN DEVELOPMENT</div>
               </div>
-              <div className="stat-card panel animate-float" style={{ padding: '1.5rem' }}>
-                <div className="text-cyan text-mono" style={{ fontSize: '2rem', fontWeight: '700' }}>AI</div>
-                <div className="text-secondary text-mono" style={{ fontSize: '0.85rem' }}>INTEGRATED</div>
+              <div className="stat-card panel animate-float">
+                <div className="stat-value text-mono">AI</div>
+                <div className="stat-label text-mono">INTEGRATED</div>
               </div>
             </div>
           </div>
@@ -254,10 +329,10 @@ const Home = () => {
               </div>
 
               <div className="tech-category">
-                <h4>AI ENGINEERING</h4>
+                <h4>AI/ML &amp; DEVOPS — LEARNING</h4>
                 <div className="tech-list">
-                  {['OpenAI API', 'LangChain', 'Prompt Engineering', 'AI Code Integration', 'Model Tuning'].map(t => (
-                    <span key={t} className="tech-tag" style={{ borderColor: 'var(--accent-blue)' }}>{t}</span>
+                  {['OpenAI API', 'LangChain', 'Prompt Engineering', 'PyTorch', 'CI/CD', 'Kubernetes'].map(t => (
+                    <span key={t} className="tech-tag tech-tag-learning">{t}</span>
                   ))}
                 </div>
               </div>
@@ -296,21 +371,24 @@ const Home = () => {
           <div className="panel animate-hidden" style={{ borderLeft: '4px solid var(--accent-blue)' }}>
             <div className="grid-2" style={{ alignItems: 'center' }}>
               <div>
-                <span className="section-label" style={{ color: 'var(--accent-blue)' }}>05. GROWTH</span>
+                <span className="section-label section-label-blue">04. LEARNING</span>
                 <ScrollReveal
                   containerClassName="section-title"
                   wordAnimationEnd="top 30%"
                 >
-                  Machine Learning & AI
+                  AI/ML & DevOps
                 </ScrollReveal>
                 <p className="text-muted" style={{ margin: '1rem 0' }}>
-                  I'm currently expanding my capabilities into Deep Learning and Neural Networks.
-                  The goal is not just to use AI APIs, but to understand and engineer the models that drive them.
+                  Full stack development is where I work today. Alongside it I'm actively
+                  learning machine learning and DevOps — moving past calling AI APIs toward
+                  understanding the models themselves, and past manual deploys toward
+                  pipelines that ship on their own.
                 </p>
                 <div className="tech-list">
-                  <span className="tech-tag">PyTorch</span>
-                  <span className="tech-tag">Neural Networks</span>
-                  <span className="tech-tag">Data Pipelines</span>
+                  <span className="tech-tag tech-tag-learning">PyTorch</span>
+                  <span className="tech-tag tech-tag-learning">Neural Networks</span>
+                  <span className="tech-tag tech-tag-learning">Docker & CI/CD</span>
+                  <span className="tech-tag tech-tag-learning">Cloud Infra</span>
                 </div>
               </div>
               <div style={{ textAlign: 'right', opacity: 0.5 }}>
@@ -325,7 +403,7 @@ const Home = () => {
       <section id="services" className="section">
         <div className="container">
           <div className="section-header">
-            <span className="section-label">06. DELIVERABLES</span>
+            <span className="section-label">05. DELIVERABLES</span>
             <ScrollReveal
               containerClassName="section-title"
               wordAnimationEnd="top 30%"
@@ -357,7 +435,7 @@ const Home = () => {
         </div>
       </section>
       {/* Philosophy Section */}
-      <section id="philosophy" className="section" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', backgroundColor: '#080808' }}>
+      <section id="philosophy" className="section philosophy-section">
         <div className="container">
           <ScrollReveal
             baseOpacity={0.05}
@@ -366,7 +444,7 @@ const Home = () => {
             blurStrength={12}
             wordAnimationEnd="bottom center"
           >
-            "Engineering is the art of turning complexity into clarity. I don't just build software; I architect resilient digital engines that power progress. Because the systems that truly matter are the ones built on the foundations of reliability, security, and a deep understanding of the problem they solve."
+            "Good engineering turns complexity into clarity. I'd rather ship something small that holds up than something big that breaks quietly. Reliability, security, and actually understanding the problem — that's the work, and I'm still learning more of it every project."
           </ScrollReveal>
         </div>
       </section>
@@ -375,7 +453,7 @@ const Home = () => {
       <section id="insights" className="section">
         <div className="container">
           <div className="section-header">
-            <span className="section-label">07. INSIGHTS</span>
+            <span className="section-label">06. INSIGHTS</span>
             <ScrollReveal
               containerClassName="section-title"
               wordAnimationEnd="top 30%"
@@ -436,32 +514,68 @@ const Home = () => {
         <div className="container">
           <div className="devuity-connection animate-hidden">
             <p className="devuity-text animate-glow">
-              Engineering excellence meets AI innovation—delivering systems that are as reliable as they are revolutionary.
+              Full stack development today, AI/ML and DevOps next—building systems that hold up in production.
             </p>
           </div>
 
           <div className="contact-cta animate-hidden" style={{ marginTop: '4rem' }}>
-            <span className="section-label">08. CONNECT</span>
-            <h2 className="hero-title" style={{ fontSize: '2.5rem' }}>Ready to build reliable systems?</h2>
+            <span className="section-label">07. CONNECT</span>
+            <SplitText
+              text="Ready to build reliable systems?"
+              tag="h2"
+              className="hero-title contact-cta-title"
+              delay={35}
+              duration={0.8}
+              splitType="chars"
+              from={{ opacity: 0, y: 32 }}
+              to={{ opacity: 1, y: 0 }}
+            />
+            <div className="contact-form-wrap">
+              <CurvedInput
+                type="email"
+                name="email"
+                placeholder="your@email.com"
+                buttonText={sending ? 'Sending…' : 'Start a Project'}
+                ariaLabel="Your email address"
+                onSubmit={handleEmailSubmit}
+                width={520}
+                bend={22}
+                height={62}
+                cornerRadius={16}
+                backgroundColor="#0E1218"
+                textColor="#F0F4F8"
+                placeholderColor="#64748B"
+                borderColor="rgba(0, 240, 255, 0.22)"
+                buttonColor="#00F0FF"
+                buttonTextColor="#050608"
+                shadowColor="#000000"
+                shadowSize="lg"
+              />
+              <p className={`contact-form-msg${mailStatus.error ? ' is-error' : ''}`} role="status">
+                {mailStatus.message}
+              </p>
+            </div>
+
             <a href="mailto:danishpersonal6@gmail.com" className="contact-email">danishpersonal6@gmail.com</a>
 
             <div className="social-links">
-              <a href="https://github.com/Danish20699" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <a href="https://github.com/Danish20699" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub" aria-label="GitHub profile (opens in a new tab)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               </a>
-              <a href="https://linkedin.com/in/danish-nazir1" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              <a href="https://linkedin.com/in/danish-nazir1" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn" aria-label="LinkedIn profile (opens in a new tab)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               </a>
-              <a href="https://www.instagram.com/danishn.29/" target="_blank" rel="noopener noreferrer" className="social-icon" title="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <a href="https://www.instagram.com/danishn.29/" target="_blank" rel="noopener noreferrer" className="social-icon" title="Instagram" aria-label="Instagram profile (opens in a new tab)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
-              <a href="https://wa.me/917006798511" target="_blank" rel="noopener noreferrer" className="social-icon" title="WhatsApp">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.029-.544-.087-.174-.787-1.996-.991-2.585-.27-.775-.463-.645-.63-.66-.16-.015-.347-.015-.534-.015-.187 0-.49.074-.746.357-.256.283-.993.971-.993 2.373 0 1.402 1.021 2.756 1.163 2.946.142.19 2.01 3.069 4.872 4.305.681.294 1.213.47 1.626.6.685.216 1.309.186 1.805.111.547-.082 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
+              <a href="https://wa.me/917006798511" target="_blank" rel="noopener noreferrer" className="social-icon" title="WhatsApp" aria-label="Message me on WhatsApp (opens in a new tab)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.029-.544-.087-.174-.787-1.996-.991-2.585-.27-.775-.463-.645-.63-.66-.16-.015-.347-.015-.534-.015-.187 0-.49.074-.746.357-.256.283-.993.971-.993 2.373 0 1.402 1.021 2.756 1.163 2.946.142.19 2.01 3.069 4.872 4.305.681.294 1.213.47 1.626.6.685.216 1.309.186 1.805.111.547-.082 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
               </a>
             </div>
           </div>
         </div>
       </section >
+      </main>
 
       <Footer />
     </>

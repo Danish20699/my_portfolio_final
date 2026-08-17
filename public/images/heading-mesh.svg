@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" width="1600" height="500" preserveAspectRatio="xMidYMid slice">
+  <!--
+    Colour mesh for <MaskedHeading />. Uses the portfolio accent tokens:
+    #00F0FF (accent-cyan), #2D65FF (accent-blue), #050608 (bg-body).
+    Wide aspect so it stays interesting behind a full-width headline.
+  -->
+  <defs>
+    <radialGradient id="mesh-cyan" cx="22%" cy="30%" r="62%">
+      <stop offset="0%" stop-color="#00F0FF" stop-opacity="1" />
+      <stop offset="55%" stop-color="#00A8C8" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#00F0FF" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="mesh-blue" cx="70%" cy="68%" r="66%">
+      <stop offset="0%" stop-color="#2D65FF" stop-opacity="1" />
+      <stop offset="60%" stop-color="#1E3FCC" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#2D65FF" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="mesh-violet" cx="88%" cy="18%" r="52%">
+      <stop offset="0%" stop-color="#7A5CFF" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#7A5CFF" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="mesh-teal" cx="45%" cy="88%" r="55%">
+      <stop offset="0%" stop-color="#0FF3C0" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0FF3C0" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="mesh-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.16" />
+      <stop offset="45%" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.10" />
+    </linearGradient>
+
+    <!-- Fine grain so the fill doesn't read as flat CSS gradient -->
+    <filter id="mesh-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="noise" />
+      <feColorMatrix in="noise" type="saturate" values="0" result="mono" />
+      <feComponentTransfer in="mono" result="grain">
+        <feFuncA type="linear" slope="0.14" intercept="0" />
+      </feComponentTransfer>
+      <feComposite in="grain" in2="SourceGraphic" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="1600" height="500" fill="#050608" />
+  <rect width="1600" height="500" fill="url(#mesh-blue)" />
+  <rect width="1600" height="500" fill="url(#mesh-cyan)" />
+  <rect width="1600" height="500" fill="url(#mesh-violet)" />
+  <rect width="1600" height="500" fill="url(#mesh-teal)" />
+  <rect width="1600" height="500" fill="url(#mesh-sheen)" />
+  <rect width="1600" height="500" filter="url(#mesh-grain)" fill="none" opacity="0.55" />
+</svg>

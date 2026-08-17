@@ -35,27 +35,33 @@
     --radius-sm: 4px;
     --radius-md: 8px;
 
-    /* Tailwind CSS variables */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --muted: 221.2 63.3% 97.8%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 222.2 47.6% 11.2%;
-    --accent-foreground: 210 40% 98%;
+    /* shadcn/Tailwind tokens — mapped to the dark portfolio theme so any
+       shadcn component dropped in inherits this design instead of rendering
+       white-on-white. Values are HSL channels (no hsl() wrapper) by design. */
+    --background: 220 23% 3%;
+    --foreground: 210 33% 96%;
+    --card: 218 25% 7%;
+    --card-foreground: 210 33% 96%;
+    --popover: 218 25% 7%;
+    --popover-foreground: 210 33% 96%;
+    --muted: 218 20% 12%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 183 100% 50%;
+    --accent-foreground: 220 23% 3%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --primary: 222.2 47.6% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --border: 0 0% 100%;
+    --input: 218 20% 12%;
+    --ring: 183 100% 50%;
+    --primary: 183 100% 50%;
+    --primary-foreground: 220 23% 3%;
+    --secondary: 218 20% 12%;
+    --secondary-foreground: 210 33% 96%;
     --radius: 0.5rem;
+
+    /* Motion — zeroed out under prefers-reduced-motion (see end of file) */
+    --motion-fast: 0.2s;
+    --motion-base: 0.6s;
 }
 
 /* Reset & Base */
@@ -594,10 +600,13 @@ ul {
     padding: 0 var(--space-md);
 }
 
+/* 220px min + 2rem gap lets all four columns (Brand, Navigation, Connect,
+   Away From The Screen) sit on one row inside the 1152px container.
+   At 250px/4rem the fourth column wrapped onto a second row. */
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-xl);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
     margin-bottom: var(--space-xl);
 }
 
@@ -1267,4 +1276,350 @@ ul {
     text-align: center;
     padding: var(--space-xl) 0;
     color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/* Keyboard focus. Uses :focus-visible so mouse clicks stay clean. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    z-index: 2000;
+    padding: 0.75rem 1.25rem;
+    background: var(--accent-cyan);
+    color: #050608;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    transition: transform var(--motion-fast) ease;
+}
+
+.skip-link:focus-visible {
+    transform: translate(-50%, 0);
+    outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Navbar layout (moved out of the injected <style> in Navbar.jsx)
+   ========================================================================== */
+
+.desktop-resume-btn {
+    margin-left: var(--space-lg);
+    display: none;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+@media (min-width: 769px) {
+    .desktop-resume-btn {
+        display: block;
+    }
+
+    .mobile-logo-bar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-logo-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        padding: 0 var(--space-sm);
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+}
+
+/* ==========================================================================
+   Stats (About section)
+   ========================================================================== */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+}
+
+.stat-card {
+    padding: var(--space-md);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--accent-cyan);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+}
+
+.section-label-blue {
+    color: var(--accent-blue);
+}
+
+/* ==========================================================================
+   React Bits component placement
+   ========================================================================== */
+
+.philosophy-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: #080808;
+}
+
+/* MaskedHeading sizes its own font from container width via textScale,
+   and writes text-align inline — so the mobile centring needs !important
+   to win over the component's own style attribute. */
+.hero-title-masked {
+    margin-bottom: var(--space-md);
+}
+
+@media (max-width: 1023px) {
+    .hero-title-masked {
+        text-align: center !important;
+    }
+}
+
+.contact-cta-title {
+    font-size: 2.5rem;
+}
+
+/* Curved email capture in the contact CTA */
+.contact-form-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: var(--space-lg) auto var(--space-md);
+    max-width: 100%;
+}
+
+/* Reserve the line so validation text appearing doesn't shift the layout. */
+.contact-form-msg {
+    min-height: 1.4em;
+    margin-top: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+}
+
+.contact-form-msg.is-error {
+    color: #FF6B6B;
+}
+
+/* SplitText renders inline-block with overflow hidden; keep descenders
+   from being clipped on the char reveal. */
+.split-parent {
+    padding-bottom: 0.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    /* The mesh drifts on a rAF loop independent of CSS transitions,
+       so neutralise it explicitly rather than relying on the global rule. */
+    .masked-heading__media {
+        transform: scale(1.25) !important;
+    }
+}
+
+/* DepthCarousel positions every card absolutely, so the wrapper has to
+   reserve its own height or it collapses to zero. Sized to sit inside a
+   footer column alongside Navigation and Connect. */
+.footer-gallery {
+    height: 210px;
+    margin-top: var(--space-sm);
+}
+
+/* min-height on the component itself is 320px — too tall for the footer. */
+.footer-gallery .depth-carousel {
+    min-height: 0;
+}
+
+/* Scale the dot controls down to match the smaller cards. */
+.footer-gallery .depth-carousel__dots {
+    bottom: 0;
+    gap: 6px;
+    padding: 5px 9px;
+}
+
+.footer-gallery .depth-carousel__dot {
+    width: 5px;
+    height: 5px;
+}
+
+.footer-gallery .depth-carousel__dot.is-active {
+    width: 15px;
+}
+
+@media (max-width: 768px) {
+    .footer-gallery {
+        height: 250px;
+    }
+}
+
+/* Tags for skills being actively learned rather than shipped with.
+   Visually distinct from the solid stack so the claim reads honestly. */
+.tech-tag-learning {
+    border-color: var(--accent-blue);
+    border-style: dashed;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Projects page
+   ========================================================================== */
+
+.projects-page {
+    padding-top: calc(var(--header-height) + var(--space-lg));
+}
+
+.projects-group-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: var(--space-xl) 0 var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.projects-group-title:first-of-type {
+    margin-top: var(--space-lg);
+}
+
+.projects-count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.6em;
+    height: 1.6em;
+    padding: 0 0.4em;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    color: var(--accent-cyan);
+}
+
+.projects-back {
+    text-align: center;
+    margin-top: var(--space-xl);
+}
+
+/* ==========================================================================
+   Testimonials — initials fallback when no photo is supplied
+   ========================================================================== */
+
+.testimonial-initials {
+    display: grid;
+    place-items: center;
+    background: var(--bg-surface-hover);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.testimonial-text {
+    margin: 0;
+}
+
+.testimonial-name a:hover {
+    color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   404
+   ========================================================================== */
+
+.notfound {
+    min-height: 70vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: var(--space-xl) var(--space-sm);
+}
+
+.notfound-code {
+    font-size: clamp(4rem, 18vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent-cyan);
+    margin-bottom: var(--space-sm);
+}
+
+.notfound-title {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    margin-bottom: var(--space-sm);
+}
+
+.notfound-text {
+    color: var(--text-secondary);
+    max-width: 46ch;
+    margin: 0 auto var(--space-lg);
+}
+
+.notfound-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Reduced motion — respect the OS setting.
+   The site leans hard on scroll reveals, floats, tilt and glitch effects;
+   all of them are vestibular triggers, so they get switched off here.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --motion-fast: 0.01ms;
+        --motion-base: 0.01ms;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Content must never stay hidden waiting on an animation that won't run. */
+    .animate-hidden {
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

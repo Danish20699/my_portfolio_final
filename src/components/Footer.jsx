@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ImageTrail from './ImageTrail/ImageTrail';
-import { galleryImages } from '../config/galleryConfig';
+import DepthCarousel from './DepthCarousel/DepthCarousel';
+import { galleryItems } from '../config/galleryConfig';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,7 +27,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="footer-section">
             <h4 className="footer-section-title">Danish Nazir</h4>
-            <p className="footer-tagline">Engineering excellence meets AI innovation—delivering systems that are as reliable as they are revolutionary.</p>
+            <p className="footer-tagline">Full stack developer building production web applications—and learning AI/ML and DevOps to build them better.</p>
           </div>
 
           {/* Quick Links */}
@@ -42,17 +42,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Image Trail Gallery */}
-          <div className="footer-section">
-            <h4 className="footer-section-title">Gallery</h4>
-            <div style={{ height: '250px', position: 'relative', overflow: 'hidden' }}>
-              <ImageTrail
-                items={galleryImages}
-                variant="1"
-              />
-            </div>
           </div>
 
           {/* Connect */}
@@ -91,6 +80,30 @@ const Footer = () => {
                   )}
                 </a>
               ))}
+            </div>
+          </div>
+
+          {/* Away From The Screen — its own column, sitting to the right of Connect */}
+          <div className="footer-section">
+            <h4 className="footer-section-title">Away From The Screen</h4>
+            <div className="footer-gallery">
+              <DepthCarousel
+                items={galleryItems}
+                cardWidth={132}
+                cardHeight={172}
+                radius={10}
+                tint="#05060a"
+                depth={110}
+                spread={38}
+                tilt={18}
+                visibleCards={3}
+                blur={3}
+                perspective={900}
+                autoplay
+                autoplayDelay={3600}
+                loop
+                showControls={false}
+              />
             </div>
           </div>
         </div>

@@ -36,9 +36,18 @@ const ScrollReveal = ({
     const el = containerRef.current;
     if (!el) return;
 
-    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
+    // Respect the OS reduced-motion setting: leave the text plainly visible
+    // rather than driving opacity/blur/rotation off scroll position.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(el, { rotate: 0 });
+      gsap.set(el.querySelectorAll('.word'), { opacity: 1, filter: 'none' });
+      return;
+    }
 
-    gsap.fromTo(
+    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
+    const tweens = [];
+
+    tweens.push(gsap.fromTo(
       el,
       { transformOrigin: '0% 50%', rotate: baseRotation },
       {
@@ -52,11 +61,11 @@ const ScrollReveal = ({
           scrub: true
         }
       }
-    );
+    ));
 
     const wordElements = el.querySelectorAll('.word');
 
-    gsap.fromTo(
+    tweens.push(gsap.fromTo(
       wordElements,
       { opacity: baseOpacity, willChange: 'opacity' },
       {
@@ -71,10 +80,10 @@ const ScrollReveal = ({
           scrub: true
         }
       }
-    );
+    ));
 
     if (enableBlur) {
-      gsap.fromTo(
+      tweens.push(gsap.fromTo(
         wordElements,
         { filter: `blur(${blurStrength}px)` },
         {
@@ -89,11 +98,17 @@ const ScrollReveal = ({
             scrub: true
           }
         }
-      );
+      ));
     }
 
+    // Kill only this instance's triggers. The previous version called
+    // ScrollTrigger.getAll().kill(), which tore down every other
+    // ScrollReveal on the page whenever any one of them unmounted.
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      tweens.forEach(tween => {
+        if (tween.scrollTrigger) tween.scrollTrigger.kill();
+        tween.kill();
+      });
     };
   }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
 

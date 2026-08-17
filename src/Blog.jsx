@@ -22,13 +22,13 @@ const Blog = () => {
         <>
             <Navbar />
 
-            <div className="blog-page">
+            <main id="main" className="blog-page">
                 <div className="container">
                     {/* Blog Header */}
                     <div className="blog-header">
                         <h1 className="blog-title">Blog</h1>
                         <p className="blog-subtitle">
-                            Thoughts on technology, development, and life as an Implementation Architect
+                            Thoughts on technology, full stack development, and what I'm learning along the way
                         </p>
                     </div>
 
@@ -51,7 +51,7 @@ const Blog = () => {
                             <article key={post.id} className={`blog-card ${expandedPost === post.id ? 'expanded' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
                                 {post.image && (
                                     <div className="blog-card-image">
-                                        <img src={post.image} alt={post.title} />
+                                        <img src={post.image} alt="" loading="lazy" decoding="async" />
                                     </div>
                                 )}
                                 <div className="blog-card-content">
@@ -98,7 +98,7 @@ const Blog = () => {
                         </div>
                     )}
                 </div>
-            </div>
+            </main>
 
             <Footer />
         </>

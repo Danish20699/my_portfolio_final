@@ -6,7 +6,7 @@ export const blogPosts = [
         date: "2026-01-02",
         category: "Tech",
         excerpt: "Insights on architecting and implementing enterprise-grade applications that scale.",
-        content: `In my role as an Implementation Architect, I've learned that scalability isn't just about handling more users—it's about building systems that can evolve with business needs. Here are my key takeaways from architecting enterprise solutions that serve millions of users.
+        content: `Working as a full stack developer, I've learned that scalability isn't just about handling more users—it's about building systems that can evolve with business needs. Here are my key takeaways from building and shipping production systems.
 
 ## The Foundation: Database Design Matters
 

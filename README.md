@@ -55,20 +55,27 @@ npm run preview
 ```bash
 danish_portfolio/
 ├── src/
-│   ├── components/      # Reusable UI components (Navbar, Footer, Cards)
-│   ├── App.jsx          # Main application layout and routes
-│   ├── Home.jsx         # Landing page with sections
-│   ├── Projects.jsx     # Dedicated projects page
-│   ├── Blog.jsx         # Blog page for articles
-│   ├── projectsData.js  # Data file for project entries
-│   ├── blogData.js      # Data file for blog posts
-│   └── main.jsx         # Application entry point
-├── images/              # Static assets and portfolio images
-├── index.html           # HTML entry point
-├── styles.css           # Global styles and design variables
-├── package.json         # Project dependencies and scripts
-└── vite.config.js       # Vite configuration
+│   ├── components/          # Reusable UI components (Navbar, Footer, Cards)
+│   ├── App.jsx              # Routes + scroll restoration + skip link
+│   ├── Home.jsx             # Landing page with sections
+│   ├── Projects.jsx         # Dedicated projects page
+│   ├── Blog.jsx             # Blog page for articles
+│   ├── NotFound.jsx         # 404 page
+│   ├── projectsData.js      # Data file for project entries
+│   ├── blogData.js          # Data file for blog posts
+│   ├── testimonialsData.js  # Real client quotes (section hides when empty)
+│   ├── index.css            # Global styles and design tokens
+│   └── main.jsx             # Application entry point
+├── public/                  # Static assets served as-is
+├── _legacy/                 # Pre-React files, kept for reference only
+├── index.html               # HTML entry point
+├── package.json             # Project dependencies and scripts
+└── vite.config.ts           # Vite configuration
 ```
+
+> **Styling note:** `src/index.css` is the single live stylesheet. The old
+> root-level `styles.css` and `script.js` belong to the pre-React version and
+> now live in `_legacy/` — nothing imports them.
 
 ## 🔗 Routes
 
