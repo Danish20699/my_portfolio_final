@@ -72,6 +72,13 @@ const Home = () => {
 
       const data = await response.json();
 
+      // 4xx is the visitor's problem (bad address) — tell them so they can
+      // correct it. 5xx is ours (bad API key, Resend down); never make a
+      // visitor pay for that, so hand off to their mail client instead.
+      if (response.status >= 500) {
+        throw new Error('service-unavailable');
+      }
+
       if (!response.ok) {
         setMailStatus({ message: data.error || 'Something went wrong.', error: true });
         return;
