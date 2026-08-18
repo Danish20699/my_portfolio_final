@@ -1,5 +1,6 @@
 import PageHeader from '../components/PageHeader';
 import Reveal from '../components/motion/Reveal';
+import ContactForm from '../components/ContactForm';
 import { site } from '../data/site';
 import usePageMeta from '../hooks/usePageMeta';
 
@@ -38,18 +39,8 @@ const Contact = () => {
               couple of days. For anything faster, WhatsApp is the better channel.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href={`mailto:${site.email}`} className="btn">
-                Send an email
-              </a>
-              <a
-                href={site.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ghost"
-              >
-                Read the résumé
-              </a>
+            <div className="mt-12 border-t border-paper-edge pt-12">
+              <ContactForm />
             </div>
           </Reveal>
 
@@ -76,6 +67,20 @@ const Contact = () => {
               <div>
                 <dt className="eyebrow">Based in</dt>
                 <dd className="mt-3 text-meta text-ink-soft">{site.location}</dd>
+              </div>
+
+              <div>
+                <dt className="eyebrow">Background</dt>
+                <dd className="mt-3">
+                  <a
+                    href={site.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link text-meta"
+                  >
+                    Read the résumé ↗
+                  </a>
+                </dd>
               </div>
             </dl>
           </Reveal>

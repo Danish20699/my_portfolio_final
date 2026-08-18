@@ -33,4 +33,11 @@ yarn-error.log*
 
 .vercel
 
+# Agent skills (installed via `npx skills add`). Local tooling, not part of
+# the site — reinstall with the same command on another machine.
+.agents/
+.claude/
+skills-lock.json
+
 .vercel
+.env*

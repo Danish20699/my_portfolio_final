@@ -1,88 +1,127 @@
-# 🚀 Danish Portfolio
+# Danish Nazir — Portfolio
 
-A modern, premium portfolio website built with **React** and **Vite**. This project showcases my personal brand, projects, and technical articles with a sleek, responsive design.
+Personal site and case-study archive. React + Vite, deployed on Vercel.
 
-## ✨ Features
-
-- **🎨 Modern Aesthetics**: Premium glassmorphism design with smooth animations.
-- **📱 Fully Responsive**: Optimized for desktop, tablet, and mobile devices.
-- **⚛️ Tech Stack**: Built using React 18, React Router v6, and Vite for blazing fast performance.
-- **📂 Project Showcase**: Dynamic project gallery with featured and archive views.
-- **📝 Blog Section**: A dedicated space for technical articles and insights.
-- **🛣️ Client-Side Routing**: Smooth navigation without page reloads.
-
-## 🛠️ Getting Started
-
-### Prerequisites
-
-Make sure you have Node.js installed on your machine.
-
-### Installation
-
-1.  **Clone the repository** (if you haven't already):
-    ```bash
-    git clone https://github.com/Danish2/my_portfolio_webiste.git
-    cd danish_portfolio
-    ```
-
-2.  **Install Dependencies**:
-    ```bash
-    npm install
-    ```
-
-3.  **Start the Development Server**:
-    ```bash
-    npm run dev
-    ```
-    The app will be accessible at `http://localhost:5173`.
-
-### 🏗️ Building for Production
-
-To create an optimized build for deployment:
-
-```bash
-npm run build
-```
-
-To preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## 📂 Project Structure
-
-```bash
-danish_portfolio/
-├── src/
-│   ├── components/      # Reusable UI components (Navbar, Footer, Cards)
-│   ├── App.jsx          # Main application layout and routes
-│   ├── Home.jsx         # Landing page with sections
-│   ├── Projects.jsx     # Dedicated projects page
-│   ├── Blog.jsx         # Blog page for articles
-│   ├── projectsData.js  # Data file for project entries
-│   ├── blogData.js      # Data file for blog posts
-│   └── main.jsx         # Application entry point
-├── images/              # Static assets and portfolio images
-├── index.html           # HTML entry point
-├── styles.css           # Global styles and design variables
-├── package.json         # Project dependencies and scripts
-└── vite.config.js       # Vite configuration
-```
-
-## 🔗 Routes
-
-- **`/`**: Homepage (Hero, About, Featured Projects)
-- **`/projects`**: Full list of projects
-- **`/blog`**: Technical articles and updates
-
-## 🎨 Technology Stack
-
-- **Frontend**: React, Javascript (ES6+)
-- **Styling**: Vanilla CSS (Custom variables, Flexbox/Grid)
-- **Build Tool**: Vite
-- **Routing**: React Router DOM
+Live: https://my-portfolio-final-wine.vercel.app/
 
 ---
 
-© 2026 Danish. All Rights Reserved.
+## Running it
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # → dist/
+npm run preview  # serve the production build
+```
+
+The contact form posts to a Vercel serverless function, so it only works in a
+deployment or under `vercel dev`. Everywhere else it falls back to a `mailto:`
+link — see [Contact form](#contact-form).
+
+---
+
+## Structure
+
+```
+src/
+├── main.jsx                  React entry
+├── App.jsx                   Routes (incl. redirects from the old /projects, /blog)
+├── index.css                 Design tokens, base layer, shared component classes
+├── data/                     All content lives here — no copy in components
+│   ├── site.js               Name, role, statement, socials, capabilities, education
+│   ├── projects.js           Case studies (context / approach / outcome)
+│   ├── posts.js              Long-form writing
+│   ├── testimonials.js       Empty by default; renders nothing until filled
+│   └── gallery.js            Photographs for the About page
+├── pages/                    One file per route
+├── components/
+│   ├── layout/               Header, Footer, Layout (shared shell + scroll reset)
+│   ├── motion/               Reveal, Headline — the only two motion primitives
+│   ├── WorkIndex.jsx         The ruled project index
+│   ├── Prose.jsx             Minimal markdown renderer for posts
+│   ├── ContactForm.jsx       Posts to /api/subscribe, degrades to mailto
+│   └── PageHeader.jsx
+└── hooks/usePageMeta.js      Per-route <title> and meta description
+
+api/subscribe.js              Vercel function → Resend
+public/                       Static assets, plus the standalone resume.html
+```
+
+**Content is data, not markup.** To add a project or a post, add an object to
+`src/data/projects.js` or `src/data/posts.js` — the index pages, detail pages,
+counts, and homepage previews all derive from it.
+
+---
+
+## Routes
+
+| Path | Page |
+| --- | --- |
+| `/` | Home |
+| `/work` | All projects, split live / in progress |
+| `/work/:slug` | Case study |
+| `/writing` | Post index with category filter |
+| `/writing/:slug` | Post |
+| `/about` | Bio, capabilities, background, photographs |
+| `/contact` | Contact form |
+| `/projects`, `/blog` | Redirect to `/work`, `/writing` (old URLs) |
+
+---
+
+## Design
+
+Light warm-paper base, one accent, typography doing the work.
+
+| Token | Value | Role |
+| --- | --- | --- |
+| `paper` | `#FAF7F2` | Page |
+| `paper-deep` | `#F1EBE1` | Alternating bands, image placeholders |
+| `paper-edge` | `#E7DFD2` | Hairlines |
+| `ink` | `#191713` | Headings, contrast bands, buttons |
+| `ink-soft` | `#4C463E` | Body copy |
+| `ink-mute` | `#8B8378` | Metadata, captions |
+| `clay` | `#B14A2C` | The single accent |
+
+Type: **Fraunces** (display), **Instrument Sans** (body), **JetBrains Mono**
+(metadata). All three from Google Fonts.
+
+Everything is Tailwind, configured in `tailwind.config.ts` with a deliberately
+narrow editorial scale. `src/index.css` holds only the base layer and the
+handful of patterns used in three or more places (`.shell`, `.eyebrow`, `.btn`,
+`.link`, `.prose-editorial`).
+
+Motion is two components — `Reveal` (a short rise and fade, once) and
+`Headline` (line-by-line mask reveal). Both no-op under
+`prefers-reduced-motion`.
+
+---
+
+## Contact form
+
+`api/subscribe.js` validates the address, guards against header injection, and
+sends through [Resend](https://resend.com). Configure in the Vercel dashboard:
+
+| Variable | Required | Notes |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Yes | From https://resend.com/api-keys |
+| `MAIL_TO` | No | Defaults to `danishpersonal6@gmail.com` |
+| `MAIL_FROM` | No | Resend's shared sender only delivers to your own registered address; set this once you verify a domain |
+
+Copy `.env.example` to `.env.local` for local testing. If the endpoint is
+missing or returns an error, the form shows the error and offers a prefilled
+`mailto:` link — enquiries are never silently dropped.
+
+---
+
+## Known follow-ups
+
+- **Images are heavy.** `public/gallery/` holds 2–5 MB originals and
+  `og-image.png` / `Profile_image.jpg.png` are ~2.3 MB each. They should be
+  converted to WebP at ~1600px and re-exported under 200 KB.
+- **Case studies need numbers.** The `outcome` arrays in `src/data/projects.js`
+  describe what changed qualitatively. Replace them with measured figures where
+  you have them.
+- **No project screenshots yet.** Case study pages are text-only.
+- **Testimonials are empty by design.** Add real, attributable quotes to
+  `src/data/testimonials.js` and the section appears automatically.

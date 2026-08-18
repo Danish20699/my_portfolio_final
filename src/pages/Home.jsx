@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Headline from '../components/motion/Headline';
 import Reveal from '../components/motion/Reveal';
 import WorkIndex from '../components/WorkIndex';
+import Testimonials from '../components/Testimonials';
 import { featured } from '../data/projects';
 import { posts, formatDate } from '../data/posts';
 import { site, capabilities } from '../data/site';
@@ -94,6 +95,8 @@ const Home = () => (
         </Link>
       </Reveal>
     </section>
+
+    <Testimonials />
 
     {/* ---------------------------------------------------------------- *
      * Position statement — full-bleed ink band, one idea only
