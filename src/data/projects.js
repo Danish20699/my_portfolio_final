@@ -75,6 +75,63 @@ export const projects = [
     stack: ['Next.js', 'TypeScript', 'Tailwind', 'REST integrations'],
   },
   {
+    slug: 'eliigen',
+    title: 'EliiGen',
+    domain: 'Learning platform',
+    // TODO: confirm the year — assumed from the current stack versions.
+    year: '2026',
+    status: 'live',
+    // TODO: add the public URL and this page gains a "Visit the live site" button.
+    link: null,
+    role: 'Backend & infrastructure engineer',
+    summary:
+      'A learning platform carrying the whole student lifecycle — enrollment and payments, live lectures, study material, and real-time community — behind a Flutter app on a NestJS backend.',
+    context: [
+      'EliiGen exists to close the gap between students, educators, and genuinely interactive digital learning. It carries the full student lifecycle: discovering a course, enrolling in and paying for a batch, following a timetable, joining live lectures, reading study material, and taking part in the community around it.',
+      'The product surface is wide — recorded and live classes, WebSocket chat and announcements, gamified daily quizzes with streaks and badges, an AI study assistant for doubt resolution, and Razorpay checkout that provisions enrollment the moment payment clears. My remit was the layer underneath all of it: the data model, the caching, the APIs the mobile client speaks to, and getting the whole thing into production.',
+    ],
+    approach: [
+      'Designed normalised relational schemas in PostgreSQL 16 with TypeORM — automated migrations, custom seeds, connection pooling, and indexing on the entities that actually take traffic: users, batches, lectures, enrollments, quizzes.',
+      'Put Redis 7 in front of hot reads and moved the heavy work — media uploads, push notifications, analytics — onto BullMQ background workers, so request latency stopped tracking the slowest task in the chain.',
+      'Ran Socket.io through the Redis adapter, so live chat and announcements survive horizontal scaling rather than breaking the moment a second instance appears.',
+      'Built the REST and WebSocket surface the Flutter client consumes via Dio and Riverpod, with typed models and error-handling interceptors instead of optimistic parsing.',
+      'Hardened authentication: access JWT paired with Redis-stored refresh token rotation, role-based access control across student, teacher and admin, plus Helmet, bcrypt, CORS, and Throttler rate limiting against brute force.',
+      'Dockerised the multi-service stack — API gateway, BullMQ worker, Redis, PostgreSQL, and an Nginx reverse proxy terminating SSL — and wired GitHub Actions to deploy to Google Cloud Run for zero-downtime releases.',
+      'Added the things you only miss at 2am: /health diagnostics, global exception filters, connection pooling, and structured logging.',
+    ],
+    // TODO: add measured figures — API p95 before/after the queue work,
+    // concurrent users during live lectures, deploy frequency.
+    outcome: [
+      'Running in production on Google Cloud Run, deployed continuously from GitHub Actions.',
+      'Background work sits off the request path, so response times no longer degrade when uploads and notifications queue up.',
+      'Sessions, rate limits, and real-time state all live in Redis, which is what lets the API scale sideways rather than vertically.',
+    ],
+    stack: ['NestJS', 'PostgreSQL 16', 'Redis 7', 'Flutter', 'Docker', 'Google Cloud Run'],
+    stackDetail: [
+      {
+        group: 'Mobile app',
+        items: ['Flutter', 'Dart', 'Riverpod', 'Dio', 'Chewie / Video Player', 'Syncfusion PDF', 'Shimmer', 'Flutter Animate'],
+      },
+      { group: 'Web portal', items: ['Next.js', 'TypeScript', 'Tailwind CSS'] },
+      { group: 'Backend', items: ['NestJS', 'Node.js', 'Express', 'Domain-driven modules'] },
+      { group: 'Data', items: ['PostgreSQL 16', 'TypeORM', 'Migrations & seeding', 'Connection pooling', 'Query indexing'] },
+      { group: 'Caching & queues', items: ['Redis 7', 'BullMQ', 'Session management', 'Rate limiting'] },
+      { group: 'Real-time', items: ['Socket.io', '@socket.io/redis-adapter'] },
+      {
+        group: 'Cloud & DevOps',
+        items: ['Docker & Compose', 'Google Cloud Run', 'Nginx (proxy & SSL)', 'GitHub Actions CI/CD'],
+      },
+      {
+        group: 'Third-party',
+        items: ['Razorpay', 'Firebase (FCM, Auth, Crashlytics)', 'Google Cloud Storage', 'Resend', 'Swagger / OpenAPI'],
+      },
+      {
+        group: 'Security',
+        items: ['JWT with refresh rotation', 'Bcrypt', 'Helmet', 'Throttler', 'CORS', 'RBAC'],
+      },
+    ],
+  },
+  {
     slug: 'aabaliqa',
     title: 'Aabaliqa',
     domain: 'Enterprise automation',
@@ -143,26 +200,6 @@ export const projects = [
     ],
     outcome: ['In active development.'],
     stack: ['Python (pandas)', 'Django', 'D3.js', 'SQL'],
-  },
-  {
-    slug: 'lily',
-    title: 'Lily',
-    domain: 'Healthcare',
-    year: '2025',
-    status: 'building',
-    link: null,
-    role: 'Backend engineer',
-    summary:
-      'A secure exchange layer for medical data between systems that were never designed to talk.',
-    context: [
-      'Patient data was moving between systems without consistent security or a shared format — the combination that turns an integration project into a compliance problem.',
-    ],
-    approach: [
-      'Designing to a compliance baseline from the first commit rather than retrofitting it before launch.',
-      'Containerised services with explicit boundaries, so access to patient records is auditable at the edges.',
-    ],
-    outcome: ['In active development.'],
-    stack: ['Node.js', 'MongoDB', 'Docker', 'AWS'],
   },
 ];
 

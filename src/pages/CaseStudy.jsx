@@ -103,6 +103,35 @@ const CaseStudy = () => {
             </p>
           ))}
         </Section>
+
+        {/* Only projects that supply a grouped breakdown get this — the fact
+            table above already carries the headline stack for the rest. */}
+        {project.stackDetail && (
+          <Reveal className="grid gap-4 border-t border-paper-edge py-10 md:grid-cols-12 md:gap-6 md:py-14">
+            <h2 className="eyebrow md:col-span-3 md:pt-1.5">Full stack</h2>
+            <dl className="md:col-span-9">
+              {project.stackDetail.map((row) => (
+                <div
+                  key={row.group}
+                  className="grid gap-1 border-b border-paper-edge py-4 last:border-b-0 sm:grid-cols-12 sm:gap-5"
+                >
+                  <dt className="font-mono text-micro uppercase tracking-[0.14em] text-ink-mute sm:col-span-4 sm:pt-1">
+                    {row.group}
+                  </dt>
+                  <dd className="sm:col-span-8">
+                    <ul className="flex flex-wrap gap-x-4 gap-y-1">
+                      {row.items.map((item) => (
+                        <li key={item} className="text-meta text-ink">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        )}
       </div>
 
       {/* Next project */}
