@@ -1,11 +1,19 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import Reveal from '../components/motion/Reveal';
+import DepthCarousel from '../components/DepthCarousel/DepthCarousel';
 import { site, capabilities, education, offDuty } from '../data/site';
 import { galleryImages } from '../data/gallery';
 import usePageMeta from '../hooks/usePageMeta';
 
 const About = () => {
+  // DepthCarousel takes { image, alt }; the gallery data uses { src, alt }.
+  const carouselItems = useMemo(
+    () => galleryImages.map(({ src, alt }) => ({ image: src, alt })),
+    []
+  );
+
   usePageMeta({
     title: 'About — Danish Nazir',
     description:
@@ -149,21 +157,32 @@ const About = () => {
           </ul>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
-          {galleryImages.map((img, i) => (
-            <Reveal key={img.src} delay={i * 0.04}>
-              <figure className="aspect-[4/5] overflow-hidden bg-paper-deep">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover transition-transform duration-[900ms] ease-editorial hover:scale-[1.04]"
-                />
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        {/* Width is capped so the arrows sit beside the stack rather than out
+            at the page gutters, where they read as unrelated to it. */}
+        <Reveal className="mx-auto mt-10 max-w-[46rem]">
+          {/* Clip on the wrapper, not on .depth-carousel — overflow on the
+              element that owns `perspective` flattens the 3D stack. */}
+          <div className="h-[22rem] overflow-hidden sm:h-[25rem] md:h-[27rem]">
+            <DepthCarousel
+              items={carouselItems}
+              cardWidth={270}
+              cardHeight={338}
+              radius={0}
+              tint="#191713"
+              depth={190}
+              spread={74}
+              tilt={20}
+              blur={5}
+              falloff={0.18}
+              visibleCards={4}
+              autoplay
+              autoplayDelay={5000}
+            />
+          </div>
+          <p className="mt-7 text-center font-mono text-micro uppercase tracking-[0.16em] text-ink-mute">
+            Drag, swipe, or use the arrow keys
+          </p>
+        </Reveal>
       </section>
     </>
   );

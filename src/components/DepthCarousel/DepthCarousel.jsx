@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import gsap from 'gsap';
+// Aliased: this component already uses `animate` as a boolean parameter name.
+import { animate as tween } from 'motion/react';
 import './DepthCarousel.css';
 
 const DEFAULT_ITEMS = [
@@ -29,7 +30,7 @@ const DepthCarousel = ({
   falloff = 0.2,
   blur = 6,
   duration = 700,
-  ease = 'power3.out',
+  ease = [0.16, 1, 0.3, 1],
   autoplay = false,
   autoplayDelay = 3200,
   loop = true,
@@ -130,23 +131,33 @@ const DepthCarousel = ({
 
   const tweenTo = useCallback(
     (target, animate) => {
-      tweenRef.current?.kill();
+      tweenRef.current?.stop();
       const cfg = cfgRef.current;
-      const proxy = { p: posRef.current };
       const dur = animate && !reducedRef.current ? cfg.duration / 1000 : 0;
-      tweenRef.current = gsap.to(proxy, {
-        p: target,
+
+      const settle = () => {
+        const n = cfg.count;
+        if (n > 0) posRef.current = ((posRef.current % n) + n) % n;
+        layout(posRef.current);
+      };
+
+      // Reduced motion, or an explicit zero duration: jump straight there.
+      if (dur === 0) {
+        posRef.current = target;
+        settle();
+        return;
+      }
+
+      // Ported from GSAP to Motion — the site already ships Motion, and pulling
+      // in a second animation library for one numeric tween is not worth ~80 KB.
+      tweenRef.current = tween(posRef.current, target, {
         duration: dur,
         ease: cfg.ease,
-        onUpdate: () => {
-          posRef.current = proxy.p;
-          layout(proxy.p);
+        onUpdate: v => {
+          posRef.current = v;
+          layout(v);
         },
-        onComplete: () => {
-          const n = cfg.count;
-          if (n > 0) posRef.current = ((posRef.current % n) + n) % n;
-          layout(posRef.current);
-        }
+        onComplete: settle
       });
     },
     [layout]
@@ -207,7 +218,7 @@ const DepthCarousel = ({
       if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
 
       e.preventDefault();
-      tweenRef.current?.kill();
+      tweenRef.current?.stop();
       const raw = e.deltaX;
       const delta = e.deltaMode === 1 ? raw * 24 : raw;
       const step = clamp(delta / (cfg.cardWidth * 0.9), -0.6, 0.6);
@@ -226,7 +237,7 @@ const DepthCarousel = ({
   const onPointerDown = useCallback(e => {
     const cfg = cfgRef.current;
     if (cfg.count < 2) return;
-    tweenRef.current?.kill();
+    tweenRef.current?.stop();
     dragRef.current = {
       x: e.clientX,
       startPos: posRef.current,
@@ -344,7 +355,7 @@ const DepthCarousel = ({
 
   useEffect(
     () => () => {
-      tweenRef.current?.kill();
+      tweenRef.current?.stop();
       if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
       if (autoTimerRef.current) clearInterval(autoTimerRef.current);
     },
