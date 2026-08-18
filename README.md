@@ -116,12 +116,10 @@ missing or returns an error, the form shows the error and offers a prefilled
 
 ## Known follow-ups
 
-- **Images are heavy.** `public/gallery/` holds 2–5 MB originals and
-  `og-image.png` / `Profile_image.jpg.png` are ~2.3 MB each. They should be
-  converted to WebP at ~1600px and re-exported under 200 KB.
+- **Case study screenshots.** The detail pages are text-only; product shots
+  would carry a lot of weight here.
 - **Case studies need numbers.** The `outcome` arrays in `src/data/projects.js`
   describe what changed qualitatively. Replace them with measured figures where
   you have them.
-- **No project screenshots yet.** Case study pages are text-only.
 - **Testimonials are empty by design.** Add real, attributable quotes to
   `src/data/testimonials.js` and the section appears automatically.

@@ -16,7 +16,7 @@
 | Repo | https://github.com/Danish20699/my_portfolio_final.git |
 | Hosting | Vercel — SPA rewrites, Vercel Analytics, serverless `api/` |
 | Build | Vite 5 · React 18 · Tailwind 3 |
-| Bundle | 352 kB JS (113 kB gzip) · 27 kB CSS (5.6 kB gzip) |
+| Bundle | 352 kB JS (113 kB gzip) · 27 kB CSS (5.6 kB gzip) · 648 kB images |
 
 **Design position:** warm light editorial. Paper-toned background, near-black ink, a single
 clay accent, and typography carrying the hierarchy. Work is presented as a ruled index and
@@ -67,8 +67,8 @@ No lint, test, or typecheck script exists yet.
 ├── public/
 │   ├── danish-logo.png        Favicon / apple-touch-icon
 │   ├── resume.html            Standalone printable résumé (light theme, self-contained)
-│   ├── images/                Profile_image.jpg.png, og-image.png
-│   └── gallery/               6 personal photographs (About page)
+│   ├── images/                portrait.webp (77 KB), og-image.jpg (61 KB, 1200x630)
+│   └── gallery/               6 personal photographs, WebP, 28–130 KB each
 └── src/
     ├── main.jsx               createRoot + StrictMode + index.css
     ├── App.jsx                Routes + legacy redirects + <Analytics />
@@ -245,10 +245,8 @@ Chrome via Playwright, 1440×900 and 390×844, across all 8 routes:
 ## 11. Outstanding Work
 
 **Performance**
-1. `public/gallery/` holds 2–5 MB camera originals (~15 MB total); `og-image.png` and
-   `Profile_image.jpg.png` are ~2.3 MB each. Convert to WebP at ~1600px, target <200 KB. This
-   is the single largest remaining win — images are lazy-loaded but still dominate payload.
-2. No `srcset` / responsive sources.
+1. No `srcset` / responsive sources — a single WebP is served to every viewport. Worth adding
+   if mobile traffic grows, but at 28–130 KB per image the gain is now small.
 
 **Content**
 3. `outcome` arrays in `projects.js` are qualitative. Replace with measured figures where they exist.

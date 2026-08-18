@@ -55,10 +55,10 @@ const About = () => {
             <figure>
               <div className="aspect-[4/5] w-full overflow-hidden bg-paper-deep">
                 <img
-                  src="/images/Profile_image.jpg.png"
+                  src="/images/portrait.webp"
                   alt={site.name}
-                  width="800"
-                  height="1000"
+                  width="1000"
+                  height="1250"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover"

@@ -50,10 +50,10 @@ const Home = () => (
           <figure className="relative">
             <div className="aspect-[4/5] w-full overflow-hidden bg-paper-deep">
               <img
-                src="/images/Profile_image.jpg.png"
+                src="/images/portrait.webp"
                 alt={`${site.name}, ${site.role}`}
-                width="800"
-                height="1000"
+                width="1000"
+                height="1250"
                 loading="eager"
                 decoding="async"
                 className="h-full w-full object-cover"
