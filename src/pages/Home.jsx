@@ -15,18 +15,8 @@ const Home = () => (
     <section className="shell pb-band pt-10 md:pt-20">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-gutter">
         <div className="lg:col-span-8">
-          <Reveal className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            {site.availability.open && (
-              <span className="flex items-center gap-2 font-mono text-micro uppercase tracking-[0.18em] text-clay">
-                <span className="h-1.5 w-1.5 rounded-full bg-clay" aria-hidden="true" />
-                {site.availability.label}
-              </span>
-            )}
-            <span className="eyebrow">{site.location}</span>
-          </Reveal>
-
           <Headline
-            className="font-display-tight mt-8 font-display text-h1 tracking-tightest text-ink"
+            className="font-display-tight font-display text-h1 tracking-tightest text-ink"
             lines={['Software that', 'holds up under', 'real traffic.']}
             delay={0.15}
           />
@@ -45,7 +35,7 @@ const Home = () => (
           </Reveal>
         </div>
 
-        {/* Portrait — treated as an editorial plate, with a caption */}
+        {/* Portrait — an editorial plate, with a clay corner rule for weight */}
         <Reveal delay={0.3} className="lg:col-span-4">
           <figure className="relative">
             <div className="aspect-[4/5] w-full overflow-hidden bg-paper-deep">
@@ -63,14 +53,6 @@ const Home = () => (
               aria-hidden="true"
               className="absolute -bottom-3 -left-3 h-16 w-16 border-b border-l border-clay"
             />
-            <figcaption className="mt-4 flex items-baseline justify-between">
-              <span className="font-mono text-micro uppercase tracking-[0.16em] text-ink-mute">
-                {site.name}
-              </span>
-              <span className="font-mono text-micro uppercase tracking-[0.16em] text-ink-mute">
-                {site.role}
-              </span>
-            </figcaption>
           </figure>
         </Reveal>
       </div>

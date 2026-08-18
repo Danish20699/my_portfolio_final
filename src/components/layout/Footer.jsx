@@ -30,7 +30,7 @@ const Footer = () => {
         </div>
 
         {/* Colophon */}
-        <div className="grid gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <p className="eyebrow text-paper/40">Index</p>
             <ul className="mt-4 space-y-2">
@@ -78,12 +78,6 @@ const Footer = () => {
             )}
           </div>
 
-          <div>
-            <p className="eyebrow text-paper/40">Colophon</p>
-            <p className="mt-4 max-w-[26ch] text-meta text-paper/60">
-              Set in Fraunces and Instrument Sans. Built with React and Vite, deployed on Vercel.
-            </p>
-          </div>
         </div>
 
         <div className="mt-16 flex flex-col gap-3 border-t border-ink-edge pt-8 sm:flex-row sm:items-center sm:justify-between">
