@@ -18,30 +18,35 @@
 
 export const projects = [
   {
-    slug: 'q-id',
-    title: 'Q-ID',
-    domain: 'Digital identity',
-    year: '2025',
+    slug: 'quantafons-hisaab',
+    title: 'QuantaFONS Hisaab',
+    domain: 'Expense management',
+    year: '2026',
+    // TODO: no public URL supplied yet. Add `link` and this page gains a
+    // "Visit the live site" button automatically.
     status: 'live',
-    link: 'https://www.q-id.live/',
+    link: null,
     role: 'Full-stack engineer',
     summary:
-      'A real-time digital identity platform replacing a manual, fraud-prone verification process.',
+      'An enterprise expense platform with real-time budgeting, role-based dashboards, and approvals tracked as explicit state.',
     context: [
-      'Identity verification was being done by hand. Documents arrived by email, someone eyeballed them, and a decision came back hours or days later. That is slow for the applicant and unreliable for the business — manual review is exactly where fraud gets through, because reviewers get tired and inconsistent.',
-      'The brief was to make verification immediate without making it less careful.',
+      'Expense management in most organisations is spread across spreadsheets, receipts, and email threads. The numbers only assemble themselves at month end — by which point the budget is already spent and a manager is reconciling history rather than making decisions.',
+      'Hisaab was built so spending is visible while it is still happening, and so the people accountable for a budget can act on it in the same place they see it.',
     ],
     approach: [
-      'Designed the verification data model first: identity records, document artifacts, check results, and an append-only audit trail. Nothing about a decision is mutable after the fact.',
-      'Built the verification pipeline as discrete, retryable steps so a failure in one check does not lose the whole submission.',
-      'Kept the applicant-facing flow deliberately plain — upload, status, result — because people abandon identity flows that feel uncertain.',
-      'Locked down document storage and access paths, since the system holds government ID material.',
+      'Separate dashboards per role rather than one screen with permissions bolted on. An administrator, a manager, and someone filing a claim are asking genuinely different questions of the same data.',
+      'Budget thresholds are adjustable at runtime, so a category can be tightened or loosened without waiting on a deploy.',
+      'Approvals are modelled as explicit state, which means any expense can be traced from submission through to decision instead of ending in someone\'s inbox.',
+      'Analytics built on Recharts — modular SVG charts rather than a canvas library, so figures stay legible, selectable, and exportable.',
+      'Typed end to end under strict TypeScript. The shapes moving between budgets, expenses, and approvals are exactly where silent rounding and state bugs hide.',
     ],
+    // TODO: replace with measured figures once you have them — approval
+    // turnaround, time per reporting cycle, number of budgets tracked.
     outcome: [
-      'Verification that used to sit in a human queue now returns in real time.',
-      'Every decision carries a reviewable trail, which matters the first time one is disputed.',
+      'Spending reads against budget in real time rather than at month end.',
+      'Threshold changes and expense exports happen inside the product, not in a spreadsheet afterwards.',
     ],
-    stack: ['React', 'Node.js', 'PostgreSQL', 'Tailwind'],
+    stack: ['React 19', 'TypeScript 5.8', 'Vite 6', 'Tailwind CSS 4', 'Recharts', 'Motion'],
   },
   {
     slug: 'travel-victor',

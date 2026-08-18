@@ -167,7 +167,7 @@ All copy lives in `src/data/`. Components contain no prose.
 { slug, title, domain, year, status: 'live'|'building', link, role,
   summary, context: [], approach: [], outcome: [], stack: [] }
 ```
-Q-ID · Travel Victor · Aabaliqa (live) — Boost+ · KVPDA · Lily (building).
+QuantaFONS Hisaab · Travel Victor · Aabaliqa (live) — Boost+ · KVPDA · Lily (building).
 
 ### `posts.js`
 ```js
