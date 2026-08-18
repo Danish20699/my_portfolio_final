@@ -26,7 +26,7 @@ const Post = () => {
           <Link to="/writing" className="eyebrow transition-colors hover:text-ink">
             ← Writing
           </Link>
-          <span className="eyebrow text-paper-edge">/</span>
+          <span className="eyebrow" aria-hidden="true">/</span>
           <span className="eyebrow">{post.category}</span>
         </Reveal>
 

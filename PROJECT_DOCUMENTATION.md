@@ -65,7 +65,9 @@ No lint, test, or typecheck script exists yet.
 ├── api/
 │   └── subscribe.js           Vercel function → Resend. Validation + header-injection guard.
 ├── public/
-│   ├── danish-logo.png        Favicon / apple-touch-icon
+│   ├── favicon-32.png         Browser tab icon (1.6 KB)
+│   ├── apple-touch-icon.png   iOS home screen (9.6 KB)
+│   ├── work/                  Case-study screenshots + how-to README
 │   ├── resume.html            Standalone printable résumé (light theme, self-contained)
 │   ├── images/                portrait.webp (77 KB), og-image.jpg (61 KB, 1200x630)
 │   └── gallery/               6 personal photographs, WebP, 28–130 KB each
@@ -86,6 +88,8 @@ No lint, test, or typecheck script exists yet.
     │   ├── WorkIndex.jsx      Ruled project index
     │   ├── Prose.jsx          Markdown-ish renderer (headings, lists, bold)
     │   ├── ContactForm.jsx    POSTs /api/subscribe, degrades to mailto
+│   ├── ProjectGallery.jsx Case-study screenshot grid
+│   ├── Lightbox.jsx       Modal viewer: focus trap, Esc, arrow keys
     │   ├── Testimonials.jsx   Renders null while data is empty
     │   └── PageHeader.jsx
     └── hooks/usePageMeta.js   Per-route title + description
@@ -123,11 +127,13 @@ on route change. Unknown `:slug` values redirect to the parent index rather than
 | `paper-edge` | `#E7DFD2` | Hairline rules |
 | `ink` | `#191713` | Headings, contrast bands, primary buttons |
 | `ink-soft` | `#4C463E` | Body copy |
-| `ink-mute` | `#8B8378` | Metadata, captions |
+| `ink-mute` | `#726A60` | Metadata, captions — 4.98:1 |
 | `ink-edge` | `#2E2A23` | Hairlines on ink bands |
 | `clay` | `#B14A2C` | The single accent |
 | `clay-deep` | `#8A3620` | Accent, pressed/error |
 | `clay-wash` | `#F3E3DA` | Hover wash on index rows |
+| `clay-light` | `#D87B58` | Accent on ink bands — 5.88:1 |
+| `paper-mute` | `#96918B` | Muted text on ink bands — 5.73:1 |
 | `moss` | `#3B4A3F` | Reserved secondary |
 
 ### Typography
@@ -166,7 +172,8 @@ All copy lives in `src/data/`. Components contain no prose.
 ```js
 { slug, title, domain, year, status: 'live'|'building', link, role,
   summary, context: [], approach: [], outcome: [], stack: [],
-  stackDetail?: [{ group, items: [] }] }
+  stackDetail?: [{ group, items: [] }],
+  cover?: { src, alt }, gallery?: [{ src, alt, caption }] }
 ```
 QuantaFONS Hisaab · Travel Victor · EliiGen · Aabaliqa (live) — Boost+ · KVPDA (building).
 

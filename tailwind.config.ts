@@ -16,17 +16,25 @@ const config: Config = {
           DEFAULT: '#FAF7F2', // page
           deep: '#F1EBE1', // alternating bands
           edge: '#E7DFD2', // hairlines on paper
+          // Muted text ON an ink band. paper/40 measured 3.23:1 and failed
+          // WCAG AA at the 11px sizes it was used for; this is 5.73:1.
+          mute: '#96918B',
         },
         ink: {
           DEFAULT: '#191713', // headings, contrast bands
           soft: '#4C463E', // body copy
-          mute: '#8B8378', // metadata, captions
+          // Was #8B8378 — 3.50:1 on paper, which failed AA for the 11px
+          // eyebrows, dates, tags and nav links that all use it. Now 4.98:1.
+          mute: '#726A60', // metadata, captions
           edge: '#2E2A23', // hairlines on ink
         },
         clay: {
-          DEFAULT: '#B14A2C', // the one accent
+          DEFAULT: '#B14A2C', // the one accent — 5.06:1 on paper
           deep: '#8A3620',
           wash: '#F3E3DA',
+          // The accent only reaches 3.31:1 against ink, so dark bands use a
+          // lifted tint instead. 5.88:1.
+          light: '#D87B58',
         },
         moss: '#3B4A3F',
       },

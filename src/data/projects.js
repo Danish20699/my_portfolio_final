@@ -11,6 +11,14 @@
  *   stack     technologies, shown as a plain list not badges
  *   role      your role and, where relevant, team shape
  *
+ * Optional:
+ *   stackDetail  [{ group, items }] — grouped stack table on the case study
+ *   cover        { src, alt } — full-width plate under the title
+ *   gallery      [{ src, alt, caption }] — screenshot grid, opens a lightbox
+ *
+ * See public/work/README.md for how to add screenshots. Projects without
+ * `cover` or `gallery` render exactly as they do now.
+ *
  * NOTE: `outcome` entries are written from the original site copy. Where you
  * have real measurements (latency, conversion, verification time, cost),
  * replace these lines — specifics are the whole point of a case study.

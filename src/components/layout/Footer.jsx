@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="shell py-16 md:py-24">
         {/* Contact call — the footer is the last chance, so it gets weight */}
         <div className="border-b border-ink-edge pb-14">
-          <p className="eyebrow text-paper/45">Currently</p>
+          <p className="eyebrow text-paper-mute">Currently</p>
           <Link
             to="/contact"
             className="group mt-5 block font-display text-h1 leading-[0.95] tracking-tightest text-paper"
@@ -17,13 +17,13 @@ const Footer = () => {
             <span className="inline-block transition-transform duration-500 ease-editorial group-hover:translate-x-2">
               Let's talk
             </span>
-            <span className="ml-4 inline-block text-clay transition-transform duration-500 ease-editorial group-hover:translate-x-4">
+            <span className="ml-4 inline-block text-clay-light transition-transform duration-500 ease-editorial group-hover:translate-x-4">
               →
             </span>
           </Link>
           <a
             href={`mailto:${site.email}`}
-            className="mt-6 inline-block border-b border-paper/25 pb-1 font-mono text-meta text-paper/70 transition-colors duration-300 hover:border-clay hover:text-clay"
+            className="mt-6 inline-block border-b border-paper/25 pb-1 font-mono text-meta text-paper/70 transition-colors duration-300 hover:border-clay-light hover:text-clay-light"
           >
             {site.email}
           </a>
@@ -32,14 +32,14 @@ const Footer = () => {
         {/* Colophon */}
         <div className="grid gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <p className="eyebrow text-paper/40">Index</p>
+            <p className="eyebrow text-paper-mute">Index</p>
             <ul className="mt-4 space-y-2">
               {[{ label: 'Home', to: '/' }, ...site.nav, { label: 'Contact', to: '/contact' }].map(
                 (item) => (
                   <li key={item.to}>
                     <Link
                       to={item.to}
-                      className="text-meta text-paper/70 transition-colors duration-300 hover:text-clay"
+                      className="text-meta text-paper/70 transition-colors duration-300 hover:text-clay-light"
                     >
                       {item.label}
                     </Link>
@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <p className="eyebrow text-paper/40">Elsewhere</p>
+            <p className="eyebrow text-paper-mute">Elsewhere</p>
             <ul className="mt-4 space-y-2">
               {site.socials.map((s) => (
                 <li key={s.label}>
@@ -58,7 +58,7 @@ const Footer = () => {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-meta text-paper/70 transition-colors duration-300 hover:text-clay"
+                    className="text-meta text-paper/70 transition-colors duration-300 hover:text-clay-light"
                   >
                     {s.label}
                   </a>
@@ -68,11 +68,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <p className="eyebrow text-paper/40">Location</p>
+            <p className="eyebrow text-paper-mute">Location</p>
             <p className="mt-4 max-w-[22ch] text-meta text-paper/70">{site.location}</p>
             {site.availability.open && (
-              <p className="mt-4 flex items-center gap-2 font-mono text-micro uppercase tracking-[0.16em] text-clay">
-                <span className="h-1.5 w-1.5 rounded-full bg-clay" aria-hidden="true" />
+              <p className="mt-4 flex items-center gap-2 font-mono text-micro uppercase tracking-[0.16em] text-clay-light">
+                <span className="h-1.5 w-1.5 rounded-full bg-clay-light" aria-hidden="true" />
                 {site.availability.label}
               </p>
             )}
@@ -81,10 +81,10 @@ const Footer = () => {
         </div>
 
         <div className="mt-16 flex flex-col gap-3 border-t border-ink-edge pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-micro uppercase tracking-[0.16em] text-paper/40">
+          <p className="font-mono text-micro uppercase tracking-[0.16em] text-paper-mute">
             © {year} {site.name}
           </p>
-          <p className="font-mono text-micro uppercase tracking-[0.16em] text-paper/40">
+          <p className="font-mono text-micro uppercase tracking-[0.16em] text-paper-mute">
             Built to ship. Designed to last.
           </p>
         </div>

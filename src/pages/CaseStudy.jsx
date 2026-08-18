@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Headline from '../components/motion/Headline';
 import Reveal from '../components/motion/Reveal';
+import ProjectGallery from '../components/ProjectGallery';
 import { getProject, projects } from '../data/projects';
 import usePageMeta from '../hooks/usePageMeta';
 
@@ -32,7 +33,7 @@ const CaseStudy = () => {
           <Link to="/work" className="eyebrow transition-colors hover:text-ink">
             ← Work
           </Link>
-          <span className="eyebrow text-paper-edge">/</span>
+          <span className="eyebrow" aria-hidden="true">/</span>
           <span className="eyebrow">{project.domain}</span>
         </Reveal>
 
@@ -74,6 +75,21 @@ const CaseStudy = () => {
         )}
       </header>
 
+      {/* Cover plate — the first evidence a visitor sees that this is real */}
+      {project.cover && (
+        <Reveal className="shell">
+          <figure className="overflow-hidden border border-paper-edge bg-paper-deep">
+            <img
+              src={project.cover.src}
+              alt={project.cover.alt}
+              loading="eager"
+              decoding="async"
+              className="block w-full"
+            />
+          </figure>
+        </Reveal>
+      )}
+
       <div className="shell">
         <Section label="Context">
           {project.context.map((p, i) => (
@@ -103,6 +119,8 @@ const CaseStudy = () => {
             </p>
           ))}
         </Section>
+
+        <ProjectGallery items={project.gallery} title={project.title} />
 
         {/* Only projects that supply a grouped breakdown get this — the fact
             table above already carries the headline stack for the rest. */}

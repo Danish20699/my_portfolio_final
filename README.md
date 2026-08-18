@@ -41,12 +41,17 @@ src/
 │   ├── WorkIndex.jsx         The ruled project index
 │   ├── Prose.jsx             Minimal markdown renderer for posts
 │   ├── ContactForm.jsx       Posts to /api/subscribe, degrades to mailto
+│   ├── ProjectGallery.jsx    Case-study screenshot grid
+│   ├── Lightbox.jsx          Accessible modal viewer (focus trap, Esc, arrows)
 │   └── PageHeader.jsx
 └── hooks/usePageMeta.js      Per-route <title> and meta description
 
 api/subscribe.js              Vercel function → Resend
 public/                       Static assets, plus the standalone resume.html
 ```
+
+Every colour pair on the site is verified against WCAG AA. If you change a
+token, re-check it — `ink-mute` originally shipped at 3.50:1 and failed.
 
 **Content is data, not markup.** To add a project or a post, add an object to
 `src/data/projects.js` or `src/data/posts.js` — the index pages, detail pages,
@@ -80,8 +85,10 @@ Light warm-paper base, one accent, typography doing the work.
 | `paper-edge` | `#E7DFD2` | Hairlines |
 | `ink` | `#191713` | Headings, contrast bands, buttons |
 | `ink-soft` | `#4C463E` | Body copy |
-| `ink-mute` | `#8B8378` | Metadata, captions |
-| `clay` | `#B14A2C` | The single accent |
+| `ink-mute` | `#726A60` | Metadata, captions (4.98:1, AA) |
+| `clay` | `#B14A2C` | The single accent (5.06:1 on paper) |
+| `clay-light` | `#D87B58` | The accent on ink bands (5.88:1) |
+| `paper-mute` | `#96918B` | Muted text on ink bands (5.73:1) |
 
 Type: **Fraunces** (display), **Instrument Sans** (body), **JetBrains Mono**
 (metadata). All three from Google Fonts.
@@ -116,8 +123,9 @@ missing or returns an error, the form shows the error and offers a prefilled
 
 ## Known follow-ups
 
-- **Case study screenshots.** The detail pages are text-only; product shots
-  would carry a lot of weight here.
+- **Case study screenshots.** Support is built — see `public/work/README.md`.
+  Drop images in and add `cover` / `gallery` to the project; no code changes.
+  Nothing renders until you do.
 - **Case studies need numbers.** The `outcome` arrays in `src/data/projects.js`
   describe what changed qualitatively. Replace them with measured figures where
   you have them.

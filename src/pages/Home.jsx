@@ -87,7 +87,7 @@ const Home = () => (
     <section className="band-ink grain mt-band">
       <div className="shell py-band">
         <Reveal>
-          <p className="eyebrow text-paper/40">How I work</p>
+          <p className="eyebrow text-paper-mute">How I work</p>
           <blockquote className="mt-8 max-w-[22ch] font-display text-h1 leading-[1.02] tracking-tightest text-paper sm:max-w-[18ch]">
             Most systems don't fail at the feature. They fail at the edge nobody wrote down.
           </blockquote>
