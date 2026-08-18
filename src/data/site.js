@@ -7,9 +7,9 @@ export const site = {
   phone: '+91 70067 98511',
   resume: '/resume.html',
 
-  // The positioning line. Concrete, first-person, no superlatives.
+  // The positioning line. Names only domains that appear in projects.js.
   statement:
-    'I build the parts of a product that have to keep working — identity, payments, data pipelines, the things that page someone at 3am when they break.',
+    'Full-stack engineer in Kashmir, working on identity, booking, and automation systems. I build things properly the first time.',
 
   intro: [
     'I work across the stack, mostly on systems that carry real traffic and real consequences: a digital identity platform, a travel booking engine, automation for an enterprise back office.',
