@@ -3,9 +3,10 @@ import Headline from '../components/motion/Headline';
 import Reveal from '../components/motion/Reveal';
 import WorkIndex from '../components/WorkIndex';
 import Testimonials from '../components/Testimonials';
+import TextLoop from '../components/motion/TextLoop';
 import { featured } from '../data/projects';
 import { posts, formatDate } from '../data/posts';
-import { site, capabilities } from '../data/site';
+import { site, capabilities, skills, coreSkills } from '../data/site';
 
 const Home = () => (
   <>
@@ -99,6 +100,52 @@ const Home = () => (
     </section>
 
     {/* ---------------------------------------------------------------- *
+     * Skills — a looping headline over the full, static list
+     * ---------------------------------------------------------------- */}
+    <section className="shell pt-band">
+      <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
+        <h2 className="font-display text-h2 tracking-tighter">Skills</h2>
+        <span className="eyebrow">Toolkit</span>
+      </Reveal>
+
+      <Reveal className="mt-12">
+        <p className="font-display text-h1 leading-[1.05] tracking-tightest text-ink">
+          Mostly writing{' '}
+          <TextLoop items={coreSkills} className="font-display text-clay" />
+        </p>
+      </Reveal>
+
+      <dl className="mt-14 border-t border-paper-edge">
+        {skills.map((row, i) => (
+          <Reveal key={row.group} delay={i * 0.05}>
+            <div className="grid gap-2 border-b border-paper-edge py-6 md:grid-cols-12 md:gap-6">
+              <dt
+                className={[
+                  'font-mono text-micro uppercase tracking-[0.14em] md:col-span-3',
+                  row.learning ? 'text-clay' : 'text-ink-mute',
+                ].join(' ')}
+              >
+                {row.group}
+              </dt>
+              <dd className="md:col-span-9">
+                <ul className="flex flex-wrap gap-x-5 gap-y-1.5">
+                  {row.items.map((item) => (
+                    <li
+                      key={item}
+                      className={row.learning ? 'text-body text-ink-mute' : 'text-body text-ink'}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          </Reveal>
+        ))}
+      </dl>
+    </section>
+
+    {/* ---------------------------------------------------------------- *
      * Capabilities — a table, not a badge cloud
      * ---------------------------------------------------------------- */}
     <section className="shell pt-band">
@@ -117,20 +164,11 @@ const Home = () => (
                 </span>
                 {c.title}
               </dt>
-              <dd className="md:col-span-5">
-                <p className="text-body text-ink-soft">{c.body}</p>
-              </dd>
-              <dd className="md:col-span-3">
-                <ul className="flex flex-wrap gap-x-3 gap-y-1.5 md:justify-end">
-                  {c.tools.map((t) => (
-                    <li
-                      key={t}
-                      className="font-mono text-micro uppercase tracking-[0.1em] text-ink-mute"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
+              {/* Tools deliberately omitted here — the Skills section directly
+                  above already lists them, and repeating them on the same
+                  screen reads as padding. About still shows them per capability. */}
+              <dd className="md:col-span-8">
+                <p className="max-w-measure text-body text-ink-soft">{c.body}</p>
               </dd>
             </div>
           </Reveal>

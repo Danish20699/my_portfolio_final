@@ -59,6 +59,52 @@ export const capabilities = [
   },
 ];
 
+/**
+ * Skills.
+ *
+ * Taken from RESUME_DRAFT.md, which deliberately separates what you work in
+ * from what you are currently learning. That distinction is kept here — the
+ * looping headline only cycles `core`, because claiming fluency in something
+ * you are still picking up is the kind of thing that gets caught in an
+ * interview.
+ */
+export const skills = [
+  {
+    group: 'Frontend',
+    items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind', 'SASS', 'HTML & CSS'],
+  },
+  {
+    group: 'Backend & data',
+    items: ['Node.js', 'Python', 'Django', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Redis', 'REST APIs'],
+  },
+  {
+    group: 'Tooling',
+    items: ['Docker', 'Git', 'Linux & CLI', 'Vercel', 'AWS', 'Postman'],
+  },
+  {
+    group: 'Practice',
+    items: ['API design', 'Database modelling', 'Performance tuning', 'Secure auth flows'],
+  },
+  {
+    group: 'Currently learning',
+    items: ['PyTorch', 'TensorFlow', 'OpenAI API', 'LangChain', 'CI/CD pipelines', 'Kubernetes'],
+    learning: true,
+  },
+];
+
+/** What the headline cycles through. Confident ground only. */
+export const coreSkills = [
+  'React',
+  'TypeScript',
+  'Node.js',
+  'Python',
+  'PostgreSQL',
+  'Redis',
+  'Docker',
+  'Next.js',
+  'AWS',
+];
+
 export const education = [
   {
     title: 'Bachelor of Computer Applications',
