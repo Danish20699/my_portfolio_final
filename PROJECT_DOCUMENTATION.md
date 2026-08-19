@@ -175,7 +175,7 @@ All copy lives in `src/data/`. Components contain no prose.
   stackDetail?: [{ group, items: [] }], accessNote?,
   cover?: { src, alt }, gallery?: [{ src, alt, caption }] }
 ```
-Maktabah Maseehul Ummat · Travel Victor · EliiGen · Aabaliqa (live) — Boost+ · KVPDA (building).
+Maktabah Maseehul Ummat · EliiGen · One-Command Deploy (live) — Boost+ · KVPDA (building).
 
 ### `posts.js`
 ```js

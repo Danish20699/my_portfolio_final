@@ -153,36 +153,6 @@ export const projects = [
     ],
   },
   {
-    slug: 'travel-victor',
-    title: 'Travel Victor',
-    domain: 'Travel platform',
-    year: '2025',
-    status: 'live',
-    link: 'https://travel-victor.vercel.app',
-    role: 'Frontend architect',
-    summary:
-      'A booking flow rebuilt around the drop-off points, not the feature list.',
-    context: [
-      'The booking journey had too many steps and too little feedback. Users were leaving partway through — the expensive kind of loss, since they had already shown intent.',
-      'The instinct in that situation is to redesign the pages. The more useful move was to find where people actually stopped.',
-    ],
-    approach: [
-      'Collapsed the multi-step flow into a smaller number of decisions, deferring anything that did not block the booking.',
-      'Made search and availability feel immediate — optimistic UI where safe, skeletons where not, and no unexplained spinners.',
-      'Typed the API boundary end to end so malformed responses surface at build time rather than as a blank screen mid-booking.',
-      'Treated mobile as the primary case rather than a breakpoint, because that is where the traffic was.',
-    ],
-    outcome: [
-      'A discovery-to-booking path short enough to complete in one sitting.',
-      'Interface state is now explicit at every step, so users always know whether the system is working or stuck.',
-    ],
-    stack: ['Next.js', 'TypeScript', 'Tailwind', 'REST integrations'],
-    cover: {
-      src: '/work/travel-victor/cover.webp',
-      alt: 'The Travel Victor landing page: a large serif headline reading Beyond the Standard beside a photograph of houseboats on a Kashmir lake',
-    },
-  },
-  {
     slug: 'eliigen',
     title: 'EliiGen',
     domain: 'Learning platform',
@@ -327,41 +297,12 @@ export const projects = [
     ],
   },
   {
-    slug: 'abaliqa',
-    title: 'Abaliqa',
-    domain: 'Enterprise automation',
-    year: '2024',
-    status: 'live',
-    link: 'https://abaliqa.com/',
-    role: 'Lead developer',
-    summary:
-      'Automation for back-office workflows that were blocking the business from scaling.',
-    context: [
-      'Core operations ran on manual handoffs — the kind of process that works at ten transactions a day and quietly breaks at a hundred. Growth was being limited by how fast people could re-key data.',
-      'The constraint was that the existing process could not stop while it was being replaced.',
-    ],
-    approach: [
-      'Mapped the manual workflow honestly first, including the undocumented exceptions people handled by memory. Those exceptions are usually the actual requirements.',
-      'Automated the highest-volume, lowest-judgement steps first, leaving humans in the loop where judgement genuinely mattered.',
-      'Built the automation as services behind a React operations console, so staff could see and override what the system decided.',
-      'Rolled out per workflow rather than all at once, which kept every failure small.',
-    ],
-    outcome: [
-      'Repetitive operational tasks now run without a person in the path.',
-      'Staff moved from re-keying data to handling the exceptions the system flags.',
-    ],
-    stack: ['Python', 'FastAPI', 'TensorFlow', 'React'],
-  },
-  {
     slug: 'one-command-deploy',
     title: 'One-Command Deploy',
     domain: 'Infrastructure automation',
     year: '2026',
     status: 'live',
     link: 'https://github.com/Danish20699/portfolio-shell-automation',
-    // Infrastructure tooling rather than client work — listed in full here,
-    // kept off the homepage so Selected Work stays production systems.
-    featured: false,
     role: 'Sole author',
     summary:
       'A shell script that provisions a fresh Ubuntu server over SSH and deploys a PostgreSQL-backed PHP site onto it, in one command.',

@@ -8,7 +8,7 @@ const Work = () => {
   usePageMeta({
     title: 'Work — Danish Nazir',
     description:
-      'Case studies from production systems: point-of-sale and inventory, travel booking, learning platforms, and enterprise automation.',
+      'Case studies from production systems: point-of-sale and inventory, learning platforms, and infrastructure automation.',
   });
 
   const live = projects.filter((p) => p.status === 'live');

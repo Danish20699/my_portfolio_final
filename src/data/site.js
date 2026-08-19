@@ -11,10 +11,10 @@ export const site = {
   // The positioning line. Names only domains that appear in projects.js --
   // re-check this whenever a project is added or removed.
   statement:
-    'Full-stack engineer in Kashmir, working on point-of-sale, booking, and learning systems. I build things properly the first time.',
+    'Full-stack engineer in Kashmir, working on point-of-sale, learning, and infrastructure systems. I build things properly the first time.',
 
   intro: [
-    'I work across the stack, mostly on systems that carry real traffic and real consequences: a point-of-sale and stock system for a bookstore, a travel booking engine, a learning platform, and automation for an enterprise back office.',
+    'I work across the stack, mostly on systems that carry real traffic and real consequences: a point-of-sale and stock system for an institutional bookstore, a learning platform serving exam-prep students, and the automation that puts them on a server.',
     'The interesting problems are rarely the features. They are the retries, the migrations, the schema you chose eighteen months ago, and the failure mode nobody wrote down. That is the work I like.',
   ],
 
