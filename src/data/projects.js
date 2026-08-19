@@ -13,6 +13,8 @@
  *
  * Optional:
  *   stackDetail  [{ group, items }] — grouped stack table on the case study
+ *   accessNote   one line shown in place of the live-site button, for work
+ *                that is real but not publicly reachable
  *   cover        { src, alt } — full-width plate under the title
  *   gallery      [{ src, alt, caption }] — screenshot grid, opens a lightbox
  *
@@ -25,6 +27,56 @@
  */
 
 export const projects = [
+  {
+    slug: 'maktabah-maseehul-ummat',
+    title: 'Maktabah Maseehul Ummat',
+    domain: 'Point of sale & inventory',
+    // TODO: confirm the year — assumed from the React 19 / Tailwind 4 stack.
+    year: '2026',
+    status: 'live',
+    link: null,
+    // Internal tool, so there is nothing to link. Saying that is better than
+    // showing "In production" with no button and letting a reader wonder.
+    accessNote: 'Internal system for the institution — not publicly reachable.',
+    role: 'Full-stack engineer',
+    summary:
+      'A point-of-sale and stock system for an institutional bookstore, covering the till, the shelves, and the ledger that has to reconcile them.',
+    context: [
+      'Maktabah Maseehul Ummat is the bookstore and retail arm of Darul Uloom Bilaliya. The catalogue is an unusual mix: religious literature — Qurans, Hadith collections, Tafseer — alongside attars and stationery, each with its own turnover and reorder rhythm.',
+      'The system had to do two jobs that normally live in separate products. It is a till at the counter, and it is the record of what is actually on the shelves behind it. Those two only stay in agreement if the same action does both.',
+    ],
+    approach: [
+      'Billing decrements stock as part of completing a sale, not as a separate step someone has to remember. That single decision is what keeps the counter and the stock figure from drifting apart.',
+      'Every movement lands on a ledger as IN, OUT or ADJUST. When a physical count disagrees with the system, the difference can be traced rather than argued about.',
+      'Checkout is built for speed at a counter: search by SKU, name or category, per-item discounts, payment method, customer details, and a printable invoice.',
+      'The product catalogue carries cost price and selling price separately, plus a minimum-stock threshold, so the dashboard can surface low stock and a real inventory valuation instead of just a count.',
+      'CSV bulk import and export for the catalogue, because the opening stocktake for a bookshop is not something anyone should type in one row at a time.',
+      'Reporting on Recharts — revenue, margin, and sales by category, filtered by day, week, month or a custom range, with CSV export for anything that needs to leave the system.',
+      'Ships with an in-memory mock mode so it runs with no database configured at all, and switches to MySQL through a single DATABASE_URL. Setup at a place like this happens once; it should not require a database administrator.',
+      'One-click JSON export plus scheduled daily or weekly local backups — the unglamorous feature that matters the first time a machine dies.',
+    ],
+    // TODO: add measured figures once you have them — items in the catalogue,
+    // transactions per day, time saved on the monthly stocktake.
+    outcome: [
+      'Stock, sales and valuation come from one record instead of being reconciled between a till and a notebook.',
+      'Discrepancies are explainable, because every adjustment is on the ledger with a reason attached.',
+      'The system starts without configuration, which is what makes it usable by staff rather than only by whoever installed it.',
+    ],
+    stack: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Express', 'MySQL', 'Recharts'],
+    stackDetail: [
+      {
+        group: 'Frontend',
+        items: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Recharts', 'Lucide icons', 'react-to-print', 'PapaParse'],
+      },
+      { group: 'Backend', items: ['Node.js', 'Express', 'tsx runtime', 'Vite integration'] },
+      { group: 'Data', items: ['MySQL', 'schema.sql', 'In-memory mock mode'] },
+      {
+        group: 'Modules',
+        items: ['Dashboard', 'Billing & POS', 'Inventory', 'Categories', 'Ledger', 'Reports', 'Backups'],
+      },
+      { group: 'Data portability', items: ['CSV import & export', 'JSON database export', 'Scheduled local backups'] },
+    ],
+  },
   {
     slug: 'travel-victor',
     title: 'Travel Victor',

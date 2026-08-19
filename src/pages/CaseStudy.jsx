@@ -65,13 +65,21 @@ const CaseStudy = () => {
           </dl>
         </Reveal>
 
-        {project.link && (
+        {project.link ? (
           <Reveal delay={0.55} className="mt-10">
             <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn">
               Visit the live site
               <span aria-hidden="true">↗</span>
             </a>
           </Reveal>
+        ) : (
+          project.accessNote && (
+            <Reveal delay={0.55} className="mt-10">
+              <p className="flex items-start gap-3 border-l-2 border-clay pl-4 text-meta text-ink-soft">
+                {project.accessNote}
+              </p>
+            </Reveal>
+          )
         )}
       </header>
 
