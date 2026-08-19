@@ -11,8 +11,9 @@ Live: https://my-portfolio-final-wine.vercel.app/
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # → dist/
+npm run build    # → dist/ (runs the SEO generator first)
 npm run preview  # serve the production build
+npm run seo      # regenerate sitemap.xml + robots.txt on their own
 ```
 
 The contact form posts to a Vercel serverless function, so it only works in a

@@ -222,7 +222,10 @@ card metadata (all pointing at `my-portfolio-final-wine.vercel.app`), and JSON-L
 `usePageMeta` rewrites title/description/OG/Twitter per route, since the app is client-rendered
 and would otherwise share one set of tags across every page.
 
-Still missing: `robots.txt`, `sitemap.xml`, per-route canonical tags.
+`scripts/build-seo.mjs` runs as `prebuild` and generates `public/sitemap.xml` and
+`public/robots.txt` from `projects.js` and `posts.js`, so the sitemap cannot list a
+removed project or miss a new one. `usePageMeta` also rewrites the canonical link and
+`og:url` per route — without it every page claims to be the homepage.
 
 ---
 
