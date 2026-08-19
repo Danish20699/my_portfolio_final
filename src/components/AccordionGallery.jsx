@@ -74,14 +74,23 @@ const AccordionGallery = ({ items = [], heading = 'Screens' }) => {
                     isActive ? 'flex-[6] cursor-zoom-in' : 'flex-[0.55] cursor-pointer',
                   ].join(' ')}
                 >
+                  {/*
+                    Open: object-contain, so the whole screen is legible rather
+                    than centre-cropped.
+                    Collapsed: cover, positioned into the CONTENT area. Anchored
+                    left it showed the app's sidebar in every panel — eight
+                    identical strips of navigation and no way to tell them apart.
+                  */}
                   <img
                     src={img.src}
                     alt={img.alt}
                     loading="lazy"
                     decoding="async"
                     className={[
-                      'h-full w-full object-cover object-left-top transition-opacity duration-500',
-                      isActive ? 'opacity-100' : 'opacity-45 group-hover:opacity-70',
+                      'h-full w-full transition-opacity duration-500',
+                      isActive
+                        ? 'object-contain object-center opacity-100'
+                        : 'object-cover object-[42%_top] opacity-40 group-hover:opacity-65',
                     ].join(' ')}
                   />
 

@@ -63,28 +63,21 @@ export const projects = [
       'The system starts without configuration, which is what makes it usable by staff rather than only by whoever installed it.',
     ],
     stack: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Express', 'MySQL', 'Recharts'],
-    // ---------------------------------------------------------------
-    // READY TO SWITCH ON. Save the nine screenshots into
-    //   public/work/maktabah-maseehul-ummat/
-    // using exactly the filenames listed below, then rename these three
-    // keys: galleryStylePending -> galleryStyle, coverPending -> cover,
-    // galleryPending -> gallery. Nothing else needs changing.
-    //
-    // They are parked because pointing at files that do not exist yet would
-    // put broken images on the live case study.
-    // ---------------------------------------------------------------
-    galleryStylePending: 'accordion',
-    coverPending: {
+    // Screens captured from the running system. Every shot carries the
+    // mock-mode banner, which is left in deliberately -- it is evidence for
+    // the in-memory mode described in Approach, not an apology.
+    galleryStyle: 'accordion',
+    cover: {
       src: '/work/maktabah-maseehul-ummat/dashboard.webp',
       alt: 'The Maktabah dashboard: product count, low-stock alerts, inventory value, monthly sales, restock list and recent transactions',
     },
-    galleryPending: [
+    gallery: [
       {
         src: '/work/maktabah-maseehul-ummat/dashboard.webp',
         label: 'Dashboard',
         alt: 'Dashboard showing total products, low stock alerts, inventory value and sales for the month, with a restock list and recent transaction feed',
         caption:
-          'The four numbers a shopkeeper actually opens the system for: what is in stock, what is about to run out, what it is all worth, and what sold this month.',
+          'The four numbers a shopkeeper opens the system for: what is in stock, what is about to run out, what it is all worth, and what sold this month. The yellow banner is the in-memory mode announcing itself — the system runs with no database configured at all.',
       },
       {
         src: '/work/maktabah-maseehul-ummat/billing-pos.webp',
@@ -105,7 +98,7 @@ export const projects = [
         label: 'Inventory',
         alt: 'Inventory table listing items with SKU, category, selling price, buy price, stock level and a low-stock warning, with CSV import and export controls',
         caption:
-          'Cost price sits under selling price on every row, which is what lets the reports compute real margin rather than just turnover. CSV import handles the opening stocktake.',
+          'Cost price sits under selling price on every row, which is what lets the reports compute real margin rather than turnover. Bukhari Sharif is flagged in red — five in stock against a minimum of ten.',
       },
       {
         src: '/work/maktabah-maseehul-ummat/transactions.webp',
@@ -119,7 +112,7 @@ export const projects = [
         label: 'Reports',
         alt: 'Reports screen with date range and category filters, revenue, cost of goods, gross profit and margin figures, a revenue versus purchases chart and an inventory value doughnut',
         caption:
-          'Revenue against cost of goods, so the headline figure is gross profit and margin rather than sales alone. Filter by range, export the filtered view.',
+          'Revenue against cost of goods, so the headline is gross profit and a real 25.2% margin rather than turnover. Filter by range or category, then export exactly what is on screen.',
       },
       {
         src: '/work/maktabah-maseehul-ummat/categories.webp',

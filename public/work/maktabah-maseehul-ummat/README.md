@@ -1,49 +1,33 @@
 # Maktabah Maseehul Ummat — screenshots
 
-The accordion gallery for this case study is **written and waiting**. It is
-parked only because the image files are not here yet.
+Nine screens, WebP at 1600px, 13–56 KB each (379 KB total). Wired to the
+accordion gallery via `gallery` in `src/data/projects.js`.
 
-## Save these nine files here
+| File | Screen | Why this capture |
+| --- | --- | --- |
+| `dashboard.webp` | Dashboard | ₹27,100 inventory value, ₹5,880 sales — the populated one |
+| `billing-pos.webp` | Billing / POS | The till with a live order in the panel |
+| `receipt.webp` | Receipt | Completed sale, invoice INV-099182 |
+| `inventory.webp` | Inventory | Shows the red Low Stock flag on Bukhari Sharif |
+| `transactions.webp` | Transactions | Populated ledger, SALE and PURCHASE rows |
+| `reports.webp` | Reports | ₹5,880 revenue, 25.2% margin, both charts drawn |
+| `categories.webp` | Categories | — |
+| `settings.webp` | Settings | Backup and auto-backup |
+| `sign-in.webp` | Sign in | — |
 
-Export each screenshot as WebP, about 1600px wide, quality 80, under 200 KB:
+Empty-state duplicates (₹0 revenue, "No transactions found") were discarded.
 
-| Filename | Screen |
-| --- | --- |
-| `dashboard.webp` | Dashboard Overview |
-| `billing-pos.webp` | Billing / POS with the order panel |
-| `receipt.webp` | Sale Complete receipt |
-| `inventory.webp` | Inventory Management table |
-| `transactions.webp` | Sales & Purchases ledger |
-| `reports.webp` | Detailed Reports with charts |
-| `categories.webp` | Categories table |
-| `settings.webp` | Settings and backups |
-| `sign-in.webp` | Sign-in screen |
+## The mock-mode banner
 
-Converting PNGs in this folder:
+Every capture carries *"Edge DB Not Configured (Mock Mode Active)"*. It is kept
+deliberately. The Approach section claims the system runs with no database
+configured; the banner is that claim demonstrating itself. Cropping it would
+have meant editing evidence to look better than it is.
 
-```bash
-npx @squoosh/cli --webp '{"quality":80}' -d . *.png
-```
+If you later capture with `DATABASE_URL` set, replace the files using the same
+names and adjust the dashboard caption, which currently references the banner.
 
-## Then switch it on
+## Adding or replacing
 
-In `src/data/projects.js`, on the `maktabah-maseehul-ummat` entry, rename three
-keys:
-
-```
-galleryStylePending  ->  galleryStyle
-coverPending         ->  cover
-galleryPending       ->  gallery
-```
-
-That is the whole change. Every `alt` and `caption` is already written.
-
-## Two things worth fixing before you export
-
-1. **The mock-mode banner.** Every screenshot carries *"Edge DB Not Configured
-   (Mock Mode Active)"* across the top. It is honest, but it tells a visitor the
-   system is running without its database. Capture with `DATABASE_URL` set if
-   you can.
-2. **Empty states.** A few screens show ₹0 and "No transactions found". The
-   dashboard and reports screens with real figures are far more convincing —
-   use the captures that have data in them.
+Export WebP, 1600px wide, quality 80. Keep the filenames and everything else
+updates itself.
