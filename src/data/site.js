@@ -1,7 +1,8 @@
 export const site = {
   name: 'Danish Nazir',
-  // One title, used everywhere. Previously the site claimed four different ones.
-  role: 'Software Engineer',
+  // One title, used everywhere: header, meta, JSON-LD, image alt.
+  // Matches the hero sentence and RESUME_DRAFT.md.
+  role: 'Full-Stack Engineer',
   location: 'Kashmir, India — working remotely',
   email: 'danishpersonal6@gmail.com',
   phone: '+91 70067 98511',
@@ -22,10 +23,10 @@ export const site = {
   },
 
   socials: [
-    { label: 'GitHub', href: 'https://github.com/Danish20699', handle: '@Danish20699' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/danish-nazir1', handle: 'danish-nazir1' },
-    { label: 'Instagram', href: 'https://www.instagram.com/danishn.29/', handle: '@danishn.29' },
-    { label: 'WhatsApp', href: 'https://wa.me/917006798511', handle: '+91 70067 98511' },
+    { label: 'GitHub', icon: 'github', href: 'https://github.com/Danish20699', handle: '@Danish20699' },
+    { label: 'LinkedIn', icon: 'linkedin', href: 'https://linkedin.com/in/danish-nazir1', handle: 'danish-nazir1' },
+    { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/danishn.29/', handle: '@danishn.29' },
+    { label: 'WhatsApp', icon: 'whatsapp', href: 'https://wa.me/917006798511', handle: '+91 70067 98511' },
   ],
 
   nav: [
@@ -87,7 +88,16 @@ export const skills = [
   },
   {
     group: 'Currently learning',
-    items: ['PyTorch', 'TensorFlow', 'OpenAI API', 'LangChain', 'CI/CD pipelines', 'Kubernetes'],
+    items: [
+      'Machine learning',
+      'Deep learning',
+      'PyTorch',
+      'TensorFlow',
+      'MLOps',
+      'Kubernetes',
+      'Terraform',
+      'Observability',
+    ],
     learning: true,
   },
 ];

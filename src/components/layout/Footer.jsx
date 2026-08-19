@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SocialIcon from '../SocialIcon';
 import { site } from '../../data/site';
 
 const Footer = () => {
@@ -23,8 +24,12 @@ const Footer = () => {
           </Link>
           <a
             href={`mailto:${site.email}`}
-            className="mt-6 inline-block border-b border-paper/25 pb-1 font-mono text-meta text-paper/70 transition-colors duration-300 hover:border-clay-light hover:text-clay-light"
+            className="group mt-6 inline-flex items-center gap-2.5 border-b border-paper/25 pb-1 font-mono text-meta text-paper/70 transition-colors duration-300 hover:border-clay-light hover:text-clay-light"
           >
+            <SocialIcon
+              name="email"
+              className="shrink-0 text-paper-mute transition-colors duration-300 group-hover:text-clay-light"
+            />
             {site.email}
           </a>
         </div>
@@ -58,8 +63,12 @@ const Footer = () => {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-meta text-paper/70 transition-colors duration-300 hover:text-clay-light"
+                    className="group inline-flex items-center gap-2.5 text-meta text-paper/70 transition-colors duration-300 hover:text-clay-light"
                   >
+                    <SocialIcon
+                      name={s.icon}
+                      className="shrink-0 text-paper-mute transition-colors duration-300 group-hover:text-clay-light"
+                    />
                     {s.label}
                   </a>
                 </li>

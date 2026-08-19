@@ -1,7 +1,7 @@
 # Danish Nazir
 **Full Stack Developer | Learning AI/ML & DevOps**
 Location: Remote / Willing to Relocate
-Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Portfolio: [Your Portfolio URL]
+Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Portfolio: my-portfolio-final-wine.vercel.app
 
 ## Professional Summary
 **Full Stack Developer** with **1+ years of production experience** and **3 live systems** deployed. Builds scalable, secure web applications end to end using **React, Node.js, and Python** — comfortable moving between backend logic, database design, and frontend implementation. Currently deepening skills in **machine learning and DevOps**, working toward model fundamentals beyond API calls and automated deployment pipelines beyond manual releases.
@@ -24,11 +24,17 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 
 ## Key Projects
 
-**Q-ID | Digital Identity Platform**
+**QuantaFONS Hisaab | Expense Management Platform**
 *Role: Full Stack Developer*
-*   **Problem:** Traditional identity verification was manual, slow, and prone to fraud.
-*   **Solution:** Built a secure, real-time digital identity platform using **React, Node.js, and PostgreSQL**.
-*   **Impact:** Streamlined user verification, reducing onboarding time significantly while ensuring data compliance.
+*   **Problem:** Expense data was scattered across spreadsheets and email approvals, so budgets were only reconciled after they had already been spent.
+*   **Solution:** Built an enterprise expense platform with role-based dashboards, runtime-adjustable budget thresholds, and approvals modelled as traceable state, using **React 19, TypeScript, and Recharts**.
+*   **Impact:** Spending reads against budget in real time rather than at month end.
+
+**EliiGen | Learning Platform**
+*Role: Backend & Infrastructure Engineer*
+*   **Problem:** A full student lifecycle — enrollment, payments, live lectures, study material and community — needed a backend that could scale sideways.
+*   **Solution:** Architected normalised **PostgreSQL 16** schemas with TypeORM, added **Redis 7** caching with **BullMQ** workers, ran **Socket.io** through the Redis adapter for horizontal scaling, and secured the API with JWT access plus Redis refresh-token rotation and RBAC.
+*   **Impact:** Dockerised the multi-service stack behind Nginx and shipped to **Google Cloud Run** with **GitHub Actions** CI/CD for zero-downtime releases.
 
 **AABALIQA | Enterprise Automation System**
 *Role: Full Stack Developer*

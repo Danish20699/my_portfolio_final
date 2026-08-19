@@ -204,16 +204,34 @@
 
             <div style="margin-bottom: 1.5rem;">
                 <div class="job-header">
-                    <h3>Q-ID | Digital Identity Platform</h3>
+                    <h3>QuantaFONS Hisaab | Expense Management Platform</h3>
                     <span class="role">Full Stack Developer</span>
                 </div>
                 <ul>
-                    <li><strong>Problem:</strong> Traditional identity verification was manual, slow, and prone to
-                        fraud.</li>
-                    <li><strong>Solution:</strong> Built a secure, real-time digital identity platform using React,
-                        Node.js, and PostgreSQL.</li>
-                    <li><strong>Impact:</strong> Streamlined user verification, reducing onboarding time significantly
-                        while ensuring data compliance.</li>
+                    <li><strong>Problem:</strong> Expense data was scattered across spreadsheets and email approvals,
+                        so budgets were only reconciled after they had already been spent.</li>
+                    <li><strong>Solution:</strong> Built an enterprise expense platform with role-based dashboards,
+                        runtime-adjustable budget thresholds, and approvals modelled as traceable state, using
+                        React 19, TypeScript, and Recharts.</li>
+                    <li><strong>Impact:</strong> Spending reads against budget in real time rather than at month end,
+                        with threshold changes and exports handled inside the product.</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <div class="job-header">
+                    <h3>EliiGen | Learning Platform</h3>
+                    <span class="role">Backend &amp; Infrastructure Engineer</span>
+                </div>
+                <ul>
+                    <li><strong>Problem:</strong> A full student lifecycle &mdash; enrollment, payments, live lectures,
+                        study material and community &mdash; needed a backend that could scale sideways.</li>
+                    <li><strong>Solution:</strong> Architected normalised PostgreSQL 16 schemas with TypeORM, added
+                        Redis 7 caching with BullMQ background workers, ran Socket.io through the Redis adapter for
+                        horizontal scaling, and secured the API with JWT access plus Redis refresh-token rotation
+                        and RBAC.</li>
+                    <li><strong>Impact:</strong> Dockerised the multi-service stack behind Nginx and shipped it to
+                        Google Cloud Run with GitHub Actions CI/CD for zero-downtime releases.</li>
                 </ul>
             </div>
 

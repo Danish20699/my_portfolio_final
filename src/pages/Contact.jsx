@@ -1,6 +1,7 @@
 import PageHeader from '../components/PageHeader';
 import Reveal from '../components/motion/Reveal';
 import ContactForm from '../components/ContactForm';
+import SocialIcon from '../components/SocialIcon';
 import { site } from '../data/site';
 import usePageMeta from '../hooks/usePageMeta';
 
@@ -23,7 +24,7 @@ const Contact = () => {
           <Reveal className="lg:col-span-7">
             <a
               href={`mailto:${site.email}`}
-              className="group block font-display text-h2 tracking-tightest text-ink transition-colors duration-300 hover:text-clay"
+              className="group block break-words font-display text-h3 tracking-tightest text-ink transition-colors duration-300 hover:text-clay sm:text-h2"
             >
               {site.email}
               <span
@@ -55,9 +56,15 @@ const Contact = () => {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-baseline justify-between gap-6 border-b border-paper-edge pb-2.5 text-meta text-ink transition-colors duration-300 hover:text-clay"
+                      className="group flex items-baseline justify-between gap-6 border-b border-paper-edge pb-2.5 text-meta text-ink transition-colors duration-300 hover:text-clay"
                     >
-                      <span>{s.label}</span>
+                      <span className="inline-flex items-center gap-2.5">
+                        <SocialIcon
+                          name={s.icon}
+                          className="shrink-0 text-ink-mute transition-colors duration-300 group-hover:text-clay"
+                        />
+                        {s.label}
+                      </span>
                       <span className="font-mono text-micro text-ink-mute">{s.handle}</span>
                     </a>
                   ))}
