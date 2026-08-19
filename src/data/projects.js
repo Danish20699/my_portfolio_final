@@ -89,14 +89,14 @@ export const projects = [
     // TODO: confirm the year — assumed from the current stack versions.
     year: '2026',
     status: 'live',
-    // TODO: add the public URL and this page gains a "Visit the live site" button.
-    link: null,
+    link: 'https://eliigen-frontend-952243647103.us-central1.run.app',
     role: 'Backend & infrastructure engineer',
     summary:
       'A learning platform carrying the whole student lifecycle — enrollment and payments, live lectures, study material, and real-time community — behind a Flutter app on a NestJS backend.',
     context: [
       'EliiGen exists to close the gap between students, educators, and genuinely interactive digital learning. It carries the full student lifecycle: discovering a course, enrolling in and paying for a batch, following a timetable, joining live lectures, reading study material, and taking part in the community around it.',
-      'The product surface is wide — recorded and live classes, WebSocket chat and announcements, gamified daily quizzes with streaks and badges, an AI study assistant for doubt resolution, and Razorpay checkout that provisions enrollment the moment payment clears. My remit was the layer underneath all of it: the data model, the caching, the APIs the mobile client speaks to, and getting the whole thing into production.',
+      'It is aimed at competitive-exam preparation — students pick a study path such as JEE or NEET when they register, and the catalogue shapes itself around that. The product surface is wide: recorded and live classes, WebSocket chat and announcements, gamified daily quizzes with streaks and badges, an AI study assistant for doubt resolution, and Razorpay checkout that provisions enrollment the moment payment clears.',
+      'My remit was the layer underneath all of it: the data model, the caching, the APIs the mobile client speaks to, and getting the whole thing into production.',
     ],
     approach: [
       'Designed normalised relational schemas in PostgreSQL 16 with TypeORM — automated migrations, custom seeds, connection pooling, and indexing on the entities that actually take traffic: users, batches, lectures, enrollments, quizzes.',
@@ -115,6 +115,27 @@ export const projects = [
       'Sessions, rate limits, and real-time state all live in Redis, which is what lets the API scale sideways rather than vertically.',
     ],
     stack: ['NestJS', 'PostgreSQL 16', 'Redis 7', 'Flutter', 'Docker', 'Google Cloud Run'],
+    // Captured from the live deployment. Everything past sign-in is gated, so
+    // these are the public surface only — swap in product screens when you
+    // have them (see public/work/README.md).
+    cover: {
+      src: '/work/eliigen/sign-in.webp',
+      alt: 'The EliiGen sign-in screen: email or student ID, password, and a Google sign-in option',
+    },
+    gallery: [
+      {
+        src: '/work/eliigen/create-account.webp',
+        alt: 'EliiGen registration form with name, email, password and a study-path selector',
+        caption:
+          'Registration captures the study path up front — JEE, NEET and similar — so a student lands in the right batches rather than an empty catalogue.',
+      },
+      {
+        src: '/work/eliigen/sign-in-mobile.webp',
+        alt: 'The EliiGen sign-in screen at phone width',
+        caption:
+          'The same entry point at phone width. Most of the traffic arrives through the Flutter client, so the web surface stays deliberately narrow.',
+      },
+    ],
     stackDetail: [
       {
         group: 'Mobile app',

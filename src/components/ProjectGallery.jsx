@@ -27,13 +27,19 @@ const ProjectGallery = ({ items = [], title }) => {
                   className="group block w-full text-left"
                   aria-label={`Open image ${i + 1}: ${img.alt}`}
                 >
-                  <span className="block overflow-hidden border border-paper-edge bg-paper-deep">
+                  {/*
+                    Fixed aspect with object-contain, so a portrait phone shot
+                    and a wide dashboard shot sit in the same grid without one
+                    of them running to 800px tall. The lightbox shows each image
+                    whole and uncropped.
+                  */}
+                  <span className="flex aspect-[4/3] items-center justify-center overflow-hidden border border-paper-edge bg-paper-deep p-3">
                     <img
                       src={img.src}
                       alt={img.alt}
                       loading="lazy"
                       decoding="async"
-                      className="block w-full transition-transform duration-[900ms] ease-editorial group-hover:scale-[1.02]"
+                      className="max-h-full max-w-full object-contain transition-transform duration-[900ms] ease-editorial group-hover:scale-[1.02]"
                     />
                   </span>
                   {img.caption && (
