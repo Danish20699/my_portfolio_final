@@ -77,7 +77,7 @@ No lint, test, or typecheck script exists yet.
     ├── index.css              @layer base / components / utilities only
     ├── data/
     │   ├── site.js            Identity, statement, socials, capabilities, education, off-duty
-    │   ├── projects.js        6 case studies
+    │   ├── projects.js        5 case studies
     │   ├── posts.js           3 articles + formatDate / readingTime / categories
     │   ├── testimonials.js    Empty array by default
     │   └── gallery.js         About-page photographs
@@ -175,7 +175,7 @@ All copy lives in `src/data/`. Components contain no prose.
   stackDetail?: [{ group, items: [] }],
   cover?: { src, alt }, gallery?: [{ src, alt, caption }] }
 ```
-QuantaFONS Hisaab · Travel Victor · EliiGen · Aabaliqa (live) — Boost+ · KVPDA (building).
+Travel Victor · EliiGen · Aabaliqa (live) — Boost+ · KVPDA (building).
 
 ### `posts.js`
 ```js

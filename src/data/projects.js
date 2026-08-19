@@ -26,37 +26,6 @@
 
 export const projects = [
   {
-    slug: 'quantafons-hisaab',
-    title: 'QuantaFONS Hisaab',
-    domain: 'Expense management',
-    year: '2026',
-    // TODO: no public URL supplied yet. Add `link` and this page gains a
-    // "Visit the live site" button automatically.
-    status: 'live',
-    link: null,
-    role: 'Full-stack engineer',
-    summary:
-      'An enterprise expense platform with real-time budgeting, role-based dashboards, and approvals tracked as explicit state.',
-    context: [
-      'Expense management in most organisations is spread across spreadsheets, receipts, and email threads. The numbers only assemble themselves at month end — by which point the budget is already spent and a manager is reconciling history rather than making decisions.',
-      'Hisaab was built so spending is visible while it is still happening, and so the people accountable for a budget can act on it in the same place they see it.',
-    ],
-    approach: [
-      'Separate dashboards per role rather than one screen with permissions bolted on. An administrator, a manager, and someone filing a claim are asking genuinely different questions of the same data.',
-      'Budget thresholds are adjustable at runtime, so a category can be tightened or loosened without waiting on a deploy.',
-      'Approvals are modelled as explicit state, which means any expense can be traced from submission through to decision instead of ending in someone\'s inbox.',
-      'Analytics built on Recharts — modular SVG charts rather than a canvas library, so figures stay legible, selectable, and exportable.',
-      'Typed end to end under strict TypeScript. The shapes moving between budgets, expenses, and approvals are exactly where silent rounding and state bugs hide.',
-    ],
-    // TODO: replace with measured figures once you have them — approval
-    // turnaround, time per reporting cycle, number of budgets tracked.
-    outcome: [
-      'Spending reads against budget in real time rather than at month end.',
-      'Threshold changes and expense exports happen inside the product, not in a spreadsheet afterwards.',
-    ],
-    stack: ['React 19', 'TypeScript 5.8', 'Vite 6', 'Tailwind CSS 4', 'Recharts', 'Motion'],
-  },
-  {
     slug: 'travel-victor',
     title: 'Travel Victor',
     domain: 'Travel platform',

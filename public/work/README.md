@@ -9,15 +9,14 @@ One folder per project, named after its `slug`:
 
 ```
 public/work/
-├── quantafons-hisaab/
-│   ├── cover.webp
-│   ├── dashboard.webp
-│   ├── budgets.webp
-│   └── approvals.webp
-└── eliigen/
+├── eliigen/
+│   ├── sign-in.webp
+│   ├── create-account.webp
+│   └── sign-in-mobile.webp
+└── travel-victor/
     ├── cover.webp
-    ├── batches.webp
-    └── live-lecture.webp
+    ├── search.webp
+    └── checkout.webp
 ```
 
 ## 2. Point the project at them
@@ -26,26 +25,26 @@ In `src/data/projects.js`, on the project object:
 
 ```js
 {
-  slug: 'quantafons-hisaab',
+  slug: 'travel-victor',
   // ...
 
   // Full-width plate directly under the title. Landscape works best.
   cover: {
-    src: '/work/quantafons-hisaab/cover.webp',
-    alt: 'The Hisaab dashboard showing spend against budget for the month',
+    src: '/work/travel-victor/cover.webp',
+    alt: 'The Travel Victor search results page with availability and prices',
   },
 
   // Grid below Outcome. Click opens a lightbox.
   gallery: [
     {
-      src: '/work/quantafons-hisaab/dashboard.webp',
-      alt: 'Manager dashboard with category spend charts',
-      caption: 'Spend against budget, updating as expenses are filed',
+      src: '/work/travel-victor/search.webp',
+      alt: 'Search results with filters applied',
+      caption: 'Availability resolves without a full page reload',
     },
     {
-      src: '/work/quantafons-hisaab/budgets.webp',
-      alt: 'Budget threshold editor',
-      caption: 'Thresholds are editable at runtime',
+      src: '/work/travel-victor/checkout.webp',
+      alt: 'Checkout step showing booking summary',
+      caption: 'The multi-step flow collapsed into one decision per screen',
     },
   ],
 }
@@ -55,6 +54,9 @@ Both fields are optional. A project with neither renders exactly as it does now.
 
 If the gallery has an odd number of images, the first one spans the full width
 and the rest pair off — so 3, 5 or 7 images lay out better than 2 or 4.
+
+Thumbnails are cropped to a uniform 4:3 mount, so mixing a portrait phone shot
+with a wide dashboard shot is fine. The lightbox shows each image whole.
 
 ## 3. Export settings
 
