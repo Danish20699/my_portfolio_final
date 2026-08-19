@@ -177,6 +177,10 @@ export const projects = [
       'Interface state is now explicit at every step, so users always know whether the system is working or stuck.',
     ],
     stack: ['Next.js', 'TypeScript', 'Tailwind', 'REST integrations'],
+    cover: {
+      src: '/work/travel-victor/cover.webp',
+      alt: 'The Travel Victor landing page: a large serif headline reading Beyond the Standard beside a photograph of houseboats on a Kashmir lake',
+    },
   },
   {
     slug: 'eliigen',
@@ -323,8 +327,8 @@ export const projects = [
     ],
   },
   {
-    slug: 'aabaliqa',
-    title: 'Aabaliqa',
+    slug: 'abaliqa',
+    title: 'Abaliqa',
     domain: 'Enterprise automation',
     year: '2024',
     status: 'live',
