@@ -209,25 +209,91 @@ export const projects = [
       'Sessions, rate limits, and real-time state all live in Redis, which is what lets the API scale sideways rather than vertically.',
     ],
     stack: ['NestJS', 'PostgreSQL 16', 'Redis 7', 'Flutter', 'Docker', 'Google Cloud Run'],
-    // Captured from the live deployment. Everything past sign-in is gated, so
-    // these are the public surface only — swap in product screens when you
-    // have them (see public/work/README.md).
+    // Screens from the running admin portal, captured against the live Cloud
+    // Run deployment. Two of them carried real student names and
+    // phone-number-derived emails; those regions are redacted in the files.
+    galleryStyle: 'accordion',
     cover: {
-      src: '/work/eliigen/sign-in.webp',
-      alt: 'The EliiGen sign-in screen: email or student ID, password, and a Google sign-in option',
+      src: '/work/eliigen/admin-dashboard.webp',
+      alt: 'EliiGen admin dashboard showing 15 students, 1 teacher, 1 program and 2 batches, with students-per-program and students-per-batch breakdowns',
     },
     gallery: [
       {
-        src: '/work/eliigen/create-account.webp',
-        alt: 'EliiGen registration form with name, email, password and a study-path selector',
+        src: '/work/eliigen/admin-dashboard.webp',
+        label: 'Dashboard',
+        alt: 'Admin dashboard with totals for students, teachers, programs and batches, plus per-program and per-batch distribution bars and quick actions',
         caption:
-          'Registration captures the study path up front — JEE, NEET and similar — so a student lands in the right batches rather than an empty catalogue.',
+          'The operator view: who is enrolled, in which programme, on which batch. The distribution bars are the question an administrator actually asks — not how many students exist, but where they landed.',
       },
       {
-        src: '/work/eliigen/sign-in-mobile.webp',
-        alt: 'The EliiGen sign-in screen at phone width',
+        src: '/work/eliigen/manage-batches.webp',
+        label: 'Batches',
+        alt: 'Batch management table showing a paid Neet batch at ₹8,000 with a ₹1,500 discount and 30-day validity, and a free Neet batch with lifetime validity, both published',
         caption:
-          'The same entry point at phone width. Most of the traffic arrives through the Flutter client, so the web surface stays deliberately narrow.',
+          'Pricing, discount, validity and publish state on one row. A paid batch at ₹8,000 less ₹1,500 sits beside a free one with lifetime access — the same enrollment path has to handle both, which is where the Razorpay flow either holds up or does not.',
+      },
+      {
+        src: '/work/eliigen/manage-students.webp',
+        label: 'Students',
+        alt: 'Student management screen with a create-student form, a reassign panel for moving a student between programme and batch, and a list of active students',
+        caption:
+          'Creating a student and reassigning one are deliberately separate. Reassignment touches enrollment, access and billing state, so it is not something to bury inside an edit form. Student identities are redacted here.',
+      },
+      {
+        src: '/work/eliigen/manage-teachers.webp',
+        label: 'Teachers',
+        alt: 'Teacher management with a create-teacher form and panels for assigning batches and subjects to a teacher',
+        caption:
+          'Teachers are scoped to batches and subjects rather than given blanket access. This is the role-based access control from the Approach section, seen from the side that administers it.',
+      },
+      {
+        src: '/work/eliigen/manage-subjects.webp',
+        label: 'Subjects',
+        alt: 'Subject management screen for adding a subject to a programme and batch, with filters for reviewing existing subjects',
+        caption:
+          'Subjects hang off a programme and a batch, not off a global list. It is a more annoying schema to write and the only one that survives two programmes wanting a subject called Physics.',
+      },
+      {
+        src: '/work/eliigen/notifications.webp',
+        label: 'Broadcast',
+        alt: 'Broadcast notification composer with an audience toggle for all students or all teachers, a title field and a message body with a character counter',
+        caption:
+          'Broadcasts go out through Firebase Cloud Messaging to the mobile client. The audience toggle is two options on purpose — a send-to-everyone button with fine-grained targeting is how an announcement reaches the wrong batch.',
+      },
+      {
+        src: '/work/eliigen/app-banners.webp',
+        label: 'Banners',
+        alt: 'App banner manager with local upload or image URL, title and subtitle, an order index, and an optional batch link',
+        caption:
+          'Banners on the mobile home slider are content, not a deploy. Order index and an optional deep link to a batch mean marketing can run a promotion without an app release.',
+      },
+      {
+        src: '/work/eliigen/admin-users.webp',
+        label: 'Users & roles',
+        alt: 'Admin user management table listing accounts with role and status, filters for role and status, and a deactivate action per row',
+        caption:
+          'Every account with its role and status, and deactivation rather than deletion — you cannot delete a user who has enrollments and payment history behind them. Names and emails are redacted.',
+      },
+      {
+        src: '/work/eliigen/support.webp',
+        label: 'Support',
+        alt: 'Support ticket dashboard with filters for all, pending, in progress, resolved and closed tickets',
+        caption:
+          'Tickets move through an explicit lifecycle. Same instinct as the rest of the system: model the state, do not infer it from whether someone replied.',
+      },
+      {
+        src: '/work/eliigen/manage-programs.webp',
+        label: 'Programs',
+        alt: 'Programme management screen listing NEET as a top-level learning programme',
+        caption:
+          'The top of the hierarchy — programme, then batch, then subject. NEET is the live one; the structure is what lets a second exam track be added without a migration.',
+      },
+      {
+        src: '/work/eliigen/sign-in.webp',
+        label: 'Sign in',
+        alt: 'The EliiGen sign-in screen with email or student ID, password, and a Google sign-in option',
+        caption:
+          'The student-facing entry point. Everything past it is gated by the dual-token auth described above.',
       },
     ],
     stackDetail: [

@@ -52,7 +52,7 @@ const AccordionGallery = ({ items = [], heading = 'Screens' }) => {
         <div>
           {/* ---- desktop: labelled accordion ---- */}
           <div
-            className="hidden gap-1.5 md:flex md:h-[26rem] lg:h-[30rem]"
+            className="hidden gap-1.5 md:flex md:h-[21rem] lg:h-[25rem]"
             role="group"
             aria-label={`${heading}: use the arrow keys to move between screens`}
             onKeyDown={onKeyDown}
@@ -71,7 +71,7 @@ const AccordionGallery = ({ items = [], heading = 'Screens' }) => {
                   className={[
                     'group relative overflow-hidden border border-paper-edge bg-paper-deep',
                     'transition-[flex-grow] duration-[700ms] ease-editorial',
-                    isActive ? 'flex-[6] cursor-zoom-in' : 'flex-[0.55] cursor-pointer',
+                    isActive ? 'flex-[9] cursor-zoom-in' : 'flex-[0.5] cursor-pointer',
                   ].join(' ')}
                 >
                   {/*
@@ -90,14 +90,14 @@ const AccordionGallery = ({ items = [], heading = 'Screens' }) => {
                       'h-full w-full transition-opacity duration-500',
                       isActive
                         ? 'object-contain object-center opacity-100'
-                        : 'object-cover object-[42%_top] opacity-40 group-hover:opacity-65',
+                        : 'object-cover object-[38%_top] opacity-60 group-hover:opacity-85',
                     ].join(' ')}
                   />
 
                   {/* Collapsed: vertical label. This is the whole point. */}
                   <span
                     className={[
-                      'pointer-events-none absolute inset-0 flex items-end justify-center bg-ink/45 transition-opacity duration-500',
+                      'pointer-events-none absolute inset-0 flex items-end justify-center bg-ink/35 transition-opacity duration-500',
                       isActive ? 'opacity-0' : 'opacity-100',
                     ].join(' ')}
                   >
