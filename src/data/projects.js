@@ -63,6 +63,86 @@ export const projects = [
       'The system starts without configuration, which is what makes it usable by staff rather than only by whoever installed it.',
     ],
     stack: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Express', 'MySQL', 'Recharts'],
+    // ---------------------------------------------------------------
+    // READY TO SWITCH ON. Save the nine screenshots into
+    //   public/work/maktabah-maseehul-ummat/
+    // using exactly the filenames listed below, then rename these three
+    // keys: galleryStylePending -> galleryStyle, coverPending -> cover,
+    // galleryPending -> gallery. Nothing else needs changing.
+    //
+    // They are parked because pointing at files that do not exist yet would
+    // put broken images on the live case study.
+    // ---------------------------------------------------------------
+    galleryStylePending: 'accordion',
+    coverPending: {
+      src: '/work/maktabah-maseehul-ummat/dashboard.webp',
+      alt: 'The Maktabah dashboard: product count, low-stock alerts, inventory value, monthly sales, restock list and recent transactions',
+    },
+    galleryPending: [
+      {
+        src: '/work/maktabah-maseehul-ummat/dashboard.webp',
+        label: 'Dashboard',
+        alt: 'Dashboard showing total products, low stock alerts, inventory value and sales for the month, with a restock list and recent transaction feed',
+        caption:
+          'The four numbers a shopkeeper actually opens the system for: what is in stock, what is about to run out, what it is all worth, and what sold this month.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/billing-pos.webp',
+        label: 'Billing / POS',
+        alt: 'Point-of-sale screen with category filters, product cards showing price and stock, and a dark order panel with quantities, per-item discount, customer details and payment method',
+        caption:
+          'The till. Category filters and SKU search on the left, the running order on the right with per-item discounts, customer details, and cash or card in one tap.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/receipt.webp',
+        label: 'Receipt',
+        alt: 'Completed sale receipt showing the institution header, invoice number, billed-to details, line items with SKUs, subtotal, discount and grand total',
+        caption:
+          'Completing a sale produces a printable receipt with an invoice number, and decrements stock at the same moment. One action, both records.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/inventory.webp',
+        label: 'Inventory',
+        alt: 'Inventory table listing items with SKU, category, selling price, buy price, stock level and a low-stock warning, with CSV import and export controls',
+        caption:
+          'Cost price sits under selling price on every row, which is what lets the reports compute real margin rather than just turnover. CSV import handles the opening stocktake.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/transactions.webp',
+        label: 'Transactions',
+        alt: 'Ledger of sales and purchases showing type, date, item, invoice number, customer, payment method, quantity, unit price and total',
+        caption:
+          'Every movement in one ledger — SALE, PURCHASE, ADJUST — with the invoice, the buyer, and the payment method attached. This is what makes a bad count traceable.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/reports.webp',
+        label: 'Reports',
+        alt: 'Reports screen with date range and category filters, revenue, cost of goods, gross profit and margin figures, a revenue versus purchases chart and an inventory value doughnut',
+        caption:
+          'Revenue against cost of goods, so the headline figure is gross profit and margin rather than sales alone. Filter by range, export the filtered view.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/categories.webp',
+        label: 'Categories',
+        alt: 'Category management table listing Holy Books, Hadith and Fragrance with item counts and creation dates',
+        caption:
+          'Categories are shared by the catalogue, the till filters, and the reports breakdown, so naming one thing renames it everywhere.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/settings.webp',
+        label: 'Settings',
+        alt: 'Settings screen offering a one-click JSON database backup and a configurable automatic backup frequency',
+        caption:
+          'One-click JSON export plus scheduled local backups. Unglamorous, and the only feature that matters the first time a counter machine dies.',
+      },
+      {
+        src: '/work/maktabah-maseehul-ummat/sign-in.webp',
+        label: 'Sign in',
+        alt: 'Sign-in screen with the institution name, a username and password form, and the note Authorized Personnel Only',
+        caption:
+          'Staff-only entry point. The system holds pricing, margin and takings, so it is not something to leave open on a shop counter.',
+      },
+    ],
     stackDetail: [
       {
         group: 'Frontend',

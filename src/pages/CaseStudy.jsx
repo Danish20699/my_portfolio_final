@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import Headline from '../components/motion/Headline';
 import Reveal from '../components/motion/Reveal';
 import ProjectGallery from '../components/ProjectGallery';
+import AccordionGallery from '../components/AccordionGallery';
 import { getProject, projects } from '../data/projects';
 import usePageMeta from '../hooks/usePageMeta';
 
@@ -128,7 +129,11 @@ const CaseStudy = () => {
           ))}
         </Section>
 
-        <ProjectGallery items={project.gallery} title={project.title} />
+        {project.galleryStyle === 'accordion' ? (
+          <AccordionGallery items={project.gallery} />
+        ) : (
+          <ProjectGallery items={project.gallery} title={project.title} />
+        )}
 
         {/* Only projects that supply a grouped breakdown get this — the fact
             table above already carries the headline stack for the rest. */}
