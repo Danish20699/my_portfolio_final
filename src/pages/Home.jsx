@@ -68,7 +68,7 @@ const Home = () => (
         <span className="eyebrow">In production</span>
       </Reveal>
 
-      <div className="mt-2">
+      <div className="mt-6">
         <WorkIndex items={featured} />
       </div>
 
@@ -108,41 +108,43 @@ const Home = () => (
         <span className="eyebrow">Toolkit</span>
       </Reveal>
 
-      <Reveal className="mt-12">
-        <p className="font-display text-h1 leading-[1.05] tracking-tightest text-ink">
+      <Reveal className="mt-10">
+        <p className="font-display text-h2 leading-[1.1] tracking-tightest text-ink">
           Mostly writing{' '}
           <TextLoop items={coreSkills} className="font-display text-clay" />
         </p>
       </Reveal>
 
-      <dl className="mt-14 border-t border-paper-edge">
+      {/*
+        Was four full-width ruled rows at 787px — the tallest block on the page,
+        for the least persuasive content on it. Same information, three columns,
+        roughly a third of the height, so the work outweighs the keyword list.
+      */}
+      <dl className="mt-12 grid gap-x-gutter gap-y-9 border-t border-paper-edge pt-9 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((row, i) => (
-          <Reveal key={row.group} delay={i * 0.05}>
-            <div className="grid gap-2 border-b border-paper-edge py-6 md:grid-cols-12 md:gap-6">
-              <dt
+          <Reveal key={row.group} delay={i * 0.04}>
+            <dt
+              className={[
+                'font-mono text-micro uppercase tracking-[0.14em]',
+                row.learning ? 'text-clay' : 'text-ink-mute',
+              ].join(' ')}
+            >
+              {row.group}
+            </dt>
+            <dd className="mt-2.5">
+              <p
                 className={[
-                  'font-mono text-micro uppercase tracking-[0.14em] md:col-span-3',
-                  row.learning ? 'text-clay' : 'text-ink-mute',
+                  'text-body',
+                  row.learning ? 'text-ink-mute' : 'text-ink',
                 ].join(' ')}
               >
-                {row.group}
-              </dt>
-              <dd className="md:col-span-9">
-                <ul className="flex flex-wrap gap-x-5 gap-y-1.5">
-                  {row.items.map((item) => (
-                    <li
-                      key={item}
-                      className={row.learning ? 'text-body text-ink-mute' : 'text-body text-ink'}
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </dd>
-            </div>
+                {row.items.join(' · ')}
+              </p>
+            </dd>
           </Reveal>
         ))}
       </dl>
+
     </section>
 
     {/* ---------------------------------------------------------------- *
