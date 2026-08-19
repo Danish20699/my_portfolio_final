@@ -15,6 +15,8 @@
  *   stackDetail  [{ group, items }] — grouped stack table on the case study
  *   accessNote   one line shown in place of the live-site button, for work
  *                that is real but not publicly reachable
+ *   featured     set false to keep a project off the homepage while still
+ *                listing it in full on /work
  *   cover        { src, alt } — full-width plate under the title
  *   gallery      [{ src, alt, caption }] — screenshot grid, opens a lightbox
  *
@@ -347,6 +349,45 @@ export const projects = [
     stack: ['Python', 'FastAPI', 'TensorFlow', 'React'],
   },
   {
+    slug: 'one-command-deploy',
+    title: 'One-Command Deploy',
+    domain: 'Infrastructure automation',
+    year: '2026',
+    status: 'live',
+    link: 'https://github.com/Danish20699/portfolio-shell-automation',
+    // Infrastructure tooling rather than client work — listed in full here,
+    // kept off the homepage so Selected Work stays production systems.
+    featured: false,
+    role: 'Sole author',
+    summary:
+      'A shell script that provisions a fresh Ubuntu server over SSH and deploys a PostgreSQL-backed PHP site onto it, in one command.',
+    context: [
+      'Standing up a server for a PHP application by hand runs to roughly thirty steps: package installs, a database to create and seed, permissions to set at several levels, environment variables to write, a web server to restart. It is tolerable once and untenable by the third time, because the mistake always lives in step thirty.',
+      'The target was a single command from a control machine, and a server that lands in a known state whether it is freshly imaged or already half-configured.',
+    ],
+    approach: [
+      'SSH key-pair authentication (ed25519) between the control machine and each target, so a run is unattended. Targets are an array of addresses — adding a machine means adding a line.',
+      'Passwordless sudo configured on the target through a drop-in under /etc/sudoers.d/ rather than piping a password over SSH. A piped SSH command gets no TTY, so interactive sudo simply hangs; the drop-in is also what production automation actually does.',
+      'Instead of piping the script over SSH, the target runs its own local copy after a git pull. A piped script loses its working directory — $0 does not resolve — and pull-then-run is both idempotent and the shape CI/CD uses underneath.',
+      'Everything written to be re-runnable: DROP IF EXISTS before create, installs that no-op when already satisfied. Running twice leaves the same machine as running once, which is the property that separates a provisioning script from a one-shot.',
+      'Handled an apt failure honestly rather than hiding it: the VM clock sat behind the mirror metadata, producing "Release file is not valid yet". Made non-fatal, because a stale index should not abort a provision.',
+      'PostgreSQL could not read init.sql out of a home directory, since Linux home directories are private to their owner. Staged the file through /tmp rather than loosening permissions on $HOME.',
+      'Traced "permission denied for table" to PostgreSQL requiring grants at schema, table and sequence level separately — a database-level GRANT on its own is not enough.',
+    ],
+    outcome: [
+      'One command takes a fresh Ubuntu machine to a serving site, replacing roughly thirty manual steps.',
+      'Re-running is safe, so the script is a way to converge a server rather than something you only dare run once.',
+      'Scaling to more machines is a line in an array, because the orchestration is one control host driving N targets.',
+    ],
+    stack: ['Bash', 'SSH', 'PostgreSQL', 'PHP', 'Apache', 'Ubuntu'],
+    stackDetail: [
+      { group: 'Automation', items: ['Bash', 'SSH (ed25519)', 'sudoers drop-ins', 'Idempotent scripts', 'Git'] },
+      { group: 'Server', items: ['Ubuntu', 'Apache', 'systemd', 'PHP'] },
+      { group: 'Data', items: ['PostgreSQL', 'Seeded init.sql', 'Schema / table / sequence grants'] },
+      { group: 'Environment', items: ['VirtualBox', 'NAT + host-only networking'] },
+    ],
+  },
+  {
     slug: 'boost-plus',
     title: 'Boost+',
     domain: 'AI in education',
@@ -394,4 +435,6 @@ export const projects = [
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug);
 
-export const featured = projects.filter((p) => p.status === 'live');
+// Homepage shows production work only. `featured: false` keeps a project
+// off it without hiding it from /work.
+export const featured = projects.filter((p) => p.status === 'live' && p.featured !== false);
