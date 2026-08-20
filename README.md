@@ -136,8 +136,11 @@ Everything here needs information only Danish has. Nothing is blocked on code.
 - **Writing is three pre-redesign posts on generic topics, with no images.**
   One post about something actually debugged — the Socket.io Redis adapter, or
   the PostgreSQL schema/table/sequence grants — would beat all three.
-- **Commit authorship.** Older commits carry a mistyped email. Rewriting it
-  needs `git filter-branch` plus a force push, run locally.
+- **Commit authorship.** History carries four identities, only one of which is
+  the GitHub account. `bash scripts/fix-authorship.sh` rewrites them all and
+  verifies the tree hash is unchanged; add `--push` when the output looks
+  right. It tags `pre-authorship-fix` first, so `git reset --hard
+  pre-authorship-fix` undoes it.
 
 Screenshot support is already built — see `public/work/README.md`. Drop images
 in, add `cover` / `gallery`, and the case study picks them up with no code
