@@ -29,10 +29,20 @@ const Header = () => {
     };
   }, [open]);
 
+  // The homepage opens on a full-height ink hero, so at the top of that page
+  // the header sits on dark and every ink-coloured label would be invisible.
+  const onDark = pathname === '/' && !scrolled;
+
   const navClass = ({ isActive }) =>
     [
       'font-mono text-micro uppercase tracking-[0.16em] transition-colors duration-300',
-      isActive ? 'text-clay' : 'text-ink-mute hover:text-ink',
+      isActive
+        ? onDark
+          ? 'text-clay-light'
+          : 'text-clay'
+        : onDark
+          ? 'text-paper-mute hover:text-paper'
+          : 'text-ink-mute hover:text-ink',
     ].join(' ');
 
   return (
@@ -61,10 +71,20 @@ const Header = () => {
             className="group flex items-baseline gap-3"
             aria-label={`${site.name} — home`}
           >
-            <span className="font-display text-[1.35rem] leading-none tracking-tighter text-ink">
+            <span
+              className={[
+                'font-display text-[1.35rem] leading-none tracking-tighter transition-colors duration-300',
+                onDark ? 'text-paper' : 'text-ink',
+              ].join(' ')}
+            >
               Danish Nazir
             </span>
-            <span className="hidden font-mono text-micro uppercase tracking-[0.16em] text-ink-mute sm:block">
+            <span
+              className={[
+                'hidden font-mono text-micro uppercase tracking-[0.16em] transition-colors duration-300 sm:block',
+                onDark ? 'text-paper-mute' : 'text-ink-mute',
+              ].join(' ')}
+            >
               {site.role}
             </span>
           </Link>
@@ -79,13 +99,21 @@ const Header = () => {
               href={site.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-micro uppercase tracking-[0.16em] text-ink-mute transition-colors duration-300 hover:text-ink"
+              className={[
+                'font-mono text-micro uppercase tracking-[0.16em] transition-colors duration-300',
+                onDark ? 'text-paper-mute hover:text-paper' : 'text-ink-mute hover:text-ink',
+              ].join(' ')}
             >
               Résumé
             </a>
             <Link
               to="/contact"
-              className="border-b border-ink pb-0.5 font-mono text-micro uppercase tracking-[0.16em] text-ink transition-colors duration-300 hover:border-clay hover:text-clay"
+              className={[
+                'border-b pb-0.5 font-mono text-micro uppercase tracking-[0.16em] transition-colors duration-300',
+                onDark
+                  ? 'border-paper text-paper hover:border-clay-light hover:text-clay-light'
+                  : 'border-ink text-ink hover:border-clay hover:text-clay',
+              ].join(' ')}
             >
               Get in touch
             </Link>
@@ -94,7 +122,10 @@ const Header = () => {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="flex items-center gap-2.5 font-mono text-micro uppercase tracking-[0.16em] text-ink md:hidden"
+            className={[
+              'flex items-center gap-2.5 font-mono text-micro uppercase tracking-[0.16em] md:hidden',
+              onDark && !open ? 'text-paper' : 'text-ink',
+            ].join(' ')}
             aria-expanded={open}
             aria-controls="mobile-menu"
           >
@@ -102,19 +133,22 @@ const Header = () => {
             <span className="flex h-3 w-4 flex-col justify-between" aria-hidden="true">
               <span
                 className={[
-                  'h-px w-full bg-ink transition-transform duration-300 ease-editorial',
+                  'h-px w-full transition-transform duration-300 ease-editorial',
+                  onDark && !open ? 'bg-paper' : 'bg-ink',
                   open ? 'translate-y-[5.5px] rotate-45' : '',
                 ].join(' ')}
               />
               <span
                 className={[
-                  'h-px w-full bg-ink transition-opacity duration-200',
+                  'h-px w-full transition-opacity duration-200',
+                  onDark && !open ? 'bg-paper' : 'bg-ink',
                   open ? 'opacity-0' : '',
                 ].join(' ')}
               />
               <span
                 className={[
-                  'h-px w-full bg-ink transition-transform duration-300 ease-editorial',
+                  'h-px w-full transition-transform duration-300 ease-editorial',
+                  onDark && !open ? 'bg-paper' : 'bg-ink',
                   open ? '-translate-y-[5.5px] -rotate-45' : '',
                 ].join(' ')}
               />

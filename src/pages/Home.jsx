@@ -11,52 +11,56 @@ import { site, capabilities, skills, coreSkills } from '../data/site';
 const Home = () => (
   <>
     {/* ---------------------------------------------------------------- *
-     * Hero — asymmetric, type-led. No card, no glow, no tilt.
+     * Hero — full-height ink. The site is a quiet paper world; this is the
+     * one place it is allowed to be loud, and the step down into paper
+     * immediately after is what gives the rest its calm.
      * ---------------------------------------------------------------- */}
-    <section className="shell pb-band pt-10 md:pt-20">
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-gutter">
-        <div className="lg:col-span-8">
+    <section className="band-ink grain relative -mt-24 flex min-h-screen items-center overflow-hidden">
+      {/* Portrait bleeds off the right edge, cropped to the face and faded
+          into the ground so the headline keeps the left two-thirds clear. */}
+      <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block" aria-hidden="true">
+        <img
+          src="/images/portrait.webp"
+          alt=""
+          className="h-full w-full object-cover object-[38%_30%] opacity-70"
+          loading="eager"
+          decoding="async"
+        />
+        <span className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-transparent" />
+        <span className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent" />
+      </div>
+
+      <div className="shell relative z-10 py-16">
+        <div className="lg:max-w-[62%]">
           <Headline
-            className="font-display-tight font-display text-h1 tracking-tightest text-ink"
-            lines={['Software that', 'holds up under', 'real traffic.']}
+            className="font-display-tight font-display text-display leading-[0.94] tracking-tightest text-paper"
+            lines={['Software', 'that holds up', 'under real traffic.']}
             delay={0.15}
           />
 
-          <Reveal delay={0.5} className="mt-9 max-w-measure">
-            <p className="text-lead text-ink-soft">{site.statement}</p>
+          <Reveal delay={0.6} className="mt-10 max-w-measure">
+            <p className="text-lead text-paper/75">{site.statement}</p>
           </Reveal>
 
-          <Reveal delay={0.62} className="mt-10 flex flex-wrap items-center gap-4">
-            <Link to="/work" className="btn">
+          <Reveal delay={0.72} className="mt-11 flex flex-wrap items-center gap-4">
+            <Link to="/work" className="btn-invert">
               Selected work
             </Link>
-            <Link to="/contact" className="btn-ghost">
+            <Link to="/contact" className="btn-ghost-invert">
               Get in touch
             </Link>
           </Reveal>
         </div>
-
-        {/* Portrait — an editorial plate, with a clay corner rule for weight */}
-        <Reveal delay={0.3} className="lg:col-span-4">
-          <figure className="relative">
-            <div className="aspect-[4/5] w-full overflow-hidden bg-paper-deep">
-              <img
-                src="/images/portrait.webp"
-                alt={`${site.name}, ${site.role}`}
-                width="1000"
-                height="1250"
-                loading="eager"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <span
-              aria-hidden="true"
-              className="absolute -bottom-3 -left-3 h-16 w-16 border-b border-l border-clay"
-            />
-          </figure>
-        </Reveal>
       </div>
+
+      {/* Scroll cue — the hero fills the screen, so the page needs to say
+          there is more below it. */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-8 flex justify-center font-mono text-micro uppercase tracking-[0.3em] text-paper-mute"
+      >
+        Scroll
+      </span>
     </section>
 
     {/* ---------------------------------------------------------------- *
