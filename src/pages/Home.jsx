@@ -65,8 +65,12 @@ const Home = () => (
 
     {/* ---------------------------------------------------------------- *
      * Selected work
+     *
+     * pt-band matters here: the old hero carried pb-band, and the full-height
+     * ink hero that replaced it ends flush at the viewport edge. Without this
+     * the heading collides with the dark band above it.
      * ---------------------------------------------------------------- */}
-    <section className="shell">
+    <section className="shell pt-band">
       <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
         <h2 className="font-display text-h2 tracking-tighter">Selected work</h2>
         <span className="eyebrow">In production</span>
