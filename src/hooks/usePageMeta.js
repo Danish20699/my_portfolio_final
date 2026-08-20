@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 const ORIGIN = 'https://my-portfolio-final-wine.vercel.app';
 
 const DEFAULTS = {
-  title: 'Danish Nazir — Full-Stack Developer',
+  title: 'Danish Nazir — Full-Stack Engineer',
   description:
-    'Danish Nazir is a full-stack developer building production systems for retail, education, and infrastructure automation.',
+    'Danish Nazir is a full-stack engineer building production systems for retail, education, and infrastructure automation.',
 };
 
 const setMeta = (selector, attr, value) => {

@@ -1,10 +1,10 @@
 # Danish Nazir
-**Full-Stack Developer | Learning AI/ML & DevOps**
+**Full-Stack Engineer | Learning AI/ML & DevOps**
 Location: Remote / Willing to Relocate
 Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Portfolio: my-portfolio-final-wine.vercel.app
 
 ## Professional Summary
-**Full-Stack Developer** with **1+ years of production experience** and **3 live systems** deployed. Builds scalable, secure web applications end to end using **React, Node.js, and Python** — comfortable moving between backend logic, database design, and frontend implementation. Currently deepening skills in **machine learning and DevOps**, working toward model fundamentals beyond API calls and automated deployment pipelines beyond manual releases.
+**Full-Stack Engineer** with **1+ years of production experience** and **3 live systems** deployed. Builds scalable, secure web applications end to end using **React, Node.js, and Python** — comfortable moving between backend logic, database design, and frontend implementation. Currently deepening skills in **machine learning and DevOps**, working toward model fundamentals beyond API calls and automated deployment pipelines beyond manual releases.
 
 ## Technical Skills
 *   **Frontend:** React.js, Next.js, TypeScript, Tailwind CSS, SASS, HTML5/CSS3
@@ -29,7 +29,7 @@ Converted from a six-month internship to a full-time position.
 ## Key Projects
 
 **Maktabah Maseehul Ummat | Point-of-Sale & Inventory System**
-*Role: Full-Stack Developer*
+*Role: Full-Stack Engineer*
 *   **Problem:** A bookstore's till and its stock record lived apart, so the shelves and the system drifted and every reconciliation was manual.
 *   **Solution:** Built a POS and inventory platform where billing decrements stock as part of completing the sale, with an IN/OUT/ADJUST audit ledger, CSV catalogue import, and reporting on **React 19, TypeScript, Express and Recharts**.
 *   **Impact:** Stock, sales and valuation come from one record; runs with no database configured, or against **MySQL** through a single environment variable.
@@ -47,7 +47,7 @@ Converted from a six-month internship to a full-time position.
 *   **Impact:** One command takes a fresh Ubuntu machine to a serving site; adding a target is one line in an array.
 
 **BOOST+ | AI EdTech Solution** *(in development)*
-*Role: Full-Stack Developer*
+*Role: Full-Stack Engineer*
 *   **Problem:** Static learning content treats every student identically, so it is wrong for almost all of them and cannot tell the difference.
 *   **Approach:** Building an adaptive tutoring system on the **OpenAI API** with **Redis** caching, modelling student state explicitly in code rather than hiding it inside a prompt.
 *   **Status:** In active development; figures will follow once there are real students behind them.
