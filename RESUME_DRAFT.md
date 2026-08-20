@@ -30,12 +30,6 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 *   **Solution:** Built a POS and inventory platform where billing decrements stock as part of completing the sale, with an IN/OUT/ADJUST audit ledger, CSV catalogue import, and reporting on **React 19, TypeScript, Express and Recharts**.
 *   **Impact:** Stock, sales and valuation come from one record; runs with no database configured, or against **MySQL** through a single environment variable.
 
-**QuantaFONS Hisaab | Expense Management Platform**
-*Role: Full Stack Developer*
-*   **Problem:** Expense data was scattered across spreadsheets and email approvals, so budgets were only reconciled after they had already been spent.
-*   **Solution:** Built an enterprise expense platform with role-based dashboards, runtime-adjustable budget thresholds, and approvals modelled as traceable state, using **React 19, TypeScript, and Recharts**.
-*   **Impact:** Spending reads against budget in real time rather than at month end.
-
 **EliiGen | Learning Platform**
 *Role: Backend & Infrastructure Engineer*
 *   **Problem:** A full student lifecycle — enrollment, payments, live lectures, study material and community — needed a backend that could scale sideways.
@@ -48,11 +42,11 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 *   **Solution:** Wrote a **Bash** orchestration script driving N targets over **SSH** key authentication — passwordless sudo via a `/etc/sudoers.d/` drop-in, idempotent installs, and **PostgreSQL** grants issued at schema, table and sequence level.
 *   **Impact:** One command takes a fresh Ubuntu machine to a serving site; adding a target is one line in an array.
 
-**BOOST+ | AI EdTech Solution**
+**BOOST+ | AI EdTech Solution** *(in development)*
 *Role: Full Stack Developer*
-*   **Problem:** Static learning content failed to adapt to individual student needs.
-*   **Solution:** Created an adaptive AI tutoring system using **OpenAI API and Redis** for real-time personalization.
-*   **Impact:** Delivered personalized curriculum adjustments instantly based on student performance.
+*   **Problem:** Static learning content treats every student identically, so it is wrong for almost all of them and cannot tell the difference.
+*   **Approach:** Building an adaptive tutoring system on the **OpenAI API** with **Redis** caching, modelling student state explicitly in code rather than hiding it inside a prompt.
+*   **Status:** In active development; figures will follow once there are real students behind them.
 
 ## Education
 **Bachelor of Computer Applications (BCA)**
