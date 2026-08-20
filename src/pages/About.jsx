@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import Reveal from '../components/motion/Reveal';
 import DepthCarousel from '../components/DepthCarousel/DepthCarousel';
-import { site, capabilities, education, offDuty } from '../data/site';
+import { site, capabilities, experience, education, offDuty } from '../data/site';
 import { galleryImages } from '../data/gallery';
 import usePageMeta from '../hooks/usePageMeta';
 
@@ -78,6 +78,53 @@ const About = () => {
             </figure>
           </Reveal>
         </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- *
+       * Experience
+       *
+       * Sits ahead of Capabilities because "who paid you, and for how long"
+       * is the first thing a hiring reader looks for, and it was previously
+       * nowhere on the site at all.
+       * ---------------------------------------------------------------- */}
+      <section className="shell pt-band">
+        <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
+          <h2 className="font-display text-h2 tracking-tighter">Experience</h2>
+          <span className="eyebrow">Where I've worked</span>
+        </Reveal>
+
+        <ul className="border-t border-paper-edge">
+          {experience.map((job, i) => (
+            <Reveal as="li" key={job.company} delay={i * 0.05}>
+              <div className="grid gap-3 border-b border-paper-edge py-10 md:grid-cols-12 md:gap-6">
+                <div className="md:col-span-3">
+                  <p className="font-mono text-micro uppercase tracking-[0.14em] text-ink-mute">
+                    {job.period}
+                  </p>
+                </div>
+
+                <div className="md:col-span-9">
+                  <h3 className="font-display text-h3 tracking-tighter text-ink">
+                    {job.role}
+                  </h3>
+                  <p className="mt-1 font-mono text-meta uppercase tracking-[0.12em] text-clay">
+                    {job.company}
+                  </p>
+                  <p className="mt-4 max-w-measure text-body text-ink-soft">{job.summary}</p>
+
+                  <ul className="mt-5 max-w-measure space-y-2.5">
+                    {job.points.map((point) => (
+                      <li key={point} className="flex gap-3 text-body text-ink-soft">
+                        <span aria-hidden="true" className="mt-[0.65em] h-px w-3 shrink-0 bg-clay" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </ul>
       </section>
 
       {/* Capabilities */}

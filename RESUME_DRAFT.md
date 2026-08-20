@@ -15,12 +15,12 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 
 ## Professional Experience
 
-**Full Stack Developer**
-*Current Role*
-*   Building and deploying web applications end to end — from database schema through API layer to frontend implementation.
-*   Integrating LLM APIs into existing web applications to automate manual workflows.
-*   Optimising existing codebases for performance: reducing page load times and improving Core Web Vitals.
-*   Owning deployment and uptime for the systems I ship.
+**Full-Stack Developer | QuantaFONS**
+*2025 – Present*
+*   Build web applications end to end — database schema, API layer, and frontend implementation.
+*   Integrate LLM APIs into existing applications to automate workflows that were manual.
+*   Optimise existing codebases for performance: page load times and Core Web Vitals.
+*   Own deployment and uptime for the systems I ship, not just the code.
 
 ## Key Projects
 

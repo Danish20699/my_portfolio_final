@@ -1,7 +1,9 @@
 export const site = {
   name: 'Danish Nazir',
-  // One title, used everywhere: header, meta, JSON-LD, image alt.
-  // Matches the hero sentence and RESUME_DRAFT.md.
+  // Positioning title, used for header, meta, JSON-LD and image alt. This is
+  // deliberately NOT the same string as the QuantaFONS job title in
+  // `experience` below -- that one is the actual role on the resume, this one
+  // is how the site introduces him. Changing either does not imply the other.
   role: 'Full-Stack Engineer',
   location: 'Kashmir, India — working remotely',
   email: 'danishpersonal6@gmail.com',
@@ -114,6 +116,30 @@ export const coreSkills = [
   'Docker',
   'Next.js',
   'AWS',
+];
+
+/*
+ * Employment. Separate from `projects` on purpose: a project says what was
+ * built, this says who was paying and for how long, and a reader looking to
+ * hire wants both. The site had the first and none of the second.
+ *
+ * `period` is deliberately year-granular. "1+ years" as of August 2026 is
+ * what is actually known; a start month here would be a guess.
+ */
+export const experience = [
+  {
+    company: 'QuantaFONS',
+    role: 'Full-Stack Developer',
+    period: '2025 — Present',
+    summary:
+      'Building and shipping production web applications end to end, and owning them after release.',
+    points: [
+      'Build web applications end to end — database schema, API layer, and frontend implementation.',
+      'Integrate LLM APIs into existing applications to automate workflows that were manual.',
+      'Optimise existing codebases for performance: page load times and Core Web Vitals.',
+      'Own deployment and uptime for the systems I ship, not just the code.',
+    ],
+  },
 ];
 
 export const education = [
