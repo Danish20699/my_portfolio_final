@@ -20,9 +20,12 @@ export const site = {
     'The interesting problems are rarely the features. They are the retries, the migrations, the schema you chose eighteen months ago, and the failure mode nobody wrote down. That is the work I like.',
   ],
 
+  // Shown in the footer and as the /contact eyebrow. The QuantaFONS role
+  // ended in July 2026, so this reads as a job search rather than freelance
+  // availability. Flip `open` to false to hide the badge entirely.
   availability: {
     open: true,
-    label: 'Open to select projects',
+    label: 'Open to full-time roles',
   },
 
   socials: [
