@@ -139,8 +139,11 @@ const About = () => {
         </ul>
       </section>
 
-      {/* Off duty — real photographs, not stock */}
-      <section className="shell pt-band">
+      {/* Off duty — real photographs, not stock.
+          Recessed ground because this is the one section that is not about
+          work. The register change is the point; it is not decoration. */}
+      <section className="band-paper mt-band">
+        <div className="shell py-band">
         <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
           <h2 className="font-display text-h2 tracking-tighter">Off duty</h2>
           <span className="eyebrow">Photographs</span>
@@ -182,7 +185,8 @@ const About = () => {
           <p className="mt-7 text-center font-mono text-micro uppercase tracking-[0.16em] text-ink-mute">
             Drag, swipe, or use the arrow keys
           </p>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
     </>
   );

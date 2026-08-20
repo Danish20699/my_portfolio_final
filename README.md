@@ -86,7 +86,7 @@ Light warm-paper base, one accent, typography doing the work.
 | `paper-edge` | `#E7DFD2` | Hairlines |
 | `ink` | `#191713` | Headings, contrast bands, buttons |
 | `ink-soft` | `#4C463E` | Body copy |
-| `ink-mute` | `#726A60` | Metadata, captions (4.98:1, AA) |
+| `ink-mute` | `#6E6760` | Metadata, captions (5.21:1 paper, 4.70:1 recessed) |
 | `clay` | `#B14A2C` | The single accent (5.06:1 on paper) |
 | `clay-light` | `#D87B58` | The accent on ink bands (5.88:1) |
 | `paper-mute` | `#96918B` | Muted text on ink bands (5.73:1) |

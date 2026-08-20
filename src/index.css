@@ -156,8 +156,19 @@
     font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
   }
 
+  /*
+   * Two section grounds, each with a job:
+   *   .band-ink   — a statement. One idea, large type, no list.
+   *   .band-paper — a different register: secondary or personal, not primary.
+   * Neither is for decoration. A page with nothing to say in that register
+   * keeps the default ground.
+   */
   .band-ink {
     @apply bg-ink text-paper/70;
+  }
+
+  .band-paper {
+    @apply bg-paper-deep;
   }
 
   .band-ink h1,

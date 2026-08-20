@@ -23,9 +23,11 @@ const config: Config = {
         ink: {
           DEFAULT: '#191713', // headings, contrast bands
           soft: '#4C463E', // body copy
-          // Was #8B8378 — 3.50:1 on paper, which failed AA for the 11px
-          // eyebrows, dates, tags and nav links that all use it. Now 4.98:1.
-          mute: '#726A60', // metadata, captions
+          // Was #8B8378 (3.50:1) and failed AA outright. Darkened again when
+          // the recessed band arrived: metadata has to clear 4.5 on BOTH
+          // grounds, and #726A60 measured 4.49 on paper-deep. Now 5.21 on
+          // paper, 4.70 on paper-deep.
+          mute: '#6E6760', // metadata, captions
           edge: '#2E2A23', // hairlines on ink
         },
         clay: {

@@ -127,7 +127,7 @@ on route change. Unknown `:slug` values redirect to the parent index rather than
 | `paper-edge` | `#E7DFD2` | Hairline rules |
 | `ink` | `#191713` | Headings, contrast bands, primary buttons |
 | `ink-soft` | `#4C463E` | Body copy |
-| `ink-mute` | `#726A60` | Metadata, captions — 4.98:1 |
+| `ink-mute` | `#6E6760` | Metadata, captions — 5.21:1 on paper, 4.70:1 on paper-deep |
 | `ink-edge` | `#2E2A23` | Hairlines on ink bands |
 | `clay` | `#B14A2C` | The single accent |
 | `clay-deep` | `#8A3620` | Accent, pressed/error |
@@ -151,7 +151,13 @@ Fluid `clamp()` scale: `micro · meta · body · lead · h3 · h2 · h1 · displ
 
 ### Shared classes (`src/index.css`)
 Only patterns used three or more times: `.shell`, `.eyebrow`, `.rule`, `.link`, `.btn`,
-`.btn-ghost`, `.prose-editorial`, plus utilities `.band-ink`, `.grain`, `.font-display-tight`.
+`.btn-ghost`, `.prose-editorial`, plus utilities `.band-ink`, `.band-paper`, `.grain`,
+`.font-display-tight`.
+
+**Section grounds carry meaning, and are not decoration.** `.band-ink` is a statement —
+one idea, large type, no list; it appears once, on the homepage. `.band-paper` is a
+different register — secondary or personal rather than primary. A page with nothing to
+say in either register keeps the default ground, which is why `/writing` has neither.
 Everything else is Tailwind in the markup. No inline `style={{}}` objects remain.
 
 ### Motion

@@ -32,13 +32,17 @@ const Work = () => {
         </div>
       </section>
 
-      <section className="shell pt-band">
-        <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
-          <h2 className="font-display text-h3 tracking-tighter">In progress</h2>
-          <span className="eyebrow">{building.length} building</span>
-        </Reveal>
-        <div className="mt-2">
-          <WorkIndex items={building} />
+      {/* Recessed ground: shipped work and speculative work should not carry
+          the same visual weight, and the split is already the page's structure. */}
+      <section className="band-paper mt-band">
+        <div className="shell py-band">
+          <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
+            <h2 className="font-display text-h3 tracking-tighter">In progress</h2>
+            <span className="eyebrow">{building.length} building</span>
+          </Reveal>
+          <div className="mt-2">
+            <WorkIndex items={building} />
+          </div>
         </div>
       </section>
     </>
