@@ -356,26 +356,6 @@ export const projects = [
     ],
     stack: ['OpenAI API', 'Python', 'Next.js', 'Redis'],
   },
-  {
-    slug: 'kvpda',
-    title: 'KVPDA',
-    domain: 'Data analytics',
-    year: '2025',
-    status: 'building',
-    link: null,
-    role: 'Data engineer',
-    summary:
-      'Turning unstructured petroleum data into something an analyst can actually read.',
-    context: [
-      'Insight generation was fully manual because the underlying data had no consistent shape. Every question meant starting from raw files again.',
-    ],
-    approach: [
-      'Normalising the incoming data into a queryable schema before touching any visualisation.',
-      'Building the dashboard against real analyst questions rather than a generic chart library tour.',
-    ],
-    outcome: ['In active development.'],
-    stack: ['Python (pandas)', 'Django', 'D3.js', 'SQL'],
-  },
 ];
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug);
