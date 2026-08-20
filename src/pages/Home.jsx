@@ -6,7 +6,7 @@ import Testimonials from '../components/Testimonials';
 import TextLoop from '../components/motion/TextLoop';
 import { featured } from '../data/projects';
 import { posts, formatDate } from '../data/posts';
-import { site, capabilities, skills, coreSkills } from '../data/site';
+import { site, capabilities, experience, skills, coreSkills } from '../data/site';
 
 const Home = () => (
   <>
@@ -83,6 +83,62 @@ const Home = () => (
       <Reveal className="mt-10">
         <Link to="/work" className="link font-mono text-meta uppercase tracking-[0.12em]">
           All projects →
+        </Link>
+      </Reveal>
+    </section>
+
+    {/* ---------------------------------------------------------------- *
+     * Experience
+     *
+     * On the homepage on purpose. It lived only on /about, which meant a
+     * visitor who never left the landing page saw four projects and no
+     * evidence anyone had ever paid for them.
+     *
+     * Deliberately compact: company, titles, dates, one line. The bullets
+     * stay on /about — this is the credential, not the case for it.
+     * ---------------------------------------------------------------- */}
+    <section className="shell pt-band">
+      <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
+        <h2 className="font-display text-h2 tracking-tighter">Experience</h2>
+        <span className="eyebrow">Where I've worked</span>
+      </Reveal>
+
+      <ul className="border-t border-paper-edge">
+        {experience.map((job, i) => (
+          <Reveal as="li" key={job.company} delay={i * 0.05}>
+            <div className="grid gap-4 border-b border-paper-edge py-8 md:grid-cols-12 md:gap-6">
+              <div className="md:col-span-3">
+                <p className="font-mono text-micro uppercase tracking-[0.14em] text-ink-mute">
+                  {job.period}
+                </p>
+              </div>
+
+              <div className="md:col-span-9">
+                <h3 className="font-display text-h3 tracking-tighter text-ink">{job.company}</h3>
+
+                <ol className="mt-3 space-y-1.5">
+                  {job.roles.map((role) => (
+                    <li key={role.title} className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+                      <span className="font-mono text-meta uppercase tracking-[0.12em] text-clay">
+                        {role.title}
+                      </span>
+                      <span className="font-mono text-micro uppercase tracking-[0.14em] text-ink-mute">
+                        {role.period}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+
+                <p className="mt-4 max-w-measure text-body text-ink-soft">{job.summary}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </ul>
+
+      <Reveal className="mt-10">
+        <Link to="/about" className="link font-mono text-meta uppercase tracking-[0.12em]">
+          More about me →
         </Link>
       </Reveal>
     </section>

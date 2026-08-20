@@ -79,13 +79,15 @@ const About = () => {
           </Reveal>
         </div>
       </section>
-
       {/* ---------------------------------------------------------------- *
        * Experience
        *
        * Sits ahead of Capabilities because "who paid you, and for how long"
        * is the first thing a hiring reader looks for, and it was previously
        * nowhere on the site at all.
+       *
+       * The company is the heading and the titles hang under it, because the
+       * story here is one employer and a promotion, not two unrelated jobs.
        * ---------------------------------------------------------------- */}
       <section className="shell pt-band">
         <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
@@ -105,12 +107,28 @@ const About = () => {
 
                 <div className="md:col-span-9">
                   <h3 className="font-display text-h3 tracking-tighter text-ink">
-                    {job.role}
-                  </h3>
-                  <p className="mt-1 font-mono text-meta uppercase tracking-[0.12em] text-clay">
                     {job.company}
-                  </p>
-                  <p className="mt-4 max-w-measure text-body text-ink-soft">{job.summary}</p>
+                  </h3>
+
+                  {/* Titles, newest first. The second one is the internship;
+                      showing both is what makes the conversion legible. */}
+                  <ol className="mt-3 space-y-1.5">
+                    {job.roles.map((role) => (
+                      <li
+                        key={role.title}
+                        className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5"
+                      >
+                        <span className="font-mono text-meta uppercase tracking-[0.12em] text-clay">
+                          {role.title}
+                        </span>
+                        <span className="font-mono text-micro uppercase tracking-[0.14em] text-ink-mute">
+                          {role.period}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+
+                  <p className="mt-5 max-w-measure text-body text-ink-soft">{job.summary}</p>
 
                   <ul className="mt-5 max-w-measure space-y-2.5">
                     {job.points.map((point) => (

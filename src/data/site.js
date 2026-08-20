@@ -123,21 +123,30 @@ export const coreSkills = [
  * built, this says who was paying and for how long, and a reader looking to
  * hire wants both. The site had the first and none of the second.
  *
- * `period` is deliberately year-granular. "1+ years" as of August 2026 is
- * what is actually known; a start month here would be a guess.
+ * `roles` is an array because the QuantaFONS run was two titles, not one:
+ * a six-month internship that converted to a full-time position. That
+ * conversion is the most persuasive fact in the entry, so it is modelled
+ * explicitly rather than flattened into a single date range. Newest first,
+ * the way a reader scans it.
+ *
+ * The role ended in July 2026 -- past tense throughout, and no `worksFor`
+ * in the JSON-LD, which would assert current employment.
  */
 export const experience = [
   {
     company: 'QuantaFONS',
-    role: 'Full-Stack Developer',
-    period: '2025 — Present',
+    period: 'Apr 2025 — Jul 2026',
+    roles: [
+      { title: 'Full-Stack Developer', period: 'Oct 2025 — Jul 2026' },
+      { title: 'Full-Stack Developer, Intern', period: 'Apr 2025 — Sep 2025' },
+    ],
     summary:
-      'Building and shipping production web applications end to end, and owning them after release.',
+      'Joined as an intern, converted to full-time after six months. Built and shipped production web applications end to end, and stayed responsible for them after release.',
     points: [
-      'Build web applications end to end — database schema, API layer, and frontend implementation.',
-      'Integrate LLM APIs into existing applications to automate workflows that were manual.',
-      'Optimise existing codebases for performance: page load times and Core Web Vitals.',
-      'Own deployment and uptime for the systems I ship, not just the code.',
+      'Built web applications end to end — database schema, API layer, and frontend implementation.',
+      'Integrated LLM APIs into existing applications to automate workflows that had been manual.',
+      'Optimised existing codebases for performance: page load times and Core Web Vitals.',
+      'Owned deployment and uptime for the systems I shipped, not just the code.',
     ],
   },
 ];
