@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const ORIGIN = 'https://my-portfolio-final-wine.vercel.app';
+import { ORIGIN } from '../config';
 
 const DEFAULTS = {
   title: 'Danish Nazir — Full-Stack Engineer',

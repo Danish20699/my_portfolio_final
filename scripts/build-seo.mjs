@@ -11,8 +11,7 @@ import { dirname, resolve } from 'node:path';
 
 import { projects } from '../src/data/projects.js';
 import { posts } from '../src/data/posts.js';
-
-const ORIGIN = 'https://my-portfolio-final-wine.vercel.app';
+import { ORIGIN } from '../src/config.js';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const today = new Date().toISOString().slice(0, 10);
 
