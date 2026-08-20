@@ -29,8 +29,12 @@ NAME="Danish Nazir"
 EMAIL="danishnazir20699@gmail.com"
 BACKUP_TAG="pre-authorship-fix"
 
-if [ -n "$(git status --porcelain)" ]; then
-    echo "Working tree is not clean. Commit or stash first, then re-run." >&2
+# Only tracked changes matter here. filter-branch rewrites commit metadata and
+# never touches untracked files, so an untracked directory sitting in the
+# working tree is not a reason to refuse.
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+    echo "Tracked files have uncommitted changes. Commit or stash first, then re-run." >&2
+    git status --short --untracked-files=no >&2
     exit 1
 fi
 
