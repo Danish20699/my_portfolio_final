@@ -124,11 +124,21 @@ missing or returns an error, the form shows the error and offers a prefilled
 
 ## Known follow-ups
 
-- **Case study screenshots.** Support is built — see `public/work/README.md`.
-  Drop images in and add `cover` / `gallery` to the project; no code changes.
-  Nothing renders until you do.
-- **Case studies need numbers.** The `outcome` arrays in `src/data/projects.js`
-  describe what changed qualitatively. Replace them with measured figures where
-  you have them.
+Everything here needs information only Danish has. Nothing is blocked on code.
+
+- **No case study carries a measured number.** The `outcome` arrays say what
+  changed, not how much. EliiGen's API p95 before and after the BullMQ work
+  would be the single strongest addition to the site.
+- **Boost+** has no link and no screenshots. Finish it or drop it.
+- **Maktabah has no public URL** — it renders the `accessNote` line instead.
 - **Testimonials are empty by design.** Add real, attributable quotes to
-  `src/data/testimonials.js` and the section appears automatically.
+  `src/data/testimonials.js` and the section appears on its own.
+- **Writing is three pre-redesign posts on generic topics, with no images.**
+  One post about something actually debugged — the Socket.io Redis adapter, or
+  the PostgreSQL schema/table/sequence grants — would beat all three.
+- **Commit authorship.** Older commits carry a mistyped email. Rewriting it
+  needs `git filter-branch` plus a force push, run locally.
+
+Screenshot support is already built — see `public/work/README.md`. Drop images
+in, add `cover` / `gallery`, and the case study picks them up with no code
+change.

@@ -1,8 +1,6 @@
 # Danish Nazir — Portfolio: Project Documentation
 
-> Current as of 2026-08-18, after the v2 redesign and the merge with `origin/main`.
-> Supersedes the earlier draft of this file, which described the pre-redesign tree at `611f207`
-> and was written before the five newer commits on `origin/main` were visible.
+> Current as of 2026-08-20.
 
 ---
 
@@ -16,11 +14,12 @@
 | Repo | https://github.com/Danish20699/my_portfolio_final.git |
 | Hosting | Vercel — SPA rewrites, Vercel Analytics, serverless `api/` |
 | Build | Vite 5 · React 18 · Tailwind 3 |
-| Bundle | 352 kB JS (113 kB gzip) · 27 kB CSS (5.6 kB gzip) · 648 kB images |
+| Bundle | 385 kB JS · 36 kB CSS · ~1.3 MB images (WebP, all under 200 KB each) |
 
-**Design position:** warm light editorial. Paper-toned background, near-black ink, a single
-clay accent, and typography carrying the hierarchy. Work is presented as a ruled index and
-individual case studies rather than a card grid.
+**Design position:** a full-viewport ink hero opening onto a warm paper world. The contrast
+between the two is where the impact is spent; everything after the hero is deliberately quiet.
+Paper ground, near-black ink, one clay accent, typography carrying the hierarchy. Work is a
+ruled index with hover previews rather than a card grid.
 
 ---
 
@@ -77,7 +76,7 @@ No lint, test, or typecheck script exists yet.
     ├── index.css              @layer base / components / utilities only
     ├── data/
     │   ├── site.js            Identity, statement, socials, capabilities, education, off-duty
-    │   ├── projects.js        6 case studies
+    │   ├── projects.js        4 case studies
     │   ├── posts.js           3 articles + formatDate / readingTime / categories
     │   ├── testimonials.js    Empty array by default
     │   └── gallery.js         About-page photographs
@@ -88,8 +87,11 @@ No lint, test, or typecheck script exists yet.
     │   ├── WorkIndex.jsx      Ruled project index
     │   ├── Prose.jsx          Markdown-ish renderer (headings, lists, bold)
     │   ├── ContactForm.jsx    POSTs /api/subscribe, degrades to mailto
-│   ├── ProjectGallery.jsx Case-study screenshot grid
-│   ├── Lightbox.jsx       Modal viewer: focus trap, Esc, arrow keys
+    │   ├── ProjectGallery.jsx Case-study screenshot grid
+    │   ├── AccordionGallery.jsx Labelled horizontal accordion for screen sets
+    │   ├── Lightbox.jsx       Modal viewer: focus trap, Esc, arrow keys
+    │   ├── SocialIcon.jsx     Inline SVG marks, currentColor
+    │   ├── TextLoop.jsx       Cycling word in the Skills headline
     │   ├── Testimonials.jsx   Renders null while data is empty
     │   └── PageHeader.jsx
     └── hooks/usePageMeta.js   Per-route title + description
@@ -101,7 +103,7 @@ No lint, test, or typecheck script exists yet.
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `Home` | Hero, selected work, testimonials (conditional), position band, capabilities, writing |
+| `/` | `Home` | Full-height ink hero, selected work, testimonials (conditional), statement band, skills, capabilities, writing |
 | `/work` | `Work` | All projects, split into live and in-progress |
 | `/work/:slug` | `CaseStudy` | Context → Approach → Outcome, fact table, next-project link |
 | `/writing` | `Writing` | Post index with category filter |
@@ -153,6 +155,9 @@ Fluid `clamp()` scale: `micro · meta · body · lead · h3 · h2 · h1 · displ
 Only patterns used three or more times: `.shell`, `.eyebrow`, `.rule`, `.link`, `.btn`,
 `.btn-ghost`, `.prose-editorial`, plus utilities `.band-ink`, `.band-paper`, `.grain`,
 `.font-display-tight`.
+
+`.btn-invert` / `.btn-ghost-invert` are the pair for buttons on an ink ground — the default
+`.btn` is ink-on-paper and disappears there.
 
 **Section grounds carry meaning, and are not decoration.** `.band-ink` is a statement —
 one idea, large type, no list; it appears once, on the homepage. `.band-paper` is a

@@ -24,6 +24,12 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 
 ## Key Projects
 
+**Maktabah Maseehul Ummat | Point-of-Sale & Inventory System**
+*Role: Full Stack Developer*
+*   **Problem:** A bookstore's till and its stock record lived apart, so the shelves and the system drifted and every reconciliation was manual.
+*   **Solution:** Built a POS and inventory platform where billing decrements stock as part of completing the sale, with an IN/OUT/ADJUST audit ledger, CSV catalogue import, and reporting on **React 19, TypeScript, Express and Recharts**.
+*   **Impact:** Stock, sales and valuation come from one record; runs with no database configured, or against **MySQL** through a single environment variable.
+
 **QuantaFONS Hisaab | Expense Management Platform**
 *Role: Full Stack Developer*
 *   **Problem:** Expense data was scattered across spreadsheets and email approvals, so budgets were only reconciled after they had already been spent.
@@ -36,17 +42,11 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 *   **Solution:** Architected normalised **PostgreSQL 16** schemas with TypeORM, added **Redis 7** caching with **BullMQ** workers, ran **Socket.io** through the Redis adapter for horizontal scaling, and secured the API with JWT access plus Redis refresh-token rotation and RBAC.
 *   **Impact:** Dockerised the multi-service stack behind Nginx and shipped to **Google Cloud Run** with **GitHub Actions** CI/CD for zero-downtime releases.
 
-**AABALIQA | Enterprise Automation System**
-*Role: Full Stack Developer*
-*   **Problem:** Manual business workflows were creating bottlenecks and slowing down scaling.
-*   **Solution:** Developed an AI-driven automation ecosystem using **Python, TensorFlow, and React**.
-*   **Impact:** Automated core operational tasks, resulting in increased efficiency and reduced human error.
-
-**TRAVEL VICTOR | Travel Discovery Platform**
-*Role: Full Stack Developer*
-*   **Problem:** tailored booking flows were causing high user drop-off rates.
-*   **Solution:** Engineered a high-performance, interactive booking interface with **Next.js and TypeScript**.
-*   **Impact:** Improved user retention and conversion rates through a streamlined UX.
+**One-Command Deploy | Server Provisioning Automation**
+*Role: Sole Author*
+*   **Problem:** Provisioning a Linux server for a PHP application ran to roughly thirty manual steps.
+*   **Solution:** Wrote a **Bash** orchestration script driving N targets over **SSH** key authentication — passwordless sudo via a `/etc/sudoers.d/` drop-in, idempotent installs, and **PostgreSQL** grants issued at schema, table and sequence level.
+*   **Impact:** One command takes a fresh Ubuntu machine to a serving site; adding a target is one line in an array.
 
 **BOOST+ | AI EdTech Solution**
 *Role: Full Stack Developer*
