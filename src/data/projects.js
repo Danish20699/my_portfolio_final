@@ -40,7 +40,7 @@ export const projects = [
     // Internal tool, so there is nothing to link. Saying that is better than
     // showing "In production" with no button and letting a reader wonder.
     accessNote: 'Internal system for the institution — not publicly reachable.',
-    role: 'Full-stack engineer',
+    role: 'Full-stack developer',
     summary:
       'A point-of-sale and stock system for an institutional bookstore, covering the till, the shelves, and the ledger that has to reconcile them.',
     context: [

@@ -1,10 +1,12 @@
 export const site = {
   name: 'Danish Nazir',
-  // Positioning title, used for header, meta, JSON-LD and image alt. This is
-  // deliberately NOT the same string as the QuantaFONS job title in
-  // `experience` below -- that one is the actual role on the resume, this one
-  // is how the site introduces him. Changing either does not imply the other.
-  role: 'Full-Stack Engineer',
+  // One title, one spelling, everywhere: header, meta, JSON-LD, image alt,
+  // both resume files, and the `experience` entry below. It used to be
+  // "Full-Stack Engineer" here and "Full Stack Developer" on the resume --
+  // which put two spellings on a single printed page. Developer is the real
+  // title, so that is the one that survived. If this changes, grep for it;
+  // it is not derived anywhere.
+  role: 'Full-Stack Developer',
   location: 'Kashmir, India — working remotely',
   email: 'danishpersonal6@gmail.com',
   phone: '+91 70067 98511',
@@ -13,7 +15,7 @@ export const site = {
   // The positioning line. Names only domains that appear in projects.js --
   // re-check this whenever a project is added or removed.
   statement:
-    'Full-stack engineer in Kashmir, working on point-of-sale, learning, and infrastructure systems. I build things properly the first time.',
+    'Full-stack developer in Kashmir, working on point-of-sale, learning, and infrastructure systems. I build things properly the first time.',
 
   intro: [
     'I work across the stack, mostly on systems that carry real traffic and real consequences: a point-of-sale and stock system for an institutional bookstore, a learning platform serving exam-prep students, and the automation that puts them on a server.',

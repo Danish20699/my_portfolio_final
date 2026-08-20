@@ -17,7 +17,7 @@ const About = () => {
   usePageMeta({
     title: 'About — Danish Nazir',
     description:
-      'Full-stack engineer based in Kashmir, working on production systems across retail, education, and infrastructure automation.',
+      'Full-stack developer based in Kashmir, working on production systems across retail, education, and infrastructure automation.',
   });
 
   return (

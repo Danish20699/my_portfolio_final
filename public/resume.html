@@ -142,18 +142,66 @@
             color: #374151;
         }
 
-        /* Print Styles */
+        /*
+         * Print styles.
+         *
+         * This file exists to be printed or saved as a PDF -- that is what
+         * the "Resume" link in the site header produces. The previous rules
+         * only stripped the page chrome, which left the real problems:
+         * entries splitting across a page break, headings stranded at the
+         * foot of a page, and the accent colour dropped because browsers
+         * disable colour printing by default.
+         */
         @media print {
+            @page {
+                margin: 14mm 15mm;
+            }
+
             body {
                 background: white;
                 padding: 0;
+                font-size: 10.5pt;
+                line-height: 1.45;
             }
 
             .page {
                 box-shadow: none;
+                border-radius: 0;
                 margin: 0;
                 padding: 0;
                 max-width: 100%;
+            }
+
+            /* Browsers drop colour and backgrounds when printing unless
+               told otherwise; without this the section headings print grey. */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            /* A job or project entry must not be cut in half by a page
+               break, and a bullet must not be split across pages. */
+            section > div,
+            li {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            /* A heading stranded alone at the bottom of a page is the most
+               common way a printed resume looks broken. */
+            h2,
+            h3,
+            .job-header {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            section {
+                margin-bottom: 1.25rem;
+            }
+
+            h1 {
+                font-size: 1.9rem;
             }
         }
     </style>
@@ -163,7 +211,7 @@
     <div class="page">
         <header>
             <h1>Danish Nazir</h1>
-            <div class="subtitle">Full Stack Developer &nbsp;|&nbsp; Learning AI/ML &amp; DevOps</div>
+            <div class="subtitle">Full-Stack Developer &nbsp;|&nbsp; Learning AI/ML &amp; DevOps</div>
             <div class="contact-info">
                 <span>📍 Remote / Relocatable</span>
                 <span>📧 danishpersonal6@gmail.com</span>
@@ -174,7 +222,7 @@
         <section>
             <h2>Professional Summary</h2>
             <p>
-                <strong>Full Stack Developer</strong> with <strong>1+ years of production experience</strong> and
+                <strong>Full-Stack Developer</strong> with <strong>1+ years of production experience</strong> and
                 <strong>3 live systems</strong> deployed. Builds scalable, secure web applications end to end using
                 React, Node.js, and Python — comfortable moving between backend logic, database design, and frontend
                 implementation. Currently deepening skills in <strong>machine learning and DevOps</strong>, with a
@@ -232,7 +280,7 @@
             <div style="margin-bottom: 1.5rem;">
                 <div class="job-header">
                     <h3>Maktabah Maseehul Ummat | Point-of-Sale &amp; Inventory System</h3>
-                    <span class="role">Full Stack Developer</span>
+                    <span class="role">Full-Stack Developer</span>
                 </div>
                 <ul>
                     <li><strong>Problem:</strong> A bookstore's till and its stock record lived apart, so the
@@ -281,7 +329,7 @@
             <div>
                 <div class="job-header">
                     <h3>BOOST+ | AI EdTech Solution <span style="font-weight:400;">(in development)</span></h3>
-                    <span class="role">Full Stack Developer</span>
+                    <span class="role">Full-Stack Developer</span>
                 </div>
                 <ul>
                     <li><strong>Problem:</strong> Static learning content treats every student identically, so it
@@ -308,8 +356,6 @@
             <ul>
                 <li>Complete Frontend 2.0 (Skill-Lync)</li>
                 <li>Introduction to Java (Skill-Lync)</li>
-                <li>JavaScript and React.js Development</li>
-                <li>Python Programming</li>
             </ul>
         </section>
 
