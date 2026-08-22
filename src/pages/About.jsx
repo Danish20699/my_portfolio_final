@@ -107,7 +107,18 @@ const About = () => {
 
                 <div className="md:col-span-9">
                   <h3 className="font-display text-h3 tracking-tighter text-ink">
-                    {job.company}
+                    {job.href ? (
+                      <a
+                        href={job.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link"
+                      >
+                        {job.company}
+                      </a>
+                    ) : (
+                      job.company
+                    )}
                   </h3>
 
                   {/* Titles, newest first. The second one is the internship;

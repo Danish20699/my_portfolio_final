@@ -146,7 +146,15 @@ const Home = () => (
               </div>
 
               <div className="md:col-span-9">
-                <h3 className="font-display text-h3 tracking-tighter text-ink">{job.company}</h3>
+                <h3 className="font-display text-h3 tracking-tighter text-ink">
+                  {job.href ? (
+                    <a href={job.href} target="_blank" rel="noopener noreferrer" className="link">
+                      {job.company}
+                    </a>
+                  ) : (
+                    job.company
+                  )}
+                </h3>
 
                 <ol className="mt-3 space-y-1.5">
                   {job.roles.map((role) => (

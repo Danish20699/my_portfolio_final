@@ -142,6 +142,28 @@ export const coreSkills = [
  */
 export const experience = [
   {
+    company: 'VervenTech',
+    href: 'https://verventech.com/',
+    location: 'Srinagar, J&K',
+    current: true,
+    period: 'Aug 2026 — Present',
+    roles: [{ title: 'DevOps Trainee', period: 'Aug 2026 — Present' }],
+    summary:
+      'In-person DevOps traineeship at a Srinagar training and co-working hub, working out of the same space as practising cloud and network engineers.',
+    /*
+     * These describe the programme, which is a matter of public record on
+     * verventech.com, and not a list of things delivered. Nothing here
+     * claims an outcome, because the traineeship is weeks old and inventing
+     * one would be the fastest way to lose an interview. Replace these with
+     * real work as it lands.
+     */
+    points: [
+      'Enrolled on the 4.5-month industrial programme: instructor-led training paired with an internship placement.',
+      'Programme covers the container and provisioning toolchain — Docker, Kubernetes, Terraform, Jenkins, Ansible — and AWS deployment.',
+      'Moving to the infrastructure side of the stack that the QuantaFONS work only reached from the application end.',
+    ],
+  },
+  {
     company: 'QuantaFONS',
     period: 'Apr 2025 — Jul 2026',
     roles: [
