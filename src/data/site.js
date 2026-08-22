@@ -146,18 +146,22 @@ export const experience = [
     href: 'https://verventech.com/',
     location: 'Srinagar, J&K',
     current: true,
-    period: 'Aug 2026 — Present',
-    roles: [{ title: 'DevOps Trainee', period: 'Aug 2026 — Present' }],
+    // Jun 2026 start, supplied by Danish. It deliberately overlaps the last
+    // two months of QuantaFONS below -- he was still employed there while
+    // the traineeship ran, which is ordinary for evening/part-time training
+    // and is not an error to reconcile away.
+    period: 'Jun 2026 — Present',
+    roles: [{ title: 'DevOps Trainee', period: 'Jun 2026 — Present' }],
     summary:
       'In-person DevOps traineeship at a Srinagar training and co-working hub, working out of the same space as practising cloud and network engineers.',
     /*
      * These describe the programme, not a list of things delivered. The
      * toolchain is public record on verventech.com; the six-month duration
      * came from Danish directly -- the site advertises 4.5 months, so do
-     * not "correct" it back from there. Nothing here
-     * claims an outcome, because the traineeship is weeks old and inventing
-     * one would be the fastest way to lose an interview. Replace these with
-     * real work as it lands.
+     * not "correct" it back from there.
+     *
+     * Nothing here claims an outcome. Inventing one would be the fastest way
+     * to lose an interview on it. Replace these with real work as it lands.
      */
     points: [
       'Enrolled on the six-month industrial programme: instructor-led training paired with an internship placement.',

@@ -15,7 +15,7 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 
 ## Professional Experience
 
-**VervenTech** — *Aug 2026 – Present* — Srinagar, J&K
+**VervenTech** — *Jun 2026 – Present* — Srinagar, J&K
 *   **DevOps Trainee**
 *   Enrolled on the six-month industrial programme: instructor-led training paired with an internship placement.
 *   Programme covers the container and provisioning toolchain — **Docker, Kubernetes, Terraform, Jenkins, Ansible** — and **AWS** deployment.
