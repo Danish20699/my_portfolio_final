@@ -6,7 +6,7 @@ import Testimonials from '../components/Testimonials';
 import TextLoop from '../components/motion/TextLoop';
 import { featured } from '../data/projects';
 import { posts, formatDate } from '../data/posts';
-import { site, capabilities, experience, skills, coreSkills } from '../data/site';
+import { site, experience, skills, coreSkills } from '../data/site';
 
 const Home = () => (
   <>
@@ -243,36 +243,6 @@ const Home = () => (
 
     </section>
 
-    {/* ---------------------------------------------------------------- *
-     * Capabilities — a table, not a badge cloud
-     * ---------------------------------------------------------------- */}
-    <section className="shell pt-band">
-      <Reveal className="flex items-baseline justify-between border-b border-ink pb-5">
-        <h2 className="font-display text-h2 tracking-tighter">What I do</h2>
-        <span className="eyebrow">Capabilities</span>
-      </Reveal>
-
-      <dl className="border-t border-paper-edge">
-        {capabilities.map((c, i) => (
-          <Reveal key={c.title} delay={i * 0.05}>
-            <div className="grid gap-3 border-b border-paper-edge py-8 md:grid-cols-12 md:gap-6 md:py-10">
-              <dt className="font-display text-h3 tracking-tighter text-ink md:col-span-4">
-                <span className="mr-3 font-mono text-micro align-super text-ink-mute">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                {c.title}
-              </dt>
-              {/* Tools deliberately omitted here — the Skills section directly
-                  above already lists them, and repeating them on the same
-                  screen reads as padding. About still shows them per capability. */}
-              <dd className="md:col-span-8">
-                <p className="max-w-measure text-body text-ink-soft">{c.body}</p>
-              </dd>
-            </div>
-          </Reveal>
-        ))}
-      </dl>
-    </section>
 
     {/* ---------------------------------------------------------------- *
      * Writing
