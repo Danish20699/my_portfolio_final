@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Headline from '../components/motion/Headline';
+import MaskedHeading from '../components/MaskedHeading/MaskedHeading';
 import Reveal from '../components/motion/Reveal';
 import WorkIndex from '../components/WorkIndex';
 import Testimonials from '../components/Testimonials';
@@ -32,10 +32,40 @@ const Home = () => (
 
       <div className="shell relative z-10 py-16">
         <div className="lg:max-w-[62%]">
-          <Headline
-            className="font-display-tight font-display text-display leading-[0.94] tracking-tightest text-paper"
+          {/*
+            The headline is filled with one of the Kashmir photographs from
+            the About gallery rather than a flat colour. Same three authored
+            lines, same Fraunces display scale, same left alignment -- only
+            the fill changed.
+
+            fallbackColor is the paper token, not decoration: if the media
+            ever fails to load, the heading still renders as solid text
+            instead of disappearing.
+
+            To switch to video: mediaType="video", src to the .mp4, and add
+            poster="/images/hero-mask-poster.jpg".
+          */}
+          <MaskedHeading
+            tag="h1"
             lines={['Software', 'that holds up', 'under real traffic.']}
-            delay={0.15}
+            className="font-display-tight font-display text-display"
+            mediaType="image"
+            src="/gallery/1709304002393.webp"
+            align="left"
+            weight={400}
+            tracking={-0.045}
+            lineHeight={0.94}
+            textScale={0}
+            fallbackColor="#FAF7F2"
+            fillScale={1.3}
+            parallax={20}
+            drift={10}
+            brightness={1.06}
+            saturation={1.05}
+            reveal="rise"
+            trigger="mount"
+            duration={1.05}
+            stagger={0.09}
           />
 
           <Reveal delay={0.6} className="mt-10 max-w-measure">
