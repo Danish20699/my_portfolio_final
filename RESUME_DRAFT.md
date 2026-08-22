@@ -17,7 +17,7 @@ Email: danishpersonal6@gmail.com | LinkedIn: linkedin.com/in/danish-nazir1 | Por
 
 **VervenTech** — *Aug 2026 – Present* — Srinagar, J&K
 *   **DevOps Trainee**
-*   Enrolled on the 4.5-month industrial programme: instructor-led training paired with an internship placement.
+*   Enrolled on the six-month industrial programme: instructor-led training paired with an internship placement.
 *   Programme covers the container and provisioning toolchain — **Docker, Kubernetes, Terraform, Jenkins, Ansible** — and **AWS** deployment.
 *   Moving to the infrastructure side of the stack that the QuantaFONS work only reached from the application end.
 
