@@ -33,33 +33,35 @@ const Home = () => (
       <div className="shell relative z-10 py-16">
         <div className="lg:max-w-[62%]">
           {/*
-            The headline is filled with one of the Kashmir photographs from
-            the About gallery rather than a flat colour. Same three authored
-            lines, same Fraunces display scale, same left alignment -- only
-            the fill changed.
+            The headline is filled with video rather than a flat colour.
+            Same three authored lines, same Fraunces display scale, same
+            left alignment -- only the fill changed.
 
-            fallbackColor is the paper token, not decoration: if the media
-            ever fails to load, the heading still renders as solid text
-            instead of disappearing.
+            fallbackColor is the paper token, not decoration: it is what
+            renders while the 3.9 MB file downloads, and what stays if the
+            video fails outright. Without it the h1 would be invisible.
 
-            To switch to video: mediaType="video", src to the .mp4, and add
-            poster="/images/hero-mask-poster.jpg".
+            fillScale is 1.08 rather than the component default 1.25. The
+            source is a 720x1280 vertical clip in a wide heading box, so it
+            is already being upscaled to cover; every extra bit of zoom
+            costs sharpness. There is enormous vertical overscan either way,
+            so parallax still has room to travel.
           */}
           <MaskedHeading
             tag="h1"
             lines={['Software', 'that holds up', 'under real traffic.']}
             className="font-display-tight font-display text-display"
-            mediaType="image"
-            src="/gallery/1709304002393.webp"
+            mediaType="video"
+            src="/video/hero-mask.mp4"
             align="left"
             weight={400}
             tracking={-0.045}
             lineHeight={0.94}
             textScale={0}
             fallbackColor="#FAF7F2"
-            fillScale={1.3}
-            parallax={20}
-            drift={10}
+            fillScale={1.08}
+            parallax={16}
+            drift={8}
             brightness={1.06}
             saturation={1.05}
             reveal="rise"
